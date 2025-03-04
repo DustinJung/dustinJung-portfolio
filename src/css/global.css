@@ -1,1 +1,231 @@
 /* global.css => 공통 모듈 CSS */
+body{
+    background-color: #0B0C10;
+    color: #F8F9FA;
+    width: 100%;
+    overflow: hidden;
+}
+body.is-ready{
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+:root{
+    --body-bg-clr: #0B0C10; /*Deep Space Black*/
+    --main-clr: #F8F9FA; /*Neon White*/
+    --point-clr: #00FFA2; /*에머랄드 그린*/
+    --point2-clr: #00D4FF; /*네온 블루*/
+    --point3-clr: #FFEA00; /*해킹 옐라*/
+}
+
+
+/*클래스모음*/
+.uppercase {
+    text-transform: uppercase;
+}
+.text-balance {
+    text-wrap: balance;
+    word-break: keep-all;
+}
+
+
+
+/*keyframes모음*/
+/* 첫 번째 텍스트 애니메이션 */
+@keyframes helloWorld {
+    0% {
+        transform: translate(-50%, -50%) scaleX(0);
+    }
+    100% {
+        transform: translate(-50%, -50%) scaleX(1);
+    }    
+}
+
+/* 위아래 흔들리는 애니메이션 */
+@keyframes helloWorld2 {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+    30% {
+        transform: translate(-50%, -70%);
+    }
+    60% {
+        transform: translate(-50%, -50%);
+    }
+    90% {
+        transform: translate(-50%, -70%);
+    }
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* 원이 줄어드는 애니메이션 */
+@keyframes shrinkCircle {
+    0% {
+        transform: translate(-50%, -50%) scale(5);
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+}
+
+/* 텍스트가 사라지는 애니메이션 (원에 의해 먹히는 효과) */
+@keyframes hideText {
+    0% {
+        opacity: 1;
+        clip-path: circle(100%);
+        -webkit-clip-path: circle(100%);
+    }
+    100% {
+        clip-path: circle(0%);
+        -webkit-clip-path: circle(0%);
+    }
+}
+/*스타블링크*/
+@keyframes starBlink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes beforeScaleTo1 {
+    0% {
+        transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+@keyframes goTopIntro {
+    0% {
+        transform: translateY(0);
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+@keyframes goDownIntro {
+    0% {
+        transform: translateY(0);
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+@keyframes hiItsMeRotate {
+    0% {
+        transform: translateX(-50%) rotate(-20deg) scale(1.4);
+    }
+    100% {
+        transform: translateX(-50%) rotate(0) scale(1);
+    }
+}
+/* 네온 빛나는 애니메이션 */
+@keyframes neonGlow {
+    0% {
+        text-shadow: 0px 0px 3px var(--point-clr), 0px 0px 7px var(--point-clr);
+    }
+    50% {
+        text-shadow: 0px 0px 8px var(--point-clr), 0px 0px 12px var(--point-clr);
+    }
+    100% {
+        text-shadow: 0px 0px 3px var(--point-clr), 0px 0px 7px var(--point-clr);
+    }
+}
+/* 해킹 코드 스크롤 애니메이션 */
+@keyframes hackingScroll {
+    0% {
+        transform: translateX(50%);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%);
+        opacity: 0;
+    }
+}
+@keyframes glitch {
+    0%, 100% {
+        text-shadow: none;
+        clip-path: inset(0 0 0 0);
+        -webkit-clip-path: inset(0 0 0 0);
+    }
+    30% {
+        text-shadow: 2px 2px #FFD700, -2px -2px #00FFA2;
+        clip-path: inset(10% 0 15% 0);
+        -webkit-clip-path: inset(10% 0 15% 0);
+    }
+    35% {
+        text-shadow: -2px -2px #FFD700, 2px 2px #00FFA2;
+        clip-path: inset(5% 0 10% 0);
+        -webkit-clip-path: inset(5% 0 10% 0);
+    }
+    40% {
+        text-shadow: none;
+        clip-path: inset(0 0 0 0);
+        -webkit-clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes glitch-delay {
+    0%, 95% {
+        opacity: 1;
+        transform: none;
+    }
+    96% {
+        opacity: 0.8;
+        transform: translateX(2px);
+    }
+    97% {
+        opacity: 1;
+        transform: translateX(-2px);
+    }
+    98% {
+        opacity: 0.9;
+        transform: none;
+    }
+    99% {
+      opacity: 1;
+    }
+}
+@keyframes opacityOn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes take-a-look-svg {
+    0% {
+        transform: translateY(20%);
+    }
+    100% {
+        transform: translateY(-10%);
+    }
+}
+@keyframes glitch-svg {
+    0% { filter: drop-shadow(2px 2px 5px #00D4FF)}
+    50% { filter: drop-shadow(-2px -2px 5px #00FFA2)}
+    100% { filter: drop-shadow(2px 2px 5px #00D4FF)}
+}

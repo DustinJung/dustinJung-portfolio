@@ -1,1 +1,194 @@
 /* 전역 스타일 */
+
+/*intro*/
+#intro-section {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background: var(--body-bg-clr);
+}
+
+#intro-section > span.hello-world {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scaleX(0);
+    transform-origin: left;
+    display: inline-block;
+    animation: 
+        helloWorld .4s .5s ease forwards, 
+        helloWorld2 .8s .95s cubic-bezier(0.21, 1.05, 0.38, 1.15) forwards,
+        hideText 1s 2s ease forwards;
+    -webkit-animation: 
+        helloWorld .4s .5s ease forwards, 
+        helloWorld2 .8s .95s cubic-bezier(0.21, 1.05, 0.38, 1.15) forwards,
+        hideText 1s 2s ease forwards;
+    z-index: 2;
+}
+
+#intro-section #theCircle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    transform: translate(-50%, -50%) scale(5);
+    transform-origin: center;
+    border-radius: 5000px;
+    z-index: 3;
+    border-left: 1px solid var(--point-clr);
+    border-top: 1px solid var(--point-clr);
+    border-right: 1px solid var(--point2-clr);
+    border-bottom: 1px solid var(--point2-clr);
+    opacity: 1;
+    animation: shrinkCircle 1s 1.8s ease-in-out forwards;
+    -webkit-animation: shrinkCircle 1s 1.8s ease-in-out forwards;
+}
+.intro-div {
+    position: relative;
+    text-align: center;
+    background: var(--body-bg-clr);
+    width: 100%;
+    height: 50%;
+    z-index: 1;
+}
+.intro-div-top:before {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    content: '';
+    background: var(--point-clr);
+    bottom: 0;
+    left: 0;
+    transform-origin: center;
+    transform: scaleX(0);
+    transition: opacity .1s ease;
+    animation: beforeScaleTo1 .3s 3s linear forwards, starBlink .3s 3.5s ease-in-out 2, starBlink .4s 4.4s ease-in-out forwards;
+    -webkit-animation: beforeScaleTo1 .3s 3s linear forwards, starBlink .3s 3.5s ease-in-out 2, starBlink .4s 4.4s ease-in-out forwards;
+}
+.intro-div-bottom:before {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    content: '';
+    background: var(--point2-clr);
+    top: 0;
+    left: 0;
+    transform-origin: center;
+    transform: scaleX(0);
+    transition: opacity .1s ease;
+    animation: beforeScaleTo1 .3s 3s linear forwards, starBlink .3s 3.5s ease-in-out 2, starBlink .4s 4.4s ease-in-out forwards;
+    -webkit-animation: beforeScaleTo1 .3s 3s linear forwards, starBlink .3s 3.5s ease-in-out 2, starBlink .4s 4.4s ease-in-out forwards;
+}
+.intro-div-top {
+    transform: translateY(0%);
+    animation: goTopIntro 1.5s 4.8s cubic-bezier(0.21, 1.05, 0.38, 1.15) forwards;
+    -webkit-animation: goTopIntro 1.5s 4.8s cubic-bezier(0.21, 1.05, 0.38, 1.15) forwards;
+}
+.intro-div-bottom {
+    transform: translateY(0%);
+    animation: goDownIntro 1.5s 4.8s cubic-bezier(0.21, 1.05, 0.38, 1.15) forwards;
+    -webkit-animation: goDownIntro 1.5s 4.8s cubic-bezier(0.21, 1.05, 0.38, 1.15) forwards;
+}
+#its-me-wrapper {
+    display: flex;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 100%;
+    transform: translateX(-50%) rotate(-20deg) scale(1.4);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    text-shadow: 1px 1px 1px var(--point2-clr);
+    text-align: center;
+    animation: hiItsMeRotate .4s 4.75s ease-in forwards !important;
+    -webkit-animation: hiItsMeRotate .4s 4.75s ease-in forwards !important;
+}
+
+#its-me-wrapper h1 {
+    animation: neonGlow 2.5s infinite alternate;
+    -webkit-animation: neonGlow 2.5s infinite alternate;
+}
+#its-me-wrapper > div{
+    background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.2), rgba(0, 0, 0, 0.8)); 
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5);
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+    justify-content: center;
+    position: relative;
+}
+/* 배경에 해킹 코드 추가 */
+#its-me-wrapper > div::before {
+    content: "0110110 1010101 1101001 0101010 1101011 1010011 1001010 0111010 0011001 1010101 0101001 1110101 0110101 1101011 1010101";
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    color: rgba(0, 255, 255, 0.3);
+    text-align: center;
+    white-space: nowrap;
+    animation: hackingScroll 8s linear infinite;
+    -webkit-animation: hackingScroll 8s linear infinite;
+}
+#its-me-wrapper > div > div:not(.hacking-text){
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px var(--point-clr), 0px 0px 20px var(--point-clr);
+    filter: blur(.25px);
+    -webkit-filter: blur(.25px);
+    transition: filter 0.3s ease-in-out;
+}
+.hacking-text {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    color: rgba(0, 255, 255, 0.5);
+    white-space: nowrap;
+    overflow: hidden;
+    animation: hackingScroll 5s linear infinite;
+    -webkit-animation: hackingScroll 5s linear infinite;
+}
+#take-a-look {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(-50%);
+    justify-content: center;
+    opacity: 0;
+    animation: opacityOn .4s 6.4s ease forwards;
+    -webkit-animation: opacityOn .4s 6.4s ease forwards;
+    gap: 10px;
+}
+#take-a-look span{
+    font-size: 20px !important;
+    font-weight: bold;
+    position: relative;
+    animation: glitch 3s infinite steps(1) alternate, glitch-delay 7s infinite steps(1);
+    -webkit-animation: glitch 3s infinite steps(1) alternate, glitch-delay 7s infinite steps(1);
+    word-spacing: -5px;
+    filter: blur(.625px);
+    -webkit-filter: blur(.625px);
+}
+#take-a-look svg{
+    fill: var(--main-clr);
+    filter: drop-shadow(2px 2px 5px var(--point2-clr)) drop-shadow(-2px -2px 5px var(--point-clr));
+    position: relative;
+    animation: take-a-look-svg .8s 6.4s alternate infinite, glitch-svg 3s 6.4s infinite steps(1) alternate;;
+}
+

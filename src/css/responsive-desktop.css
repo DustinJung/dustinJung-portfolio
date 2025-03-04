@@ -1,4 +1,13 @@
 /* responsive-desktop.css => 1280px 이상 */
 @media (min-width: 1280px) {
-    
+    #intro-section span {
+        font-size: 7rem;
+    }
+    #its-me-wrapper{
+        max-width: 1280px;
+    }
+    #its-me-wrapper > div:hover > div:not(.hacking-text) {
+        filter: blur(2px);
+        -webkit-filter: blur(2px);
+    }
 }
