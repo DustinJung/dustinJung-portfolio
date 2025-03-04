@@ -1,6 +1,6 @@
 /* main.js => vanila javascript, 함수 모듈 총괄 */
-import { initAnimations } from "./animations";
-import { initComponents } from "./components";
+import { initAnimations } from "./animations.js";
+import { initComponents } from "./components.js";
 
 
 function startWeb() {
@@ -15,7 +15,7 @@ function startWeb() {
     }
 }
 
-startApp();
+startWeb();
 
 
 

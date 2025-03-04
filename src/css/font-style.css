@@ -2,8 +2,9 @@
 @import url('https://cdn.jsdelivr.net/gh/naver/d2codingfont@latest/D2Coding.css');
 body {
     font-family: 'JetBrains Mono', 'IBM Plex Sans KR', sans-serif;
+    
 }
 .dCoding{
-    font-family: 'D2Coding', monospace;
+    font-family: 'D2Coding'
 }
   
