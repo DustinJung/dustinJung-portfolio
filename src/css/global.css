@@ -5,9 +5,9 @@
 }
 body{
     background-color: #0B0C10;
-    background-image: url(../../public/images/intro/night-sky-nuki.png);
+    background-image: url(../../public/images/intro/night-sky-nuki4k.png);
     background-repeat: repeat-y;
-    background-position: 0 0;
+    background-position: center;
     color: #F8F9FA;
     width: 100%;
     overflow: hidden;
@@ -26,7 +26,6 @@ body::-webkit-scrollbar-track {
     background: var(--scrollbar-track-clr);
     border-radius: 5px;
 }
-
 body.is-ready{
     overflow-y: auto;
     overflow-x: hidden;
@@ -137,7 +136,7 @@ body.is-ready{
         opacity: 1;
     }
     100% {
-        transform: translateY(-100%);
+        transform: translateY(-102%);
         opacity: 0;
     }
 }
@@ -149,7 +148,7 @@ body.is-ready{
         opacity: 1;
     }
     100% {
-        transform: translateY(100%);
+        transform: translateY(102%);
         opacity: 0;
     }
 }
@@ -268,5 +267,27 @@ body.is-ready{
     }
     75%{
         transform: translateY(-4%);
+    }
+}
+@keyframes ufoDown {
+    0% {
+        transform: perspective(800px) rotate3d(1, 0, 0, 0deg) translate3d(-50%, -300%, -1800px) scale(0.4);
+        opacity: .0;
+    }
+    100% {
+        transform: perspective(800px) rotate3d(1, 0, 0, 0deg) translate3d(-50%, -25%, -600px) scale(1);
+        opacity: 1;
+    }
+}
+@keyframes ufoLightOn {
+    0% , 50%, 100%{transform: perspective(800px) rotate3d(1, 0, 0, 0deg) translate3d(-50%, -25%, -600px) scale(1);}
+    25%, 75%{transform: perspective(800px) rotate3d(1, 0, 0, 0deg) translate3d(-50%, -60%, -600px) scale(1);}
+}
+@keyframes ufoComing {
+    0% {
+        transform: perspective(800px) rotate3d(0, 0, 0, 0deg) translate3d(-50%, -25%, -600px);
+    }
+    100% {
+        transform: perspective(800px) rotate3d(1, 0, 1, 0deg) translate3d(-50%, -25%, 0px);
     }
 }

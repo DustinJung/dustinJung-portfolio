@@ -1,7 +1,7 @@
 /* main.js => vanila javascript, 함수 모듈 총괄 */
 import { initAnimations } from "./animations.js";
 import { initComponents } from "./components.js";
-import { scrollOpacityHide } from "./utils.js";
+import { initUtils } from "./utils.js";
 
 
 function startWeb() {
@@ -20,7 +20,7 @@ startWeb();
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    scrollOpacityHide();
+    initUtils();
 });
 
 
@@ -44,7 +44,7 @@ window.onload = function() {
     function letBodyTakeIsReady() {
         setTimeout(() => {
             document.querySelector('body').classList.add('is-ready');
-        }, 6000)
+        }, 5200)
     }
 
 
