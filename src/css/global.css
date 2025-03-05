@@ -1,6 +1,9 @@
 /* global.css => 공통 모듈 CSS */
 body{
     background-color: #0B0C10;
+    background-image: url(../../public/images/night-sky-nuki.png);
+    background-repeat: repeat-y;
+    background-position: 0 0;
     color: #F8F9FA;
     width: 100%;
     overflow: hidden;
@@ -21,6 +24,7 @@ body.is-ready{
 /*클래스모음*/
 .uppercase {
     text-transform: uppercase;
+    word-spacing: -4px;
 }
 .text-balance {
     text-wrap: balance;
@@ -39,7 +43,6 @@ body.is-ready{
         transform: translate(-50%, -50%) scaleX(1);
     }    
 }
-
 /* 위아래 흔들리는 애니메이션 */
 @keyframes helloWorld2 {
     0% {
@@ -58,7 +61,6 @@ body.is-ready{
         transform: translate(-50%, -50%);
     }
 }
-
 /* 원이 줄어드는 애니메이션 */
 @keyframes shrinkCircle {
     0% {
@@ -73,7 +75,6 @@ body.is-ready{
         opacity: 0;
     }
 }
-
 /* 텍스트가 사라지는 애니메이션 (원에 의해 먹히는 효과) */
 @keyframes hideText {
     0% {
@@ -186,7 +187,6 @@ body.is-ready{
         -webkit-clip-path: inset(0 0 0 0);
     }
 }
-
 @keyframes glitch-delay {
     0%, 95% {
         opacity: 1;
@@ -228,4 +228,23 @@ body.is-ready{
     0% { filter: drop-shadow(2px 2px 5px #00D4FF)}
     50% { filter: drop-shadow(-2px -2px 5px #00FFA2)}
     100% { filter: drop-shadow(2px 2px 5px #00D4FF)}
+}
+@keyframes letHeaderDown {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+@keyframes letHeadertongtong {
+    0%,50%,100%{
+        transform: translateY(0%);
+    }
+    25%{
+        transform: translateY(-16%);
+    }
+    75%{
+        transform: translateY(-4%);
+    }
 }

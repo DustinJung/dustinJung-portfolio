@@ -6,8 +6,31 @@
     #its-me-wrapper{
         max-width: 1280px;
     }
-    #its-me-wrapper > div:hover > div:not(.hacking-text) {
+    #its-me-wrapper > div > div:not(.hacking-text):hover {
         filter: blur(2px);
         -webkit-filter: blur(2px);
+    }
+    header > a.my-name:hover {
+        color: var(--point-clr);
+        text-shadow: 0 0 1px var(--point-clr), 0 0 3px var(--point2-clr), 0 0 3px var(--point-clr);
+        filter: blur(0.2px);
+        -webkit-filter: blur(0.2px);
+    }
+
+    header > a.my-name::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 0%;
+        height: 2px;
+        background: var(--point-clr);
+        box-shadow: 0px 0px 10px var(--point-clr);
+        transition: width 0.2s ease-in-out, left 0.2s ease-in-out;
+        will-change: width, left;
+    }
+    header > a.my-name:hover::after {
+        width: 100%;
+        left: 0;
     }
 }
