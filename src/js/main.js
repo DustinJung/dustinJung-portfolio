@@ -1,6 +1,7 @@
 /* main.js => vanila javascript, 함수 모듈 총괄 */
 import { initAnimations } from "./animations.js";
 import { initComponents } from "./components.js";
+import { scrollOpacityHide } from "./utils.js";
 
 
 function startWeb() {
@@ -18,15 +19,12 @@ function startWeb() {
 startWeb();
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    scrollOpacityHide();
+});
 
 
 window.onload = function() {
-
-
-
-
-
-
     function vanilaJavascripts() {
         function intro_parallax() {
             window.addEventListener("scroll", function () {
@@ -43,7 +41,14 @@ window.onload = function() {
         intro_parallax();
     };
 
+    function letBodyTakeIsReady() {
+        setTimeout(() => {
+            document.querySelector('body').classList.add('is-ready');
+        }, 6000)
+    }
+
 
     vanilaJavascripts();
+    letBodyTakeIsReady();
 }
 

@@ -1,13 +1,32 @@
 /* global.css => 공통 모듈 CSS */
+::selection {
+    color: var(--main-clr);
+    background: var(--point2-clr);
+}
 body{
     background-color: #0B0C10;
-    background-image: url(../../public/images/night-sky-nuki.png);
+    background-image: url(../../public/images/intro/night-sky-nuki.png);
     background-repeat: repeat-y;
     background-position: 0 0;
     color: #F8F9FA;
     width: 100%;
     overflow: hidden;
 }
+body::-webkit-scrollbar{
+    width: 10px;
+    background: transparent;
+    height: 1px;
+}
+body::-webkit-scrollbar-thumb{
+    background: var(--point-clr);
+    border: 1px solid var(--point-clr);
+    border-radius: 3px;
+}
+body::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-clr);
+    border-radius: 5px;
+}
+
 body.is-ready{
     overflow-y: auto;
     overflow-x: hidden;
@@ -18,6 +37,7 @@ body.is-ready{
     --point-clr: #00FFA2; /*에머랄드 그린*/
     --point2-clr: #00D4FF; /*네온 블루*/
     --point3-clr: #FFEA00; /*해킹 옐라*/
+    --scrollbar-track-clr: #1A1D22; /* 다크 그레이 */
 }
 
 
@@ -30,6 +50,8 @@ body.is-ready{
     text-wrap: balance;
     word-break: keep-all;
 }
+
+
 
 
 

@@ -1,1 +1,25 @@
 /* animations.css => 애니메이션 관련 */
+/*스크롤 반응*/
+.scroll_wrap{
+    overflow: hidden;
+}
+.scroll_on{
+    opacity: 0;
+    transition: all 1s;
+}
+.scroll_on.active{
+    opacity: 1;
+    transform: translate(0, 0);
+}
+.scroll_on.top_mode{
+    transform: translate(0, -50px);
+}
+.scroll_on.bottom_mode{
+    transform: translate(0, 50px);
+}
+.scroll_on.left_mode{
+    transform: translate(-50px, 0);
+}
+.scroll_on.right_mode{
+    transform: translate(50px, 0);
+}

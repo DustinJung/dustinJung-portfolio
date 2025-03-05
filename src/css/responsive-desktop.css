@@ -33,4 +33,7 @@
         width: 100%;
         left: 0;
     }
+    main {
+        max-width: 1280px;
+    }
 }
