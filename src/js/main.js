@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 window.onload = function() {
     function vanilaJavascripts() {
+
         function intro_parallax() {
             window.addEventListener("scroll", function () {
                 let scrollValue = window.scrollY;
@@ -35,20 +36,22 @@ window.onload = function() {
                 its_me.style.transform = `translate(0, ${scrollValue * 0.3}px)`;
                 document.getElementById("take-a-look").style.transform = `translate(-50%, ${scrollValue * 0.2}px)`;
             });
+        };
+        
+        function letBodyTakeIsReady() {
+            setTimeout(() => {
+                document.querySelector('body').classList.add('is-ready');
+            }, 5200)
         }
 
-        
+
+        letBodyTakeIsReady();
         intro_parallax();
     };
 
-    function letBodyTakeIsReady() {
-        setTimeout(() => {
-            document.querySelector('body').classList.add('is-ready');
-        }, 5200)
-    }
 
 
     vanilaJavascripts();
-    letBodyTakeIsReady();
+    
 }
 

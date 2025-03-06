@@ -6,10 +6,6 @@
     #its-me-wrapper{
         max-width: 1280px;
     }
-    #its-me-wrapper > div > div:not(.hacking-text):hover {
-        filter: blur(2px);
-        -webkit-filter: blur(2px);
-    }
     header > a.my-name:hover {
         color: var(--point-clr);
         text-shadow: 0 0 1px var(--point-clr), 0 0 3px var(--point2-clr), 0 0 3px var(--point-clr);

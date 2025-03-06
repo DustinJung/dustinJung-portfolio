@@ -221,7 +221,8 @@
     fill: var(--main-clr);
     filter: drop-shadow(2px 2px 5px var(--point2-clr)) drop-shadow(-2px -2px 5px var(--point-clr));
     position: relative;
-    animation: take-a-look-svg .8s 6.4s alternate infinite, glitch-svg 3s 6.4s infinite steps(1) alternate;;
+    animation: take-a-look-svg .8s 6.4s alternate infinite, glitch-svg 3s 6.4s infinite steps(1) alternate;
+    -webkit-animation: take-a-look-svg .8s 6.4s alternate infinite, glitch-svg 3s 6.4s infinite steps(1) alternate;
 }
 .parallax_layer {
     background-position: bottom center;
@@ -234,6 +235,8 @@
     background-color: transparent;
     background-image: url(../../public/images/intro/night-sky-parallax4k.png);
     z-index: 1;
+    opacity: 0;
+    animation: mountain-on .4s 6.0s ease-out forwards;
 }
 .intro-parallax-stars{
     background-position: center center;
@@ -278,11 +281,13 @@ main {
     transform-origin: center;
     transform: translate3d(-50%, -100%, 400px) rotate3d(1, 0, 0, 0deg);
     opacity: 0;
+    z-index: 4;
 }
 #ufo.on {
-    animation: ufoDown 1.6s linear forwards, ufoLightOn .4s 1.6s ease-in forwards, ufoComing 1.2s 2s linear forwards;
+    animation: ufoDown 1.6s linear forwards, ufoLightOn .4s 1.6s ease-in forwards, ufoComing 1.2s 2s linear forwards, ufo-go 2s 7.3s ease-in forwards;
+    -webkit-animation: ufoDown 1.6s linear forwards, ufoLightOn .4s 1.6s ease-in forwards, ufoComing 1.2s 2s linear forwards, ufo-go 2s 7.3s ease-in forwards;
 }
-#ufo > div {
+#ufo > div.wtf-is-that {
     position: absolute;
     background: var(--point3-clr);
     width: 3px;
@@ -295,16 +300,279 @@ main {
     right: 0;
     opacity: 0;
 }
-#ufo > div:first-child {
+#ufo > div.wtf-is-that:first-child {
     top: -15px;
     transform: rotate(34deg);
     right: 2px;
 }
-#ufo > div:last-child {
+#ufo > div.wtf-is-that:nth-child(2) {
     top: -4px;
     transform: rotate(55deg);
     right: -11px;
 }
-#ufo.light-on  > div {
+#ufo.light-on  > div.wtf-is-that {
     opacity: 1;
+}
+#ufo #beam {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.2);
+    width: 120px;
+    height: 0px;
+    background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.3) 10%, rgba(0, 255, 255, 0) 80%);
+    opacity: 0;
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    will-change: height, opacity, transform, clip-path;
+    
+}
+#ufo.on #beam {
+    animation: beam-down-move .8s 3.2s ease-in forwards, beam-X-Y-move 1.2s 4s linear forwards, ball-after-beam-off .3s 6.7s ease-in forwards;
+    -webkit-animation: beam-down-move .8s 3.2s ease-in forwards, beam-X-Y-move 1.2s 4s linear forwards, ball-after-beam-off .3s 6.7s ease-in forwards;
+}
+#ball-after-beam {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, 0) scale(0);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #0e0f12;
+    z-index: 2;
+    opacity: 0;
+    filter: blur(.425px);
+    -webkit-filter: blur(.425px);
+    box-shadow: 0px 0px 2.25px 2.25px #f8f9fa37;
+    will-change: transform, opacity;
+}
+#ufo.on #ball-after-beam {
+    animation: ball-after-beam 1.5s 5.2s linear forwards;
+    -webkit-animation: ball-after-beam 1.5s 5.2s linear forwards;
+}
+#hello-im-dustin-dot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: rgba(0, 255, 162, 1);
+    box-shadow: 0 0 20px rgba(0, 255, 162, 1), 0 0 40px rgba(0, 255, 161, 1),
+    0 0 60px rgba(0, 255, 164, 1), 0 0 80px rgba(0, 255, 161, 1);
+    border-radius: 50%;
+    transition: 1s;
+    opacity: 0;
+    transform-origin: center;
+    z-index: 1;
+}
+#hello-im-dustin-dot.on {
+    animation: my-self-dot-on .8s 7.1s cubic-bezier(0.39, 0.575, 0.565, 1) forwards, my-self-dot-X-move .5s 7.9s ease-in forwards, my-self-dot-bigger .5s 8.6s ease-in forwards, my-self-dot-disappear .7s 9.2s ease-out forwards;
+    -webkit-animation: my-self-dot-on .8s 7.1s cubic-bezier(0.39, 0.575, 0.565, 1) forwards, my-self-dot-X-move .5s 7.9s ease-in forwards, my-self-dot-bigger .5s 8.6s ease-in forwards, my-self-dot-disappear .7s 9.2s ease-out forwards;
+}
+#hello-im-dustin-wrapper{
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 2;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5);
+    border-radius: 10px;
+    will-change: transform, opacity;
+}
+#hello-im-dustin-wrapper.on{
+    animation: hello-im-dustin-wrapper-on .5s 8.8s ease-in forwards;
+}
+.im-dustin-before-and-after{
+    width: calc(100% - 2rem);
+    height: calc(100% - 2rem);
+    background: transparent;
+    touch-action: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+#hello-im-dustin-before::after{
+    content: '';
+    width: 95%;
+    height: 2px;
+    background: var(--main-clr);
+    opacity: .4;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    touch-action: none;
+    transform-origin: left;
+}
+#hello-im-dustin-before::before {
+    content: '';
+    width: 95%;
+    height: 2px;
+    background: var(--main-clr);
+    opacity: .4;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    touch-action: none;
+    transform-origin: right;
+}
+#hello-im-dustin-after::before {
+    content: '';
+    width: 2px;
+    height: 95%;
+    background: var(--main-clr);
+    opacity: .4;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) scaleY(0);
+    touch-action: none;
+    transform-origin: top;
+}
+#hello-im-dustin-after::after {
+    content: '';
+    width: 2px;
+    height: 95%;
+    background: var(--main-clr);
+    opacity: .4;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) scaleY(0);
+    touch-action: none;
+    transform-origin: bottom;
+}
+#hello-im-dustin-before.on::after {
+    animation: width-go .4s 9.4s ease-in-out forwards;
+}
+#hello-im-dustin-before.on::before {
+    animation: width-go .4s 9.4s ease-in-out forwards;
+}
+#hello-im-dustin-after.on::before {
+    animation: height-go .4s 9.4s ease-in-out forwards;
+}
+#hello-im-dustin-after.on::after {
+    animation: height-go .4s 9.4s ease-in-out forwards;
+}
+#real-hello-im-dustin {
+    padding: 2rem;
+    position: relative;
+    background: transparent;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--grid-gutter);
+    border-radius: 10px;
+}
+#real-hello-im-dustin > #hello-dustin-title {
+    font-size: 2rem;
+    text-shadow: 0px 0px 10px cyan;
+    opacity: 0;
+}
+#hello-im-dustin-wrapper.on #hello-dustin-title{
+    animation: opacityOn .4s 9.8s ease forwards;
+}
+#real-hello-im-dustin > #hello-dustin-desc {
+    display: grid;
+    grid-template-columns: calc((1 / 3) * 100% - (2 / 3) * var(--grid-gutter)) auto;
+    grid-column-gap: var(--grid-gutter);
+    width: 100%;
+    height: 100%;
+    max-height: 80vh;
+    overflow: hidden;
+    border:solid 1px var(--point4-clr); 
+    border-radius: 10px;
+
+}
+#hello-dustin-desc > .dustin-desc-column {
+    width: 100%;
+    height: 100%;
+}
+#desc-img-myself{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    padding: var(--grid-gutter);
+    border-radius:10px;
+    opacity: 0;
+}
+#hello-im-dustin-wrapper.on #desc-img-myself{
+    animation: opacityOn .4s 10.2s ease forwards;
+}
+#desc-img-myself > div {
+    border: 1px solid rgba(127, 222, 254, 0.7); 
+    padding: 0% 0 3%;
+    border-radius: 10px;
+    background: rgba(184, 237, 255, 0.1);
+    width: 100%;
+    height: auto;
+}
+#desc-img-myself > div > picture{
+    display: block;
+    width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+#desc-img-myself > div > picture > img{
+    width: 100%;
+    border-bottom: 1px solid rgba(127, 222, 254, 0.7);
+}
+#desc-img-myself > div > p {
+    margin-top:5%;
+    color: var(--point4-clr);
+    text-align: center;
+    padding-bottom: 2%;
+}
+#desc-duce-myself {
+    padding: var(--grid-gutter);
+    opacity: 0;
+}
+#hello-im-dustin-wrapper.on #desc-duce-myself {
+    animation: opacityOn .4s 10.6s ease forwards;
+}
+#desc-duce-myself > div {
+    background: rgba(184, 237, 255, 0.1);
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: 1px solid rgba(127, 222, 254, 0.7);
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+}
+#desc-duce-myself > div > h2 {
+    margin-bottom: var(--grid-gutter);
+    color: #0ff;
+    font-size: 24px;
+    opacity: 0;
+}
+#hello-im-dustin-wrapper.on #desc-duce-myself > div > h2 {
+    animation: opacityOn .4s 11s ease forwards;
+}
+#desc-duce-myself > div > p {
+    font-size: 19px;
+    line-height: 1.6;
+    opacity: 0;
+}
+#desc-duce-myself > div > p:nth-child(2) {
+    margin-bottom: 10px;
+}
+#hello-im-dustin-wrapper.on #desc-duce-myself > div > p{
+    animation: opacityOn .4s 11.2s ease forwards;
 }

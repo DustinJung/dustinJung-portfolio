@@ -5,6 +5,13 @@ function letUfoHaveOn() {
     let ctx = gsap.context(() => {
         let theSection = document.getElementById('introduce-myself');
         let ufo = document.getElementById('ufo');
+        let myself_dot = document.getElementById('hello-im-dustin-dot');
+        let dustin_wrapper = document.getElementById('hello-im-dustin-wrapper');
+        let before = document.getElementById('hello-im-dustin-before');
+        let after = document.getElementById('hello-im-dustin-after');
+
+        let elements = [ theSection, ufo, myself_dot, dustin_wrapper, before, after ];
+
         gsap.to(ufo, {
             scrollTrigger: {
                 trigger: theSection,
@@ -12,7 +19,9 @@ function letUfoHaveOn() {
                 once: true, // 한 번만 실행
             },
             onStart: () => {
-                ufo.classList.add("on");
+                elements.forEach((el) => {
+                    el.classList.add('on');
+                })
                 if(ufo.classList.contains('on')){
                         setTimeout(() => {
                             ufo.classList.add("light-on");
@@ -20,7 +29,7 @@ function letUfoHaveOn() {
                     
                         setTimeout(() => {
                             ufo.classList.remove('light-on');
-                        }, 2000)
+                        }, 2000);
                 }
             }
         });

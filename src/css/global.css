@@ -13,13 +13,13 @@ body{
     overflow: hidden;
 }
 body::-webkit-scrollbar{
-    width: 10px;
+    width: 6px;
     background: transparent;
     height: 1px;
 }
 body::-webkit-scrollbar-thumb{
-    background: var(--point-clr);
-    border: 1px solid var(--point-clr);
+    background: rgba(0, 255, 255, 0.3);
+    border: 1px solid rgba(0, 255, 255, 0.5);
     border-radius: 3px;
 }
 body::-webkit-scrollbar-track {
@@ -36,9 +36,12 @@ body.is-ready{
     --point-clr: #00FFA2; /*에머랄드 그린*/
     --point2-clr: #00D4FF; /*네온 블루*/
     --point3-clr: #FFEA00; /*해킹 옐라*/
+    --point4-clr: #9effff;
     --scrollbar-track-clr: #1A1D22; /* 다크 그레이 */
 }
-
+:root{
+    --grid-gutter: 1rem;
+}
 
 /*클래스모음*/
 .uppercase {
@@ -289,5 +292,94 @@ body.is-ready{
     }
     100% {
         transform: perspective(800px) rotate3d(1, 0, 1, 0deg) translate3d(-50%, -25%, 0px);
+    }
+}
+@keyframes beam-down-move {
+    0% { opacity: 0; transform: translateX(-50%) scaleY(0.2); height: 0px; }
+    100% { opacity: 0.8; transform: translateX(-50%) scaleY(1); height: 200px;}
+}
+@keyframes beam-X-Y-move {
+    0%, 100% {clip-path: polygon(50% 0%, 100% 100%, 0% 100%);}
+    40% {
+        clip-path: polygon(50% 0%, 68% 100%, -18% 100%);
+    }
+    80% {
+        clip-path: polygon(50% 0%, 137% 100%, 55% 100%);
+    }
+}
+@keyframes ball-after-beam {
+    0% { transform: translate(-50%, 0px) scale(0); opacity: 0;}
+    80% { transform: translate(-50%, 180px) scale(1); opacity: .8;}
+    100% { transform: translate(-50%, 200px); opacity: 0;}
+}
+@keyframes ball-after-beam-off {
+    0% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+@keyframes ufo-go {
+    0% { transform: translate3d(-50%, -25%, 0px);}
+    10% { transform: translate3d(-35%, -25%, 0px); }
+    20% { transform: translate3d(-50%, -25%, 0px); }
+    30% { transform: translate3d(-35%, -25%, 0px); }
+    40% { transform: translate3d(-50%, -25%, 0px); }
+    75% { opacity: .3 }
+    100% { transform: translate3d(-20000px, -25%, 0px); opacity: 0 }
+}
+@keyframes my-self-dot-on {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes my-self-dot-X-move {
+    0%, 100%{ transform: translate(-50%, -50%);}
+    20%, 60%{ transform: translate(-35%, -50%);}
+    40%, 80%{ transform: translate(-65%, -50%);}
+}
+@keyframes my-self-dot-bigger {
+    0% { 
+        box-shadow: 0 0 20px rgba(0, 255, 162, 1), 0 0 40px rgba(0, 255, 161, 1),
+        0 0 60px rgba(0, 255, 164, 1), 0 0 80px rgba(0, 255, 161, 1);
+    }
+    100% {
+        box-shadow: 0 0 0 30px rgba(0, 255, 161, 0.1),
+        0 0 0 60px rgba(0, 255, 161, 0.1), 0 0 0 120px rgba(0, 255, 161, 0.1),
+        0 0 0 240px rgba(0, 255, 161, 0.1), 0 0 0 480px rgba(0, 255, 161, 0.1),
+        0 0 0 960px rgba(0, 255, 161, 0.1);
+    }
+}
+@keyframes my-self-dot-disappear {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+@keyframes hello-im-dustin-wrapper-on {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0;}
+    60% { opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes width-go {
+    0% {
+        transform: translateX(-50%) scaleX(0);
+    }
+    100% {
+        transform: translateX(-50%) scaleX(1);
+    }
+}
+@keyframes height-go {
+    0% {
+        transform: translateY(-50%) scaleY(0);
+    }
+    100% {
+        transform: translateY(-50%) scaleY(1);
+    }
+}
+@keyframes mountain-on {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
