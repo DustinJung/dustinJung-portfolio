@@ -5,94 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-body{
-    font-family:Roboto;
-    background:#010818;     
-    display: flex;
-    justify-content: center;           
+.speech-bubble {
+    position: relative;
+    background: rgba(0, 255, 255, 0.8); /* 네온 블루 */
+    color: #010818; /* 글자 색상 */
+    padding: 10px;
+    width: 100px; /* 너비 조정 */
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.6);
 }
 
-.transition {
-  transition: all 0.2s linear;
+/* 🔹 꼬리 만들기 */
+.speech-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -10px; /* 말풍선 아래쪽에 꼬리 배치 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid rgba(0, 255, 255, 0.8); /* 위쪽 삼각형 */
+    filter: drop-shadow(0px 0px 5px rgba(0, 255, 255, 0.6));
+}
+.speech-bubble::after {
+    left: auto;
+    right: 10px;
+    bottom: -10px;
 }
 
-.perspective_container {
-  margin-top:2%;
-  position:relative;
-  perspective: 1000px; 
-  perspective-origin: center center;
-  position:relative;
-  max-width:500px;
-  width:90%;
-}
-
-.table {
-  width:100%;
-  background: rgba(184, 237, 255, 0.05);
-  border:solid 3px rgba(127, 222, 254, 0.05);
-  border-radius:15px; 
-  transform:rotateX(30deg) rotateZ(-15deg) rotateY(15deg);
-}
-
-.menu {
-  position:absolute;
-  top:10%;
-  left:-10%;
-  transform:rotateX(30deg);
-}
-
-.menu>.item {
-  position:relative; 
-  color:#9effff;
-  background: rgba(184, 237, 255, 0.1);
-  border:solid 1px #9effff;
-  border-radius:5px; 
-  padding:6%;
-  margin:6%;
-  transform:rotateX(30deg);
-  cursor:pointer;
-}
-
-.menu>.item:hover { 
-  color:#010818;
-  background:#9effff;
-}
-
-.card {
-  padding:2%;
-  max-width:200px;
-  background: rgba(184, 237, 255, 0.1);
-  border:solid 1px #9effff; 
-  border-radius:10px;
-  transform:rotateX(30deg);
-}
-
-.card>p {
-  margin-top:10%;
-  color: #9effff;
-}
-
-.card>img {
-  border-radius:10px;
-  border:solid 1px rgba(127, 222, 254, 0.7); 
-}
 
     </style>
 </head>
 <body>
-    <div class="perspective_container">
-        <div class="table">
-         <div class="card slide_down">
-            <img src="https://s-media-cache-ak0.pinimg.com/564x/ff/f3/85/fff3850d6c7d0148f0e8af93edb6543d.jpg" style="max-width:200px; height:auto; width:100%;"></img>
-             <p>Welcome to a brighter future!</p>	 
-           </div>
-           <div class="menu">
-           <div class="item transition">news</div>
-           <div class="item transition">extras</div>  
-           <div class="item transition">pew-pew</div>
-           <div class="item transition">destroy all humans...</div>
-         </div>
-        </div>  
-    </div>
+    <div class="speech-bubble">안녕!</div>
+
 </body>
 </html>
