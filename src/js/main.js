@@ -44,9 +44,41 @@ window.onload = function() {
             }, 5200)
         }
 
+        function hoverThenPlanetGoesOn() {
+            let theTextBox = document.querySelector('#my-projects-section > .this-planet-wrapper');
+            let thePlanet = document.querySelector('.the-planet');
+            let timeout;
+            let inPlanet = document.querySelector('.in-the-planet')
+
+            thePlanet.addEventListener('mouseenter', function() {
+                clearTimeout(timeout);
+                theTextBox.classList.add('on');
+            })
+
+            thePlanet.addEventListener('mouseleave', function() {
+                timeout = setTimeout(() => {
+                    theTextBox.classList.remove('on');
+                }, 150);
+            })
+
+            thePlanet.addEventListener('click', function() {
+                this.classList.add('on');
+                setTimeout(() => {
+                    this.classList.add('nowGo')
+                    inPlanet.classList.add('on')
+                },3700);
+                setTimeout(() => {
+                    theTextBox.style = `display: none`;
+                    this.style = `touch-action: none; cursor: auto;`;
+                }, 3500)
+            })
+
+        }
+
 
         letBodyTakeIsReady();
         intro_parallax();
+        hoverThenPlanetGoesOn();
     };
 
 

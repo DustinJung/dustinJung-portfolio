@@ -272,16 +272,42 @@ main {
 #wait-for-the-ufo {
     top: 10%;
     left: 46%;
-    width: 100px;
+    width: 180px;
     height: 50px;
-    background: rgba(184, 237, 255, 0.1);
-    border: 1px solid var(--point4-clr);
-    border-radius: 50%;
+    background: #9effff;
+    border: 1px solid #9effff;
+    border-radius: 7%;
     opacity: 1;
     z-index: 5;
     transform-origin: center;
-    transform: translate(-60%, -100%);
+    transform: translate(-70%, -125%);
     position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0B0C10;
+    font-weight: 700;
+    letter-spacing: -2px;
+    filter: blur(.325px);
+    -webkit-filter: blur(.325px);
+    opacity: 0;
+    transition: opacity .3s ease-out;
+}
+#wait-for-the-ufo.on {
+    animation: scrollSlow .8s ease forwards
+}
+#wait-for-the-ufo::before{
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: auto;
+    right: -15px;
+    top: 29px;
+    bottom: auto;
+    border: 8px solid;
+    border-color: transparent transparent #9effff #9effff;
+    border-radius: 4px;
 }
 #ufo {
     position: absolute;
@@ -527,6 +553,7 @@ main {
     background: rgba(184, 237, 255, 0.1);
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 #desc-img-myself > div > picture{
     display: block;
@@ -539,6 +566,7 @@ main {
     width: 100%;
     border-bottom: 1px solid rgba(127, 222, 254, 0.7);
     height: 100%;
+    border-radius: 10px;
 }
 #desc-img-myself > div > div {
     color: var(--point4-clr);
@@ -590,4 +618,172 @@ main {
 }
 #hello-im-dustin-wrapper.on #desc-duce-myself > div > p{
     animation: opacityOn .4s 11.2s ease forwards;
+    transition: all 0.6s ease-in-out;
+    text-shadow: 0 0 5px var(--point2-clr), 0 0 10px var(--point2-clr);
+}
+#hello-im-dustin-wrapper.on #desc-duce-myself > div > p:hover {
+    text-shadow: 0 0 10px var(--point2-clr), 0 0 20px var(--point2-clr);
+}
+#end-pyo{
+    animation: starBlink .7s 11.4s infinite ease-in-out;
+}
+
+
+/*my-projects-section*/
+#my-projects-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#my-projects-section .the-planet {
+    width: 130px;
+    height: 130px;
+    position: relative;
+    border-radius: 50%;
+    background-image: linear-gradient(
+        12deg, /*#00FFA2 #9effff*/
+        #8af6f6 20%, 
+        #a7efef 30%, 
+        #9de1e1 40%, 
+        #b1ffff 50%, 
+        #b0eed7 60%, 
+        #98f3d2 70%, 
+        #80ebc3 80%, 
+        #7af0c4 90%
+    );
+    box-shadow: 
+        -20px -30px 40px rgba(17, 17, 17, 0.8) inset, 
+        10px 10px 10px rgba(255, 255, 255, 0.3) inset;
+    transform-style: preserve-3d;
+    transform: rotateX(0deg);
+    animation: floating 3s alternate ease-in-out infinite;
+    cursor: pointer;
+    transition: box-shadow 1s;
+    z-index: 5;
+}
+#my-projects-section .the-planet::before,
+#my-projects-section .the-planet::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    inset: -70px;
+    transition: filter .6s, box-shadow .6s;
+}
+
+#my-projects-section .the-planet::before {
+    background-image: radial-gradient(
+        transparent 50%, 
+        rgba(123, 238, 251, 0.2) 60%, 
+        transparent 70%
+    );
+    transform: translateY(1.2vmin) rotateX(72deg);
+}
+
+#my-projects-section .the-planet::after {
+    background-image: radial-gradient(
+        transparent 50%, 
+        rgba(123, 238, 251, 0.2) 52%, 
+        rgba(123, 238, 251, 0.2) 62%, 
+        transparent 64%, 
+        transparent 65%, 
+        rgba(127, 243, 225, 0.2) 67%, 
+        rgba(127, 243, 225, 0.2) 70%, 
+        transparent 72%
+    );
+    transform: rotateX(72deg);
+}
+#my-projects-section > .this-planet-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(36%, -108%);
+    background: transparent;
+    width: 360px;
+    color: var(--point4-clr);
+    height: 170px;
+    opacity: 0;
+    transition: opacity 1s ease-out;
+    padding: 15px;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #9effff;
+    box-shadow: 0 0 10px #00D4FF;
+}
+#my-projects-section .what-is-this-planet {
+    position: fixed !important;
+    z-index: 10;
+    perspective: 800px;
+}
+.what-is-this-planet .planet-name-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    width: 300px;
+}
+.planet-name-wrapper > .planet-name {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+.what-is-this-planet .planet-name-wrapper .planet-name > h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1;
+}
+.what-is-this-planet .planet-name-wrapper .planet-name > p {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1;
+}
+#my-projects-section .planet-bar {
+    width: 2px;
+    height: 100%;
+    background: var(--point4-clr);
+}
+#my-projects-section .planet-skill-desc {
+    letter-spacing: -1px;
+    font-size: 19px;
+    font-weight: 500;
+}
+#my-projects-section .planet-for-margin {
+    margin-top: calc(2* var(--grid-gutter));
+    margin-bottom: .625rem;
+    width: 149.5px;
+    height: 2.4px;
+    background: var(--point4-clr);
+}
+#my-projects-section .my-speach{
+    word-spacing: -2px;
+}
+#my-projects-section .planet-for-margin-bottom {
+    margin-top: .625rem;
+    width: 292px;
+    height: 2.4px;
+    background: var(--point4-clr);
+}
+#my-projects-section .this-planet-wrapper.on {
+    opacity: 1;
+}
+.the-planet:hover {
+    box-shadow: 0px 0px 40px 10px var(--point4-clr) !important;
+}
+.the-planet:hover:before {
+    filter: brightness(1.3) blur(2px);
+    -webkit-filter: brightness(1.3) blur(2px);
+    box-shadow: 0px 0px 20px 5px #4e8792b8;
+}
+.the-planet:hover:after {
+    filter: brightness(1.3) blur(2px);
+    -webkit-filter: brightness(1.3) blur(2px);
+    box-shadow: 0px 0px 20px 15px #4e8792b8;
+}
+.the-planet.on {
+    animation: planetGoBig 3s ease-in forwards !important;
+}
+.the-planet.on.nowGo {
+    animation: okGo 1s ease-out forwards !important;
 }

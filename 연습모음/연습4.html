@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk Planet</title>
+    <style>
+        /* 🎨 색상 변수 */
+        :root {
+            --body-bg-clr: #0B0C10; /* Deep Space Black */
+            --main-clr: #F8F9FA; /* Neon White */
+            --point-clr: #00FFA2; /* 에메랄드 그린 */
+            --point2-clr: #00D4FF; /* 네온 블루 */
+            --point4-clr: #9effff; /* 사이버 블루 */
+        }
+
+        /* 기본 스타일 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 🌌 배경 설정 (우주 느낌) */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            background-color: var(--body-bg-clr);
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 3px),
+                radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 4px),
+                radial-gradient(var(--point4-clr) 1px, transparent 3px);
+            background-size: 
+                50vmin 50vmin, 
+                80vmin 80vmin, 
+                100vmin 100vmin;
+            background-position: 
+                0 0, 
+                -25vmin 30vmin, 
+                40vmin -30vmin;
+        }
+
+        /* 🔵 네온 블루 & 에메랄드 그린 행성 */
+        .planet {
+            width: 18vmin;
+            height: 18vmin;
+            position: relative;
+            border-radius: 50%;
+            background-image: linear-gradient(
+                25deg, 
+                var(--point2-clr) 15%, 
+                var(--point4-clr) 40%, 
+                var(--point-clr) 70%, 
+                var(--point2-clr) 90%
+            );
+            box-shadow: 
+                0 0 35px var(--point2-clr),
+                0 0 55px var(--point-clr), 
+                inset -4vmin -4vmin 6vmin rgba(0, 0, 0, 0.8), 
+                inset 1vmin 1vmin 1vmin rgba(255, 255, 255, 0.2);
+            transform-style: preserve-3d;
+            animation: floating 4s alternate ease-in-out infinite, spin 15s linear infinite;
+        }
+
+        /* 💡 빛 반사 효과 */
+        .planet::before,
+        .planet::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            inset: -8vmin;
+        }
+
+        .planet::before {
+            background-image: radial-gradient(
+                transparent 50%, 
+                rgba(0, 255, 162, 0.4) 60%, 
+                transparent 75%
+            );
+            transform: translateY(1.5vmin) rotateX(75deg);
+        }
+
+        .planet::after {
+            background-image: radial-gradient(
+                transparent 50%, 
+                rgba(0, 212, 255, 0.3) 55%, 
+                rgba(0, 255, 162, 0.6) 65%, 
+                transparent 68%, 
+                transparent 70%, 
+                rgba(0, 255, 162, 0.7) 72%, 
+                rgba(0, 212, 255, 0.8) 75%, 
+                transparent 78%
+            );
+            transform: rotateX(75deg);
+        }
+
+        /* 🌠 부유 애니메이션 */
+        @keyframes floating {
+            from {
+                transform: translate3d(0, 1vmin, 100px) rotate3d(0, 0, 1, 3deg);
+            }
+            to {
+                transform: translate3d(0, -1vmin, 100px) rotate3d(0, 0, 1, -3deg);
+            }
+        }
+
+        /* 🌀 자전 애니메이션 */
+        @keyframes spin {
+            from {
+                transform: rotateY(0deg);
+            }
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="planet"></div>
+</body>
+</html>

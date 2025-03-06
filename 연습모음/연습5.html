@@ -1,0 +1,96 @@
+<style>
+    :root{
+    --body-bg-clr: #0B0C10; /*Deep Space Black*/
+    --main-clr: #F8F9FA; /*Neon White*/
+    --point-clr: #00FFA2; /*에머랄드 그린*/
+    --point2-clr: #00D4FF; /*네온 블루*/
+    --point3-clr: #FFEA00; /*해킹 옐라*/
+    --color-primary: #9effff;
+    --color-primary-invert: #00494e;
+    --scrollbar-track-clr: #1A1D22; /* 다크 그레이 */
+    }
+    .button-wrapper{
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 10vh;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+    }
+    button {
+        position: relative;
+        width: calc(316px);
+        height: calc(76px);
+        font-size: calc(52px);
+        padding-bottom: calc(8px);
+        padding-left: calc(16px);
+        font-family: Orbitron;
+        font-weight: 700;
+        line-height: 1;
+        color: var(--color-primary);
+        border: min(.45vw, .45vh) solid var(--color-primary);
+        border-radius: min(1vw, 1vh);
+        border-top-left-radius: min(2.8vw, 2.8vh);
+        opacity: 0;
+        pointer-events: none;
+        transition: letter-spacing .3s ease-in-out, transform .14s ease-out, opacity .14s ease-out;
+        transform: scale(.9);
+        backdrop-filter: blur(4px);
+        opacity: 1;
+        pointer-events: all;
+        transform: scale(1);
+        background-color: transparent;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        border-radius: min(.8vw, .8vh);
+        border-top-left-radius: min(2.4vw, 2.4vh);
+        background: var(--color-primary-invert);
+        transition: opacity .14s ease-out;
+        opacity: .4;
+        box-sizing: border-box;
+    }
+    button:hover::before{
+        opacity: .75;
+    }
+    .talk {
+        position: absolute;
+        top: calc(0px* 1);
+        right: calc(10px* 1);
+        font-size: calc(11px* 1);
+        font-family: Monomaniac;
+        font-weight: 400;
+        line-height: 1;
+        color: var(--color-primary);
+    }
+    .gang {
+        position: absolute;
+    bottom: calc(2px);
+    right: calc(30px);
+    font-size: calc(14px);
+    font-family: Monomaniac;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--color-primary);
+    }
+</style>
+
+<div class="button-wrapper">
+    <button class="button">
+        <div class="talk">dustin</div>
+        <span>About</span>
+        <div class="gang">//CONCERNING ME</div>
+    </button>
+</div>
+

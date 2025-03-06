@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floating Planet</title>
+    <style>
+        /* 기본 스타일 설정 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 배경 설정 */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            background-color: #111;
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 3px),
+                radial-gradient(rgba(255, 255, 255, 0.7) 1px, transparent 4px),
+                radial-gradient(white 1px, transparent 3px),
+                radial-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 3px);
+                background-size: 
+                30vmin 30vmin, 
+                50vmin 50vmin, 
+                60vmin 60vmin, 
+                70vmin 70vmin;
+            background-position: 
+                0 0, 
+                -17vmin 25vmin, 
+                30vmin -24vmin, 
+                47vmin 61vmin;
+        }
+
+        /* 행성 스타일 */
+        .planet {
+            width: 14vmin;
+            height: 14vmin;
+            position: relative;
+            border-radius: 50%;
+            background-image: linear-gradient(
+                12deg, 
+                #b19e8b 20%, 
+                #cda983 30%, 
+                #cda983 40%, 
+                #c09366 50%, 
+                #c09366 60%, 
+                #b19e8b 70%, 
+                #b19e8b 80%, 
+                #cdbeab 90%
+            );
+            box-shadow: 
+                -4vmin -5vmin 6vmin rgba(17, 17, 17, 0.8) inset, 
+                1vmin 1vmin 1vmin rgba(255, 255, 255, 0.3) inset;
+            transform-style: preserve-3d;
+            transform: rotateX(0deg);
+            animation: floating 3s alternate ease-in-out infinite;
+        }
+
+        /* 행성 내부 효과 */
+        .planet::before,
+        .planet::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            inset: -7vmin;
+        }
+
+        .planet::before {
+            background-image: radial-gradient(
+                transparent 50%, 
+                rgba(17, 17, 17, 0.2) 60%, 
+                transparent 70%
+            );
+            transform: translateY(1.2vmin) rotateX(72deg);
+        }
+
+        .planet::after {
+            background-image: radial-gradient(
+                transparent 50%, 
+                rgba(177, 158, 139, 0.5) 52%, 
+                rgba(177, 158, 139, 0.7) 62%, 
+                transparent 64%, 
+                transparent 65%, 
+                rgba(177, 158, 139, 0.7) 67%, 
+                rgba(177, 158, 139, 0.7) 70%, 
+                transparent 72%
+            );
+            transform: rotateX(72deg);
+        }
+
+        /* 행성 부유 애니메이션 */
+        @keyframes floating {
+            from {
+                transform: translate3d(0, 1vmin, 100px) rotate3d(0, 0, 1, 2deg);
+            }
+            to {
+                transform: translate3d(0, -1vmin, 100px) rotate3d(0, 0, 1, -2deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="planet"></div>
+</body>
+</html>
