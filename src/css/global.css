@@ -426,3 +426,8 @@ body.is-ready{
         opacity: 0; transform: rotateX(0deg) scale(100);
     }
 }
+@keyframes floatTheParticles {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    50% { transform: translateY(-50px) scale(1.2); opacity: 0.5; }
+    100% { transform: translateY(-100px) scale(1); opacity: 1; }
+}
