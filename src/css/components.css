@@ -2,3 +2,15 @@
 .skill-swiper-wrapper .swiper-wrapper {
     padding: 2rem 0;
 }
+
+.skill-swiper-wrapper .skill-swiper {
+    overflow: hidden; /* 기본적으로 스크롤 숨김 */
+}
+
+.skill-swiper-wrapper.active .skill-swiper {
+    overflow: visible;
+    width: 100%;
+}
+.skill-swiper-wrapper.active .swiper-slide {
+    position: static;
+}
