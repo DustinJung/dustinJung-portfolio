@@ -40,20 +40,39 @@ body.is-ready{
     --scrollbar-track-clr: #1A1D22; /* 다크 그레이 */
 }
 :root{
+    --red: #fc199a;
+    --yellow: #ffcc00;
+    --green: #61e2ff;
+    --close: radial-gradient(circle, var(--red), var(--red) 7px, transparent 8px);
+    --min: radial-gradient(circle, var(--yellow), var(--yellow) 7px, transparent 8px);
+    --max: radial-gradient(circle, var(--green), var(--green) 7px, transparent 8px);
+}
+:root{
     --grid-gutter: 1rem;
 }
 
 /*클래스모음*/
 .uppercase {
     text-transform: uppercase;
-    word-spacing: -4px;
+    word-spacing: -4px; 
 }
 .text-balance {
     text-wrap: balance;
     word-break: keep-all;
 }
-
-
+.indent {
+    padding-left: 1rem;
+}
+.lightblue {
+    color: #00cdfb !important;
+    filter: blur(.2px) brightness(0.8);
+    text-shadow: 0 0 3px #63c4db5c;
+}
+.lightgreen {
+    color: #0c8101 !important;
+    filter: blur(.2px) brightness(0.5);
+    text-shadow: 0 0 3px #0b641b71;
+}
 
 
 
@@ -430,4 +449,14 @@ body.is-ready{
     0% { transform: translateY(0) scale(1); opacity: 1; }
     50% { transform: translateY(-50px) scale(1.2); opacity: 0.5; }
     100% { transform: translateY(-100px) scale(1); opacity: 1; }
+}
+@keyframes fadeOutEffect {
+    0% {
+        opacity: 1;
+        filter: blur(0px);
+    }
+    100% {
+        opacity: 0;
+        filter: blur(10px);
+    }
 }

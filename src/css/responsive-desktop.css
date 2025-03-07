@@ -58,4 +58,8 @@
     #desc-duce-myself {
         width: 65% !important;
     }
+    .skill-swiper-wrapper .container:hover .card {
+        transform: scale(1.05);
+        box-shadow: 0px 0px 25px rgba(0, 255, 162, 0.6);
+    }
 }

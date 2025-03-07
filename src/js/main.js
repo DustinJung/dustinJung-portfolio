@@ -174,26 +174,28 @@ window.onload = function() {
                         container.style.transform = `translate3D(${centerX}px, ${centerY}px, 0px) scale(1.2)`; // 그 후, 위에 조건문에서 걸리지 않은(리얼클릭한) container는 가운데로 이동 시킨다!
                         container.style.transition = "transform 0.6s ease-in-out";
             
-                        //setTimeout(() => {
-                        //    // 💨 카드도 점점 사라짐
+                        setTimeout(() => {
                         //    container.style.opacity = "0";
                         //    container.style.transition = "opacity 0.5s ease-in-out";
+                            container.classList.add('fade-out');
+                            container.style.opacity = '0';
+                            container.style.filter = 'blur(20px)';
+                            container.style.transform = `translate3D(${centerX}px, ${centerY}px, 0px) scale(1.4)`
+
             
                             //setTimeout(() => {
-                            //    let detailBox = document.querySelector(`#detail-${i}`); // 카드와 연결된 상세 정보 div, 템플릿 리터럴을 사용, 
-                            //    detailBox.classList.add("on");
-                            //    detailBox.style.opacity = "1";
-            
-                            //    // 
+                            //    let desc_wrapper = document.querySelector(`#desc-wrapper-${i}`); // 카드와 연결된 상세 정보 div, 템플릿 리터럴을 사용, 
+                            //    desc_wrapper.classList.add("on");
+
                             //    isMoving = false;
                             //}, 500);
-                        //}, 600);
+                        }, 2200);
                         });
             
-                    /*document.querySelector(`#detail-${i} .close-btn`).addEventListener("click", function () {
-                        let detailBox = document.querySelector(`#detail-${i}`);
-                        detailBox.classList.remove("on");
-                        detailBox.style.opacity = "0";
+                    /*document.querySelector(`#desc-wrapper-${i} .close-btn`).addEventListener("click", function () {
+                        let desc_wrapper = document.querySelector(`#desc-wrapper-${i}`);
+                        desc_wrapper.classList.remove("on");
+                        desc_wrapper.style.opacity = "0";
             
                         setTimeout(() => {
                             containers.forEach((c) => {

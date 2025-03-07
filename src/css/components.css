@@ -6,11 +6,15 @@
 .skill-swiper-wrapper .skill-swiper {
     overflow: hidden; /* 기본적으로 스크롤 숨김 */
 }
-
+.skill-swiper-wrapper.active {
+    touch-action: none;
+}
 .skill-swiper-wrapper.active .skill-swiper {
     overflow: visible;
     width: 100%;
+    touch-action: none;
 }
 .skill-swiper-wrapper.active .swiper-slide {
     position: static;
+    touch-action: none;
 }
