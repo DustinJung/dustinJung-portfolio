@@ -460,3 +460,11 @@ body.is-ready{
         filter: blur(10px);
     }
 }
+@keyframes opacityZeroToHunnid {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

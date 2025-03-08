@@ -114,6 +114,8 @@ window.onload = function() {
             
                 containers.forEach((container, i) => {
                     let animationFrame; // animationFrames 변수 선언
+                    let desc_wrappers = document.querySelectorAll('.desc-wrapper');
+                    let close_btn = desc_wrappers[i].querySelector('.desc-close-btn'); // 수정된 부분
             
                     container.addEventListener('mousemove', function(e) {
                         if (isMoving) return;
@@ -141,14 +143,15 @@ window.onload = function() {
                     });
             
                     container.addEventListener('click', function() {
-                        swiper_wrapper.classList.add('active');
-                        container.classList.add('active');
                         // 1. 일단 클릭된 카드의 위치를 계산해야 한다.
                         // 2. 그럴려면, getBoundingClientRect()를 쓸 수 있음.
 
                         if (isMoving) return; // isMoving이 true면 실행하지마
                         isMoving = true; // isMoving을 true로 바꿈
                         
+                        swiper_wrapper.classList.add('active');
+                        container.classList.add('active');
+
                         // getBoundingClientRect()는 **클릭된 카드(container)**의 위치 및 크기 정보를 반환하는 함수
                         // rect = {
                         //     left: 현재 요소의 왼쪽 끝이 뷰포트에서 얼마나 떨어져 있는지,
@@ -171,42 +174,49 @@ window.onload = function() {
                             }
                         });
             
-                        container.style.transform = `translate3D(${centerX}px, ${centerY}px, 0px) scale(1.2)`; // 그 후, 위에 조건문에서 걸리지 않은(리얼클릭한) container는 가운데로 이동 시킨다!
-                        container.style.transition = "transform 0.6s ease-in-out";
+                        container.style.transform = `translate3D(${centerX}px, ${centerY}px, 0.1px) scale(1.2)`; // 그 후, 위에 조건문에서 걸리지 않은(리얼클릭한) container는 가운데로 이동 시킨다!
+                        container.style.transition = "transform 0.6s ease-in-out, opacity .6s ease-out";
             
                         setTimeout(() => {
-                        //    container.style.opacity = "0";
-                        //    container.style.transition = "opacity 0.5s ease-in-out";
                             container.classList.add('fade-out');
                             container.style.opacity = '0';
                             container.style.filter = 'blur(20px)';
-                            container.style.transform = `translate3D(${centerX}px, ${centerY}px, 0px) scale(1.4)`
-
-            
-                            //setTimeout(() => {
-                            //    let desc_wrapper = document.querySelector(`#desc-wrapper-${i}`); // 카드와 연결된 상세 정보 div, 템플릿 리터럴을 사용, 
-                            //    desc_wrapper.classList.add("on");
-
-                            //    isMoving = false;
-                            //}, 500);
-                        }, 2200);
+                            container.style.webkitFilter = 'blur(20px)';
+                            container.style.transform = `translate3D(${centerX}px, ${centerY}px, 0.1px) scale(1.4)`
+                            desc_wrappers[i].classList.add('active');
+                            setTimeout(() => {
+                                desc_wrappers[i].style.opacity = '1';
+                                desc_wrappers[i].style.transform = 'translate(-50%, -50%) scale(1)';
+                            }, 800)
+                        }, 800);
                         });
-            
-                    /*document.querySelector(`#desc-wrapper-${i} .close-btn`).addEventListener("click", function () {
-                        let desc_wrapper = document.querySelector(`#desc-wrapper-${i}`);
-                        desc_wrapper.classList.remove("on");
-                        desc_wrapper.style.opacity = "0";
-            
-                        setTimeout(() => {
-                            containers.forEach((c) => {
-                                c.style.opacity = "1";
-                                c.style.transform = "";
-                                c.style.transition = "transform 0.4s ease-in-out, opacity 0.4s ease-in-out";
-                            });
-            
-                            isMoving = false;
-                        }, 500);
-                    });*/
+                        
+
+                        close_btn.addEventListener('click', function() {
+                            desc_wrappers[i].classList.remove('active');
+                            desc_wrappers[i].style.opacity = '0';
+                            desc_wrappers[i].style.transform = 'translate(-50%, -50%) scale(.2)';
+                            container.style.webkitFilter = 'blur(0)';
+                            container.style.filter = 'blur(0)';
+                            container.style.transform = `translate3D(0%, 0%, 0.1px) scale(1)`
+                            container.classList.remove('fade-out');
+                            setTimeout(() => {
+                                containers.forEach((c, index) => { 
+                                    if (index !== i) { 
+                                        c.style.opacity = "1";
+                                        c.style.transition = "opacity 0.5s ease-in-out";
+                                    }
+                                });
+                                container.style.transition =  'opacity .6s ease-out';
+                                container.style.opacity = '1';
+                                swiper_wrapper.classList.remove('active');
+                                container.classList.remove('active');
+                                setTimeout(() => {
+                                    container.style.transition = 'all 0.1s'
+                                    isMoving = false;
+                                }, 100)
+                            }, 850);
+                        })
                 });
             }
             

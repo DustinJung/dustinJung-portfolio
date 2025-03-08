@@ -872,7 +872,7 @@ main {
     position: relative;
     transition: all 0.1s;
     transform-style: preserve-3d;
-    will-change: transform;
+    will-change: transform, opacity;
 }
 .skill-swiper-wrapper .card {
     width: 100%;
@@ -899,7 +899,7 @@ main {
 
 
 .desc-wrapper {
-    resize: both;
+    /* resize: both; */
     overflow: hidden;
     margin: auto;
     width: 80vw;
@@ -909,13 +909,16 @@ main {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0.2);
+    transform-origin: center;
     filter: drop-shadow(0 0 75px rgb(128 0 255 / 0.25));
     -webkit-filter: drop-shadow(0 0 75px rgb(128 0 255 / 0.25));
     overflow: hidden;
-    opacity: 1;
+    opacity: 0;
+    touch-action: none;
+    pointer-events: none;
     z-index: 10;
+    transition: opacity .8s ease, transform .8s ease;
 }
 .desc-glow-con {
     position: absolute;
@@ -944,7 +947,6 @@ input.sig {
     margin: auto;
     width: calc(100% - 140px);
     height: calc(100% - 140px);
-    border: 2px solid transparent; /* 기본 테두리 설정 */
     border-image: linear-gradient(to bottom left, rebeccapurple, orange) 1;
     filter: brightness(2);
 }
@@ -1014,4 +1016,48 @@ input.desc-title {
     /*font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;*/
     overflow-y: scroll;
     line-height: 2.2;
+    height: calc(100% - 30px) ;
+}
+.augs {
+    --aug-rect-l1: initial;
+    --aug-l1-width: 110px;
+    --aug-l1-height: 4px;
+    --aug-l-center: 57px;
+    
+    --aug-rect-r1: initial;
+    --aug-r1-width: (100% - 125px - 50px);
+    --aug-r1-height: 4px;
+    --aug-r-center: 57px;
+    
+    --aug-clip-tr1: initial;
+    --aug-tr1-alt-join-out: initial;
+    --aug-tr1: 17px;
+    --aug-clip-tr2: initial;
+    --aug-tr2: 17px;
+    --aug-tr-extend1: 50px;
+    
+    --aug-round-tl1: initial;
+    --aug-tl1: 8px;
+    --aug-round-br1: initial;
+    --aug-br1: 8px;
+    margin: auto;
+}
+.desc-glow-con .augs {
+    --aug-border: initial;
+    --aug-border-all: 2px;
+    --aug-border-bg: linear-gradient(to bottom left, rebeccapurple, orange);
+}
+.desc-desc > div::-webkit-scrollbar{
+    width: 6px;
+    background: transparent;
+    height: 1px;
+}
+.desc-desc > div::-webkit-scrollbar-thumb{
+    background: rebeccapurple;
+    border: 1px solid rebeccapurple;
+    border-radius: 3px;
+}
+.desc-desc > div::-webkit-scrollbar-track {
+    background: rgba(69, 19, 118, 0.162);
+    border-radius: 5px;
 }
