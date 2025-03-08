@@ -37,6 +37,10 @@ body.is-ready{
     --point2-clr: #00D4FF; /*네온 블루*/
     --point3-clr: #FFEA00; /*해킹 옐라*/
     --point4-clr: #9effff;
+    --color-primary: #4edee9;
+    --color-primary-invert: #00494e;
+    --color-secondary: #ff598e;
+    --color-secondary-invert: #5c001d;
     --scrollbar-track-clr: #1A1D22; /* 다크 그레이 */
 }
 :root{

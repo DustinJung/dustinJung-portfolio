@@ -719,6 +719,8 @@ main {
     position: fixed !important;
     z-index: 10;
     perspective: 800px;
+    touch-action: none;
+    pointer-events: none;
 }
 .what-is-this-planet .planet-name-wrapper {
     display: flex;
@@ -878,6 +880,9 @@ main {
     transform-style: preserve-3d;
     will-change: transform, opacity;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .skill-swiper-wrapper .card {
     width: 100%;

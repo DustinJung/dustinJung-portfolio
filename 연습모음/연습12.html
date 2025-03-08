@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Skill Icons</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #0a0a0a; /* 어두운 배경 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .skill-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .skill-icon {
+            font-size: 24px;
+            color: #00fff7;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 20px 30px;
+            border: 2px solid #00fff7;
+            border-radius: 10px;
+            text-shadow: 0 0 5px #00fff7, 0 0 10px #00fff7, 0 0 20px #00fff7;
+            transition: all 0.3s ease-in-out;
+            animation: glow 1.5s infinite alternate;
+            cursor: pointer;
+        }
+
+        .skill-icon:hover {
+            color: #ff00ff;
+            border-color: #ff00ff;
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+            transform: scale(1.1);
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 5px #00fff7, 0 0 10px #00fff7;
+            }
+            100% {
+                text-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7, 0 0 30px #00fff7;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="skill-container">
+        <div class="skill-icon">HTML</div>
+        <div class="skill-icon">CSS</div>
+        <div class="skill-icon">JS</div>
+        <div class="skill-icon">jQuery</div>
+        <div class="skill-icon">AI</div>
+        <div class="skill-icon">Figma</div>
+        <div class="skill-icon">PS</div>
+    </div>
+
+</body>
+</html>

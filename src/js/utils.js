@@ -43,7 +43,7 @@ function initUtils() {
                 let completed = 0;
 
                 textArray.forEach((char, index) => {
-                    let changes = Math.floor(Math.random() * 2) + 2; // 2~3번 변경
+                    let changes = Math.floor(Math.random() * 2) + 3; // 2~3번 변경
                     let delay = Math.random() * 210; // 랜덤한 변경 간격 (0~300ms)
 
                     let counter = 0;

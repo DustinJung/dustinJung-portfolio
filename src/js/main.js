@@ -72,7 +72,6 @@ window.onload = function() {
                 thePlanet.addEventListener('click', function() {
                     this.classList.add('on');
                     setTimeout(() => {
-                        theTextBox.style.touchAction = 'none';
                         thePlanet.style.touchAction = 'none';
                         this.style.pointerEvents = 'none';
                         this.style.touchAction = 'none';
@@ -259,11 +258,8 @@ window.onload = function() {
                     }, 1250);
                     setTimeout(() => {
                         thePlanet.style.animation = 'floating 3s alternate ease-in-out infinite';
-                    }, 1501)
+                    }, 1500)
                     setTimeout(() => {
-                        theTextBox.style.cursor = 'auto';
-                        theTextBox.style.touchAction = 'auto';
-                        theTextBox.style.pointerEvents = 'auto';
                         thePlanet.style.touchAction = 'auto';
                         thePlanet.style.pointerEvents = 'auto';
                         thePlanet.style.cursor = 'pointer';
