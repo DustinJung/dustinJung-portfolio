@@ -50,6 +50,9 @@ body.is-ready{
 :root{
     --grid-gutter: 1rem;
 }
+:root{
+    --orbitron : 'Orbitron', sans-serif;
+}
 
 /*클래스모음*/
 .uppercase {
@@ -435,7 +438,7 @@ body.is-ready{
     29% { transform: rotateX(0deg) scale(1.4) translate(20%, 0);}
     35% { transform: rotateX(0deg) scale(2.2) translate(0, 0);}
     45% { transform: rotateX(0deg) scale(3.5) translate(0, 0);}
-    100% { transform: rotateX(0deg) scale(100);}
+    100% { transform: rotateX(0deg) scale(50);}
 }
 @keyframes okGo {
     0% {
@@ -466,5 +469,13 @@ body.is-ready{
     }
     100% {
         opacity: 1;
+    }
+}
+@keyframes WarpOutPlanetGoBig {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.2);
     }
 }

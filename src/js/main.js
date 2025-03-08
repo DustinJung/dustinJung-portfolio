@@ -52,6 +52,8 @@ window.onload = function() {
             let thePlanet = document.querySelector('.the-planet');
             let timeout;
             let inPlanet = document.querySelector('#in-the-planet');
+            let warp_btn = document.getElementById('go-oustide-btn');
+            let body = document.querySelector('body');
 
             function planetHover() {
                 thePlanet.addEventListener('mouseenter', function() {
@@ -65,20 +67,22 @@ window.onload = function() {
                     }, 150);
                 })
             }
+
             function planetClick() {
                 thePlanet.addEventListener('click', function() {
                     this.classList.add('on');
                     setTimeout(() => {
-                        theTextBox.style = `display: none`;
-                        this.style = `touch-action: none; cursor: auto;`;
+                        theTextBox.style.touchAction = 'none';
+                        thePlanet.style.touchAction = 'none';
+                        this.style.pointerEvents = 'none';
+                        this.style.touchAction = 'none';
+                        this.style.cursor = 'none';
                     }, 3500);
                     
                     setTimeout(() => {
                         this.classList.add('nowGo');
                         inPlanet.classList.add('on');
-                        if(inPlanet.classList.contains('on')) {
-                            document.querySelector('body').classList.remove('is-ready');
-                        };
+                        body.classList.remove('is-ready');
                         setTimeout(() => {
                             inPlanet.classList.add('goOn');
                         }, 50);
@@ -86,6 +90,7 @@ window.onload = function() {
 
                 })
             }
+            
             function createParticles() {
                 let container = document.querySelector('.the-particles');
                 for (let i = 0; i < 20; i++) { //for문 돌리고
@@ -104,18 +109,17 @@ window.onload = function() {
                 }
             }
 
-            
             function theCardEffect() {
                 let containers = document.querySelectorAll('.skill-swiper-wrapper .container');
                 let overlays = document.querySelectorAll('.skill-swiper-wrapper .overlay');
                 let swiper_wrapper = document.querySelector('.skill-swiper-wrapper');
-                let skill_swiper = document.querySelector('.skill-swiper-wrapper .skill-swiper');
                 let isMoving = false;
+                let theBtn = document.getElementById('go-outside-btn-wrapper');
             
                 containers.forEach((container, i) => {
                     let animationFrame; // animationFrames 변수 선언
                     let desc_wrappers = document.querySelectorAll('.desc-wrapper');
-                    let close_btn = desc_wrappers[i].querySelector('.desc-close-btn'); // 수정된 부분
+                    let close_btn = desc_wrappers[i].querySelector('.desc-close-btn');
             
                     container.addEventListener('mousemove', function(e) {
                         if (isMoving) return;
@@ -151,6 +155,7 @@ window.onload = function() {
                         
                         swiper_wrapper.classList.add('active');
                         container.classList.add('active');
+                        theBtn.classList.add('active');
 
                         // getBoundingClientRect()는 **클릭된 카드(container)**의 위치 및 크기 정보를 반환하는 함수
                         // rect = {
@@ -189,43 +194,89 @@ window.onload = function() {
                                 desc_wrappers[i].style.transform = 'translate(-50%, -50%) scale(1)';
                             }, 800)
                         }, 800);
-                        });
+                    });
                         
-
-                        close_btn.addEventListener('click', function() {
-                            desc_wrappers[i].classList.remove('active');
-                            desc_wrappers[i].style.opacity = '0';
-                            desc_wrappers[i].style.transform = 'translate(-50%, -50%) scale(.2)';
-                            container.style.webkitFilter = 'blur(0)';
-                            container.style.filter = 'blur(0)';
-                            container.style.transform = `translate3D(0%, 0%, 0.1px) scale(1)`
-                            container.classList.remove('fade-out');
+                    close_btn.addEventListener('click', function() {
+                        desc_wrappers[i].classList.remove('active');
+                        desc_wrappers[i].style.opacity = '0';
+                        desc_wrappers[i].style.transform = 'translate(-50%, -50%) scale(.2)';
+                        container.style.webkitFilter = 'blur(0)';
+                        container.style.filter = 'blur(0)';
+                        container.style.transform = `translate3D(0%, 0%, 0.1px) scale(1)`
+                        container.classList.remove('fade-out');
+                        setTimeout(() => {
+                            containers.forEach((c, index) => { 
+                                if (index !== i) { 
+                                    c.style.opacity = "1";
+                                    c.style.transition = "opacity 0.5s ease-in-out";
+                                }
+                            });
+                            container.style.transition =  'opacity .6s ease-out';
+                            container.style.opacity = '1';
+                            swiper_wrapper.classList.remove('active');
+                            container.classList.remove('active');
+                            theBtn.classList.remove('active');
                             setTimeout(() => {
-                                containers.forEach((c, index) => { 
-                                    if (index !== i) { 
-                                        c.style.opacity = "1";
-                                        c.style.transition = "opacity 0.5s ease-in-out";
-                                    }
-                                });
-                                container.style.transition =  'opacity .6s ease-out';
-                                container.style.opacity = '1';
-                                swiper_wrapper.classList.remove('active');
-                                container.classList.remove('active');
-                                setTimeout(() => {
-                                    container.style.transition = 'all 0.1s'
-                                    isMoving = false;
-                                }, 100)
-                            }, 850);
-                        })
+                                container.style.transition = 'all 0.1s'
+                                isMoving = false;
+                            }, 100)
+                        }, 850);
+                    })
                 });
             }
             
+            function go_warp_outside() {
+                let el1 = document.querySelector('#in-the-planet.goBig .the-particles');
+                let el2 = document.querySelector('#in-the-planet.goBig .skill-swiper-wrapper');
+                let el3 = document.getElementById('go-outside-btn-wrapper');
+                warp_btn.addEventListener('click', function() {
+                    // 1. 행성에서 나가는 애니메이션이 있어야 한다.
+                    // 1 - 1 inPlanet의 내부 스케일이 작아지는 애니메이션 클래스(goBig) 추가 => goOn 클래스 제거 => 애니메이션 클래스 제거
+                    // 1 - 2 애니메이션 클래스를 제거하면 forwards기 때문에 내부 요소의 스케일을 원래대로 되돌려야 함.
+                    // 2. 더플래닛의 커진 스케일을 다시 원래대로 돌리는게 맞다.
+                    // 3. 추가된 클래스는 삭제하는게 맞다.
+                    // 4. 바디에 is-ready를 다시 줘야 한다.
+                    inPlanet.classList.add('goBig'); // goBig에 반응해서 내부요소 두개에 애니메이션 추가하기, .5s 의 소요시간
+                    thePlanet.classList.remove('nowGo'); // 행성 오퍼시티를 1에서 0으로 만들었던 클래스 ? .the-planet
+                    thePlanet.classList.remove('on');
+                    thePlanet.style.animation = 'none'; // 플로팅 애니메이션 속성 때문
+                    thePlanet.style.transform = "translate3d(0, 1vmin, 100px) rotate3d(0, 0, 1, 2deg) scale(20)"; // 다시 보이게 만들어 놓고.
+                    setTimeout(() => {
+                        inPlanet.classList.remove('goOn'); //인플래닛 오퍼시티를 1로 만드는 클래스 #in-the-planet, 그걸 제거함.
+                    }, 350);
+                    setTimeout(() => {
+                        thePlanet.style.transform = "translate3d(0, 1vmin, 100px) rotate3d(0, 0, 1, 2deg) scale(1)";
+                    }, 600);
+                    setTimeout(() => {
+                        inPlanet.classList.remove('on'); // 인플레닛 비저블을 보이게 만드는 클래스 
+                        inPlanet.classList.remove('goBig'); // goBig 애니메이션 주는 클래스 제거하고 scale 원래대로 되돌리기.
+                        if(el1) el1.style.transform = 'scale(1)'; // goBig 애니메이션 주는 클래스 제거하고 scale 원래대로 되돌리기.
+                        if(el2) el2.style.transform = 'scale(1)'; // goBig 애니메이션 주는 클래스 제거하고 scale 원래대로 되돌리기.
+                        if(el3) el3.style.transform = 'scale(1)'; // goBig 애니메이션 주는 클래스 제거하고 scale 원래대로 되돌리기.
+                    }, 950);
+                    setTimeout(() => {
+                        body.classList.add('is-ready');// 바디 스크롤 클래스
+                    }, 1250);
+                    setTimeout(() => {
+                        thePlanet.style.animation = 'floating 3s alternate ease-in-out infinite';
+                    }, 1501)
+                    setTimeout(() => {
+                        theTextBox.style.cursor = 'auto';
+                        theTextBox.style.touchAction = 'auto';
+                        theTextBox.style.pointerEvents = 'auto';
+                        thePlanet.style.touchAction = 'auto';
+                        thePlanet.style.pointerEvents = 'auto';
+                        thePlanet.style.cursor = 'pointer';
+                    }, 1501)
+                })
+            }
 
 
             planetHover();
             planetClick();
             createParticles();
-            theCardEffect()
+            theCardEffect();
+            go_warp_outside();
         }
 
 

@@ -62,4 +62,10 @@
         transform: scale(1.05);
         box-shadow: 0px 0px 25px rgba(0, 255, 162, 0.6);
     }
+    .scramble-btn-wrapper:hover .scramble-btn::before{
+        opacity: .75;
+    }
+    .scramble-btn:hover span {
+        letter-spacing: calc(4px* var(--size));
+    }
 }

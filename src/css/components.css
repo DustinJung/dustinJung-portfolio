@@ -1,4 +1,12 @@
 /* components.css => UI , Slider 등 관련 */
+
+:root{
+    --color-primary: #4edee9;
+    --color-primary-invert: #00494e;
+    --color-secondary: #ff598e;
+    --color-secondary-invert: #5c001d;
+}
+
 .skill-swiper-wrapper .swiper-wrapper {
     padding: 2rem 0;
 }
@@ -17,4 +25,107 @@
 .skill-swiper-wrapper.active .swiper-slide {
     position: static;
     touch-action: none;
+}
+
+/*스크램블 버튼*/
+#go-outside-btn-wrapper{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 10vh;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity .5s ease;
+    opacity: 1;
+}
+.scramble-btn-wrapper {
+    pointer-events: none;
+}
+.scramble-btn {
+    padding: 0;
+    position: relative;
+    width: calc(316px* var(--size));
+    height: calc(76px* var(--size));
+    font-size: calc(52px* var(--size));
+    padding-bottom: calc(8px* var(--size));
+    padding-left: calc(16px* var(--size));
+    font-family: 'Orbitron, sans-serif';
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-primary);
+    border: min(.45vw, .45vh) solid var(--color-primary);
+    border-radius: min(1vw, 1vh);
+    border-top-left-radius: min(2.8vw, 2.8vh);
+    transition: letter-spacing .3s ease-in-out, transform .14s ease-out, opacity .14s ease-out;
+    backdrop-filter: blur(4px);
+    opacity: 1;
+    pointer-events: all;
+    transform: scale(1);
+    background-color: transparent;
+    cursor: pointer;
+}
+#go-outside-btn-wrapper.active {
+    opacity: 0 !important;
+    touch-action: none !important;
+}
+#go-outside-btn-wrapper.active .scramble-btn {
+    touch-action: none !important;
+    pointer-events: none !important;
+}
+.scramble-btn:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    border-radius: min(.8vw, .8vh);
+    border-top-left-radius: min(2.4vw, 2.4vh);
+    background: var(--color-primary-invert);
+    transition: opacity .14s ease-out;
+    opacity: .4;
+}
+/*
+.scramble-btn-wrapper:hover .scramble-btn::before{
+    opacity: .75;
+}*/
+.scramble-btn span{
+    transition: letter-spacing 0.3s ease-in-out;
+}
+/*
+.scramble-btn:hover span {
+    letter-spacing: calc(4px* var(--size));
+}*/
+.scramble-btn svg {
+    position: absolute;
+    left: calc(5px* var(--size));
+    bottom: calc(5px* var(--size));
+    width: calc(33.87px* var(--size));
+    height: calc(47.36px* var(--size));
+    fill: var(--color-primary);
+    top: 50%;
+    transform: translateY(-50%);
+}
+.scramble-btn .scramble-btn-top-text {
+    position: absolute;
+    top: calc(3px* var(--size));
+    right: calc(7px* var(--size));
+    font-size: calc(11px* var(--size));
+    font-family: 'Monomaniac, sans-serif';
+    font-weight: 400;
+    line-height: 1;
+    color: var(--color-primary);
+}
+.scramble-btn .scramble-btn-bottom-text {
+    position: absolute;
+    bottom: calc(2px* var(--size));
+    right: calc(7px* var(--size));
+    font-size: calc(13px* var(--size));
+    font-family: 'Monomaniac, sans-serif';
+    font-weight: 400;
+    line-height: 1;
+    color: var(--color-primary);
 }
