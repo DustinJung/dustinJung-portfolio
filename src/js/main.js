@@ -77,7 +77,7 @@ window.onload = function() {
                         this.style.pointerEvents = 'none';
                         this.style.touchAction = 'none';
                         this.style.cursor = 'none';
-                    }, 3500);
+                    }, 2200);
                     
                     setTimeout(() => {
                         this.classList.add('nowGo');
@@ -86,7 +86,7 @@ window.onload = function() {
                         setTimeout(() => {
                             inPlanet.classList.add('goOn');
                         }, 50);
-                    },3700);
+                    },2400);
 
                 })
             }

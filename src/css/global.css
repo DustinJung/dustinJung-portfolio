@@ -438,14 +438,14 @@ body.is-ready{
     29% { transform: rotateX(0deg) scale(1.4) translate(20%, 0);}
     35% { transform: rotateX(0deg) scale(2.2) translate(0, 0);}
     45% { transform: rotateX(0deg) scale(3.5) translate(0, 0);}
-    100% { transform: rotateX(0deg) scale(50);}
+    100% { transform: rotateX(0deg) scale(40);}
 }
 @keyframes okGo {
     0% {
-        opacity: 1; transform: rotateX(0deg) scale(100);
+        opacity: 1; transform: rotateX(0deg) scale(40);
     }
     100% {
-        opacity: 0; transform: rotateX(0deg) scale(100);
+        opacity: 0; transform: rotateX(0deg) scale(40);
     }
 }
 @keyframes floatTheParticles {
