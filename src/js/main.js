@@ -28,6 +28,36 @@ document.addEventListener("DOMContentLoaded", function () {
 window.onload = function() {
     function vanilaJavascripts() {
 
+        function letSkillValueIncrease() {
+            let theWrappers = document.querySelectorAll('.skill-gage-wrapper');
+        
+            theWrappers.forEach((wrapper) => {
+                let startValue = 0;
+                let targetValue = parseInt(wrapper.getAttribute('data-percent')) || 0;
+                let duration = 2000; // 2초 동안 애니메이션
+                let interval = 30; // 업데이트 간격 (30ms)
+                let increment = targetValue / (duration / interval);
+        
+                let fill = wrapper.querySelector('.fill');
+                let span = wrapper.querySelector('span.on');
+        
+                console.log("targetValue:", targetValue);
+                console.log("increment:", increment);
+        
+                let letsIncrease = setInterval(() => {
+                    startValue += increment;
+        
+                    if (startValue >= targetValue) {
+                        startValue = targetValue;
+                        clearInterval(letsIncrease);
+                    }
+        
+                    span.innerText = Math.round(startValue) + "%";
+                    fill.style.width = startValue + "%";
+                }, interval);
+            });
+        }
+
         function intro_parallax() {
             window.addEventListener("scroll", function () {
                 let scrollValue = window.scrollY;
@@ -43,10 +73,7 @@ window.onload = function() {
             setTimeout(() => {
                 document.querySelector('body').classList.add('is-ready');
             }, 5200)
-        }
-
-        
-
+        };
         function hoverThenPlanetGoesOn() {
             let theTextBox = document.querySelector('#my-projects-section > .this-planet-wrapper');
             let thePlanet = document.querySelector('.the-planet');
@@ -84,6 +111,12 @@ window.onload = function() {
                         body.classList.remove('is-ready');
                         setTimeout(() => {
                             inPlanet.classList.add('goOn');
+                            let theWrappers = document.querySelectorAll('.skill-gage-wrapper');
+                            theWrappers.forEach((wrapper) => {
+                                let span = wrapper.querySelector('span');
+                                span.classList.add('on');
+                                letSkillValueIncrease();
+                            })
                         }, 50);
                     },2400);
 
@@ -245,6 +278,20 @@ window.onload = function() {
                     }, 350);
                     setTimeout(() => {
                         thePlanet.style.transform = "translate3d(0, 1vmin, 100px) rotate3d(0, 0, 1, 2deg) scale(1)";
+                        let theWrappers = document.querySelectorAll('.skill-gage-wrapper');
+                        theWrappers.forEach((wrapper) => {
+                            let span = wrapper.querySelector('span.on');
+                            let fill = wrapper.querySelector('.fill');
+                
+                            if (span) {
+                                span.classList.remove('on');
+                                span.innerText = "0%";
+                            }
+                
+                            if (fill) {
+                                fill.style.width = "0%";
+                            }
+                        });
                     }, 600);
                     setTimeout(() => {
                         inPlanet.classList.remove('on'); // 인플레닛 비저블을 보이게 만드는 클래스 
@@ -273,7 +320,7 @@ window.onload = function() {
             createParticles();
             theCardEffect();
             go_warp_outside();
-        }
+        };
 
 
         letBodyTakeIsReady();

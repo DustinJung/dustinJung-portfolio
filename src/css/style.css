@@ -898,13 +898,28 @@ main {
 }
 .skill-swiper-wrapper .overlay {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0) 70%);
+    width: 220px;
+    height: 310px;
+    background: radial-gradient(#ece7af77, transparent);
+    background-size: 200% 200%;
+    background-position: 100%;
+    filter: brightness(1.2) opacity(0.8);
+    mix-blend-mode: hard-light;
+    transition: all .1s;
     mix-blend-mode: screen;
-    filter: brightness(1.2) opacity(0.5);
-    -webkit-filter: brightness(1.2) opacity(0.5);
-    transition: all 0.1s;
+    border-radius: 10px;
+}
+.skill-swiper-wrapper .overlay::before {
+    content: '';
+    background-size: cover;
+    background-position: center center;
+    filter: brightness(2.5) contrast(1);
+    opacity: calc((0.8 + 0.4)* 0.6);
+    mix-blend-mode: multiply;
+    background-blend-mode: hard-light, multiply;
+    grid-area: 1 / 1;
+    transform: translateZ(1px);
+    border-radius: 4.55% / 3.5%;
 }
 
 
@@ -1085,15 +1100,17 @@ input.desc-title {
     z-index: 3;
 }
 .skill-svg-wrapper svg {
-    width: 128px;
-    height: 128px;
+    width: 79px;
     aspect-ratio: 1 / 1;
+    filter: brightness(1.2) contrast(1.2) blur(.2px) drop-shadow(4px 4px 11px #07becfd2);
+    -webkit-filter: brightness(1.2) contrast(1.2) blur(.2px) drop-shadow(4px 4px 11px #07becfd2);
 }
 .skills {
     width: 100%;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    height: 12px;
 }
 .gage-bar {
     width: 100%;
@@ -1110,6 +1127,9 @@ input.desc-title {
     transition: width 2s ease-in-out;
     position: relative;
     will-change: width;
+    animation: skillWidthChange 2s ease-in-out forwards;
+    filter: brightness(1.2) contrast(1.2) drop-shadow(0px 0px 2px 0px var(--color-primary)) blur(.2px);
+    -webkit-filter: brightness(1.2) contrast(1.2) drop-shadow(0px 0px 2px 0px var(--color-primary)) blur(.2px);
 }
 .fill::before {
     content: '';
@@ -1121,10 +1141,44 @@ input.desc-title {
     filter: blur(8px);
     opacity: 0.7;
 }
-.fill.skill_html5 {
-    width: 85%;
-    animation: skillWidthChange 2s ease-in-out forwards;
-    background: pink
+.skill-gage-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
 }
-
+.fill.skill_html5 {
+    background: rgb(228, 77, 38);
+}
+.fill.skill_css3 {
+    background: #1572B6;
+}
+.fill.skill_js {
+    background: #F0DB4F;
+}
+.fill.skill_JQ {
+    background: #0868AC;
+}
+.fill.skill_GSAP {
+    background: #0ae448;
+}
+.fill.skill_PS {
+    background: #001e36;
+}
+.fill.skill_ilu {
+    background: #FAA625;
+}
+.fill.skill_Fig {
+    background: linear-gradient(to right, 
+    #0acf83 0%,  #0acf83 15%, 
+    #a259ff 25%, #a259ff 40%, 
+    #f24e1e 50%, #f24e1e 65%, 
+    #ff7262 70%, #ff7262 80%, 
+    #1abcfe 85%, #1abcfe 100% 
+  );  
+}
+.skill-gage-wrapper span {
+    text-shadow: 0 0 5px var(--point2-clr), 0 0 10px var(--point2-clr);
+}
 

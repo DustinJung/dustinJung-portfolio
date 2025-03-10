@@ -2,7 +2,7 @@
 
 function initSwiper() {
   var swiper = new Swiper(".skill-swiper", {
-      slidesPerView: 3.5,
+      slidesPerView: 5.5,
       spaceBetween: 30,
       centeredSlides: true,
       observer: true,  // Swiper가 DOM 변경을 감지할 수 있도록 설정

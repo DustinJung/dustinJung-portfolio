@@ -69,6 +69,9 @@ function initUtils() {
         });
     }
 
+    
+    
+
     //resize
     function gsapRefresh() {
         const resizeHandler = () => {
