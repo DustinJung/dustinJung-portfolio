@@ -329,6 +329,7 @@ window.onload = function() {
                 let theButtons = theTextBoxu.querySelectorAll('button');
                 let theMatch = document.querySelectorAll('.skill-swiper-wrapper');
                 let theBg = document.querySelector('.ifClickBgGoOff');
+                let desc_wrappers = document.querySelectorAll('.desc-wrapper');
     
                 theButtons.forEach((button, i) => {
                     button.addEventListener('click', function() {
@@ -347,6 +348,9 @@ window.onload = function() {
                             theTextBoxu.classList.remove('off');
                             theMatch[i].classList.remove('on');
                             theBg.classList.remove('on');
+                            desc_wrappers[i].classList.remove('active');
+                            desc_wrappers[i].style.opacity = '0';
+                            desc_wrappers[i].style.transform = 'translate(-50%, -50%) scale(.2)';
                             let theWrappers = document.querySelectorAll('.skill-gage-wrapper');
                             theWrappers.forEach((wrapper) => {
                                 let span = wrapper.querySelector('span.on');

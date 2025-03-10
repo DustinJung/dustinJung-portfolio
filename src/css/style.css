@@ -1157,14 +1157,18 @@ input.desc-title {
     color: white;
     filter: brightness(1.6);
 }
+.desc-desc > div {
+    white-space: pre-line;
+}
 .desc-desc * {
     font-size: 26px;
     font-weight: normal;
     color: #b5b4b6;
     /*font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;*/
     overflow-y: scroll;
-    line-height: 2.2;
+    line-height: 1.5;
     height: calc(100% - 30px) ;
+    font-style: normal;
 }
 .augs {
     --aug-rect-l1: initial;
