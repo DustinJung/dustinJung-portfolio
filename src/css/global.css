@@ -483,3 +483,8 @@ body.is-ready{
         transform: scale(0.2);
     }
 }
+@keyframes skillWidthChange {
+    from {
+        width: 0%;
+    }
+}
