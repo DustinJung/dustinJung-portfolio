@@ -809,6 +809,23 @@ main {
     transition: opacity .6s;
     overflow: hidden;
 }
+.ifClickBgGoOff {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+    pointer-events: none;
+    z-index: -1;
+    background: transparent;
+}
+.ifClickBgGoOff.on {
+    touch-action: auto;
+    pointer-events: auto;
+    cursor: pointer;
+    z-index: 2;
+}
 .the-particles {
     position: absolute;
     left: 0;
@@ -865,11 +882,117 @@ main {
     background-size: 100px 100px;
     pointer-events: none;
 }
+#theTextBoxBetweenCodingAndDesign {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    position: absolute;
+    left: 10%;
+    top: 20%;
+    transform: scale(1);
+}
+#theTextBoxBetweenCodingAndDesign.off {
+    animation: theTextBoxClicked .4s ease forwards;
+    filter: blur(.4px);
+    -webkit-filter: blur(.4px);
+}
+.betweenBtn {
+    position: relative;
+    text-align: left;
+    display: flex;
+}
+.betweenBtnFirst {
+    height: min(6.3vw, 6.3vh);
+    width: min(1.5vw, 1.5vh);
+    background-color: var(--color-primary);
+    transition: transform .1s ease-in;
+    transition-delay: 0;
+    border-top-left-radius: min(.2vw, .5vh);
+    border-bottom-left-radius: min(.6vw, .6vh);
+    transform: scale(0);
+    transform-origin: left;
+}
+.betweenBtnFirst.on {
+    transition-delay: .1s;
+    transform: scale(1);
+}
+.betweenBtnSecond {
+    position: relative;
+    font-family: Orbitron;
+    color: var(--color-primary);
+    padding-left: min(1.1vw, 1.1vh);
+    padding-top: min(1.2vw, 1.2vh);
+    width: min(84vw, 84vh);
+    height: clamp(25px, min(7.5vw, 7.5vh), 150px);
+    overflow: hidden;
+    border-bottom-left-radius: min(.8vw, .8vh);
+    transition: height .4s ease-in-out, transform .4s ease-out, opacity .4s ease-out, filter .4s ease-out;
+    transform-origin: left center;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    pointer-events: all;
+    gap: min(2.5vw, 2.5vh);
+}
+.betweenBtnSecond.on {
+    height: min(29.2vw, 22.2vh);
+    background: linear-gradient(100deg, #6a008ad0 30%, rgba(183, 31, 189, .1) 100%);
+    opacity: 1;
+}
 .skill-swiper-wrapper {
     width: 100vw;
-    display: flex;
-    justify-content: center;
     padding: 1.5rem 0;
+    opacity: 0;
+    touch-action: none;
+    pointer-events: none;
+    transition: opacity .4s ease;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #73bfc436;
+    z-index: 3;
+}
+.skill-swiper-wrapper.on {
+    opacity: 1;
+    touch-action: auto;
+    pointer-events: auto;
+}
+.btnSecondFirstP {
+    font-weight: 700;
+    font-size: min(6vw, 6vh);
+    padding: 0;
+    line-height: 1;
+    font-size: clamp(21px ,calc(32px* var(--size)), 53px);
+}
+.btnSecondSecondP {
+    font-weight: 700;
+    font-size: min(2.5vw, 2.5vh);
+    padding: 0;
+    line-height: 1.5;
+    padding-left: min(.5vw, .5vh);
+    padding-bottom: min(1.1vw, 1.1vh);
+    color: #fb87ff;
+    font-size: calc(26px * var(--size));
+}
+.btnSecondThirdP {
+    font-weight: 400;
+    font-size: min(2.8vw, 2.8vh);
+    padding: 0;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+}
+.btnSecondThirdP span {
+    display: flex;
+    justify-content: flex-end;
+    font-size: min(1.5vw, 1.5vh);
+    width: min(11vw, 11vh);
+    padding: 0;
+    margin-left: min(.8vw, .8vh);
+    margin-right: min(.8vw, .8vh);
+    color: #fb87ff;
+    font-size: calc(14px* var(--size));
 }
 .skill-swiper-wrapper .container {
     width: 220px;
@@ -1124,10 +1247,9 @@ input.desc-title {
 .fill {
     height: 100%;
     width: 0;
-    transition: width 2s ease-in-out;
+    will-change: width;
     position: relative;
     will-change: width;
-    animation: skillWidthChange 2s ease-in-out forwards;
     filter: brightness(1.2) contrast(1.2) drop-shadow(0px 0px 2px 0px var(--color-primary)) blur(.2px);
     -webkit-filter: brightness(1.2) contrast(1.2) drop-shadow(0px 0px 2px 0px var(--color-primary)) blur(.2px);
 }

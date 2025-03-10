@@ -69,7 +69,23 @@ function initUtils() {
         });
     }
 
-    
+    function betweenBtnHover() {
+        let btns = document.querySelectorAll('.betweenBtn');
+        btns.forEach((btn, i) => {
+            let el1 = document.querySelectorAll('.betweenBtnFirst');
+            let el2 = document.querySelectorAll('.betweenBtnSecond');
+            btn.addEventListener('mouseenter', function() {
+                el1[i].classList.add('on');
+                el2[i].classList.add('on');
+            })
+            btn.addEventListener('mouseleave', function() {
+                if(el1[i].classList.contains('on') && el2[i].classList.contains('on')) {
+                    el1[i].classList.remove('on');
+                    el2[i].classList.remove('on');
+                }                
+            })
+        })
+    }
     
 
     //resize
@@ -103,6 +119,7 @@ function initUtils() {
     scrollOpacityHide();
     scrambleTextHover();
     gsapRefresh();
+    betweenBtnHover();
 }
 
 export { initUtils };

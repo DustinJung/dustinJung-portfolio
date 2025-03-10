@@ -72,4 +72,12 @@
         transform: scale(1.06) rotateY(10deg) rotateX(5deg);
         filter: brightness(1.2);
     }
+    .betweenBtnSecond:hover {
+        background: linear-gradient(100deg, #ad13dbd0 30%, rgba(183, 31, 189, .1) 100%);
+        opacity: .8;
+        box-shadow: 0p 0px 3px 3px #bd32e7d0;
+        filter: blur(.2px) brightness(1.2);
+        -webkit-filter: blur(.2px) brightness(1.2);
+        transform: scale(1.1);
+    }
 }

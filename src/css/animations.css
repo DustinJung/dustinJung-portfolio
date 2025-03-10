@@ -41,7 +41,7 @@
     animation: WarpOutPlanetGoBig .5s ease-in forwards;
 }
 #in-the-planet.goBig .skill-swiper-wrapper {
-    animation: WarpOutPlanetGoBig .5s ease-in forwards;
+    animation: warpOutPlanetGoBigForTheSwiper .5s ease-in forwards;
 }
 
 #in-the-planet.goBig #go-outside-btn-wrapper {
