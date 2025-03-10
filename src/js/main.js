@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 window.onload = function() {
     function vanilaJavascripts() {
+        let isMoving = false;
 
         function letSkillValueIncrease() {
             let theWrappers = document.querySelectorAll('.skill-gage-wrapper');
@@ -143,7 +144,6 @@ window.onload = function() {
                     let containers = wrapper.querySelectorAll('.skill-swiper-wrapper .container');
                     let overlays = document.querySelectorAll('.skill-swiper-wrapper .overlay');
                     let swiper_wrapper = document.querySelector('.skill-swiper-wrapper');
-                    let isMoving = false;
                     let theBtn = document.getElementById('go-outside-btn-wrapper');
                 
                     containers.forEach((container, i) => {
@@ -344,13 +344,34 @@ window.onload = function() {
                     })
 
                     theBg.addEventListener('click', function() {
+                        let theBtn = document.getElementById('go-outside-btn-wrapper');
                         if(theTextBoxu.classList.contains('off') && theMatch[i].classList.contains('on')){
                             theTextBoxu.classList.remove('off');
                             theMatch[i].classList.remove('on');
                             theBg.classList.remove('on');
-                            desc_wrappers[i].classList.remove('active');
-                            desc_wrappers[i].style.opacity = '0';
-                            desc_wrappers[i].style.transform = 'translate(-50%, -50%) scale(.2)';
+                            let theSwiperWrappers = document.querySelectorAll('.skill-swiper-wrapper');
+                            theSwiperWrappers.forEach((wrapper) => {
+                                if(wrapper.classList.contains('active') || wrapper.classList.contains('on')) {
+                                    wrapper.classList.remove('active');
+                                    wrapper.classList.remove('on');
+                                }
+                                let containers = wrapper.querySelectorAll('.skill-swiper-wrapper .container');
+                                containers.forEach((container, i) => {
+                                    container.classList.remove('active');
+                                    container.classList.remove('fade-out');
+                                    container.style.webkitFilter = 'blur(0)';
+                                    container.style.filter = 'blur(0)';
+                                    container.style.transform = `translate3D(0%, 0%, 0.1px) scale(1)`;
+                                    container.style.opacity = '1';
+                                    isMoving = false;
+                                })
+                            });
+                            desc_wrappers.forEach((desc_wrapper) => {
+                                desc_wrapper.classList.remove('active');
+                                desc_wrapper.style.opacity = '0';
+                                desc_wrapper.style.transform = 'translate(-50%, -50%) scale(.2)';
+                            })
+                            theBtn.classList.remove('active');
                             let theWrappers = document.querySelectorAll('.skill-gage-wrapper');
                             theWrappers.forEach((wrapper) => {
                                 let span = wrapper.querySelector('span.on');
