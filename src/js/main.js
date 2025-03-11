@@ -73,7 +73,7 @@ window.onload = function() {
             }, 5200)
         };
         function hoverThenPlanetGoesOn() {
-            let theTextBox = document.querySelector('#my-projects-section > .this-planet-wrapper');
+            let theTextBox = document.querySelector('#my-skills-section > .this-planet-wrapper');
             let thePlanet = document.querySelector('.the-planet');
             let timeout;
             let inPlanet = document.querySelector('#in-the-planet');

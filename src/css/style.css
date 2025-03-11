@@ -630,15 +630,15 @@ main {
 }
 
 
-/*my-projects-section*/
-#my-projects-section {
+/*my-skills-section*/
+#my-skills-section {
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-#my-projects-section .the-planet {
+#my-skills-section .the-planet {
     width: 130px;
     height: 130px;
     position: relative;
@@ -665,8 +665,8 @@ main {
     transition: box-shadow 1s, opacity .3s, transform .9s;
     z-index: 5;
 }
-#my-projects-section .the-planet::before,
-#my-projects-section .the-planet::after {
+#my-skills-section .the-planet::before,
+#my-skills-section .the-planet::after {
     content: "";
     position: absolute;
     border-radius: 50%;
@@ -674,7 +674,7 @@ main {
     transition: filter .6s, box-shadow .6s;
 }
 
-#my-projects-section .the-planet::before {
+#my-skills-section .the-planet::before {
     background-image: radial-gradient(
         transparent 50%, 
         rgba(123, 238, 251, 0.2) 60%, 
@@ -683,7 +683,7 @@ main {
     transform: translateY(1.2vmin) rotateX(72deg);
 }
 
-#my-projects-section .the-planet::after {
+#my-skills-section .the-planet::after {
     background-image: radial-gradient(
         transparent 50%, 
         rgba(123, 238, 251, 0.2) 52%, 
@@ -696,7 +696,7 @@ main {
     );
     transform: rotateX(72deg);
 }
-#my-projects-section > .this-planet-wrapper {
+#my-skills-section > .this-planet-wrapper {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -715,7 +715,7 @@ main {
     touch-action: none;
     pointer-events: none;
 }
-#my-projects-section .what-is-this-planet {
+#my-skills-section .what-is-this-planet {
     position: fixed !important;
     z-index: 10;
     perspective: 800px;
@@ -745,33 +745,33 @@ main {
     font-weight: 400;
     line-height: 1;
 }
-#my-projects-section .planet-bar {
+#my-skills-section .planet-bar {
     width: 2px;
     height: 100%;
     background: var(--point4-clr);
 }
-#my-projects-section .planet-skill-desc {
+#my-skills-section .planet-skill-desc {
     letter-spacing: -1px;
     font-size: 19px;
     font-weight: 500;
 }
-#my-projects-section .planet-for-margin {
+#my-skills-section .planet-for-margin {
     margin-top: calc(2* var(--grid-gutter));
     margin-bottom: .625rem;
     width: 149.5px;
     height: 2.4px;
     background: var(--point4-clr);
 }
-#my-projects-section .my-speach{
+#my-skills-section .my-speach{
     word-spacing: -2px;
 }
-#my-projects-section .planet-for-margin-bottom {
+#my-skills-section .planet-for-margin-bottom {
     margin-top: .625rem;
     width: 292px;
     height: 2.4px;
     background: var(--point4-clr);
 }
-#my-projects-section .this-planet-wrapper.on {
+#my-skills-section .this-planet-wrapper.on {
     opacity: 1;
 }
 .the-planet:hover {
@@ -1159,6 +1159,8 @@ input.desc-title {
 }
 .desc-desc > div {
     white-space: pre-line;
+    word-break: break-all;
+    padding: 0 1rem;
 }
 .desc-desc * {
     font-size: 26px;
