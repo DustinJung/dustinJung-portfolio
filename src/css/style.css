@@ -1310,3 +1310,32 @@ input.desc-title {
     text-shadow: 0 0 5px var(--point2-clr), 0 0 10px var(--point2-clr);
 }
 
+/*my-porjects-section*/
+#my-projects-section {
+    width: 100vw;
+    height: 100vh;
+    perspective: 100vw;
+    background: transparent;
+    perspective-origin: 50% 10%;
+}
+.my_projects_section {
+    transform-style: preserve-3d;
+    border-radius: 2vw;
+    border: 0.3vw solid rgba(125, 240, 250, 0.8);
+}
+#my-projects-section #leftDiv {
+    position: absolute;
+    width: 50%;
+    height: 80%;
+    top: 7%;
+    left: 7%;
+    transform: rotateY(35deg);
+}
+#my-projects-section #rightDiv {
+    position: absolute;
+    width: 30%;  
+    height: 70%;
+    top: 12%;
+    right: 10%;
+    transform: rotateY(-40deg);
+}
