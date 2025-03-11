@@ -74,6 +74,7 @@ function initSwiper() {
 var swiper = new Swiper(".projects_swiper", {
   slidesPerView: 1,
   centeredSlides: true,
+  spaceBetween: 30,
   observer: true,  
   observeParents: true, 
   allowTouchMove: true, 

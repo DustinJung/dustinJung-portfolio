@@ -176,7 +176,11 @@
     background-size: cover;
     width: 100%;
     height: 100%;
+    border-radius: .5vw;
 }
 #my-projects-section .swiper-horizontal>.swiper-pagination-progressbar, .swiper-pagination-progressbar.swiper-pagination-horizontal, .swiper-pagination-progressbar.swiper-pagination-vertical.swiper-pagination-progressbar-opposite, .swiper-vertical>.swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {
     top: calc(100% - 10px) !important;
+    width: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
