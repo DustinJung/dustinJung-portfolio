@@ -165,3 +165,18 @@
     font-size: calc(20px * var(--size));
     filter: none;
 }
+
+/*projects-swiper*/
+.projects_swiper{
+    width: 100%;
+    height: 100%;
+}
+.projects_swiper .projects-slide {
+    background: url(../../public/images/projects-section/1.png)no-repeat 50% 50%;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+#my-projects-section .swiper-horizontal>.swiper-pagination-progressbar, .swiper-pagination-progressbar.swiper-pagination-horizontal, .swiper-pagination-progressbar.swiper-pagination-vertical.swiper-pagination-progressbar-opposite, .swiper-vertical>.swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {
+    top: calc(100% - 10px) !important;
+}

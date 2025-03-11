@@ -70,6 +70,32 @@ function initSwiper() {
       }
     }
 });
+
+var swiper = new Swiper(".projects_swiper", {
+  slidesPerView: 1,
+  centeredSlides: true,
+  observer: true,  
+  observeParents: true, 
+  allowTouchMove: true, 
+  pagination: {
+    el: ".swiper-pagination",
+    type: "progressbar",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  on: {
+    init: function () {
+      this.update();
+    },
+    paginationRender: function () {
+    }
+  }
+});
+
+
 }
 
 
