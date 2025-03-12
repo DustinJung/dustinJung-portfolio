@@ -742,8 +742,8 @@ main {
     line-height: 1;
 }
 .what-is-this-planet .planet-name-wrapper .planet-name > p {
-    font-size: 12px;
-    font-weight: 400;
+    font-size: 10px;
+    font-weight: bold;
     line-height: 1;
 }
 #my-skills-section .planet-bar {
@@ -755,6 +755,7 @@ main {
     letter-spacing: -1px;
     font-size: 19px;
     font-weight: 500;
+    color: var(--point3-clr);
 }
 #my-skills-section .planet-for-margin {
     margin-top: calc(2* var(--grid-gutter));
