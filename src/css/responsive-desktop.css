@@ -80,4 +80,8 @@
         -webkit-filter: blur(.2px) brightness(1.2);
         transform: scale(1.1);
     }
+    .leftDiv_exit_btn:hover span{
+        background: var(--point4-clr);
+        box-shadow: 1px 1px 10px var(--point4-clr);
+    }
 }

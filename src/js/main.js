@@ -398,6 +398,9 @@ window.onload = function() {
             let theClickBtn = megaX.querySelector('#mega-click-btn');
             let theUl = megaX.querySelector('ul');
             let theLis = theUl.querySelectorAll('li');
+            let theSign = document.getElementById('the-place-sign');
+            let floatDivWrappers = document.querySelectorAll('.floatDivWrapper');
+            let exit_btns = document.querySelectorAll('.leftDiv_exit_btn');
 
             function theclickBtnClick() {
                 theClickBtn.addEventListener('click', function() {
@@ -426,6 +429,10 @@ window.onload = function() {
                                 el.classList.remove('on');
                             }) 초기화, 아직 쓸 떄가 아님.*/
                             theUl.classList.add('goOn');
+                            theSign.classList.add('on');
+                            setTimeout(() => {
+                                floatDivWrappers[i].classList.add('on');
+                            }, 300)
                             return; // 기존 이벤트 중단
                         }
 
@@ -436,9 +443,22 @@ window.onload = function() {
                     })
                 })
             }
+            
+            function exitBtnClick() {
+                exit_btns.forEach((btn, i) => {
+                    btn.addEventListener('click', function() {
+                        floatDivWrappers[i].classList.remove('on');
+                        setTimeout(() => {
+                            theSign.classList.remove('.on');
+                            theUl.classList.remove('goOn');
+                        })
+                    })
+                })
+            }
 
             theclickBtnClick();
             theLisClick();
+            exitBtnClick();
         }
 
 
