@@ -56,6 +56,7 @@ body.is-ready{
 }
 :root{
     --orbitron : 'Orbitron', sans-serif;
+    --sf-mono : SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
 }
 
 /*클래스모음*/
@@ -502,5 +503,38 @@ body.is-ready{
     }
     100% {
         transform: scale(1.2); opacity: 0;
+    }
+}
+@keyframes blinkSF {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+@keyframes superblinkSF {
+    to {
+        opacity: 1;
+    }
+}
+@keyframes rockmanmegaX8 {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 0%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0%, 0%);
+    }
+}
+@keyframes rockmanmegaX8right {
+    from {
+        opacity: 1;
+        transform: translate(0%, 0%);
+    }
+    to {
+        opacity: 0;
+        transform: translate(50%, 0%);
     }
 }

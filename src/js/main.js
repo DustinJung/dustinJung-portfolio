@@ -393,9 +393,60 @@ window.onload = function() {
             theTextBoxes();
         };
 
+        function theProjectsSection() {
+            let megaX = document.getElementById('mega-x-ui');
+            let theClickBtn = megaX.querySelector('#mega-click-btn');
+            let theUl = megaX.querySelector('ul');
+            let theLis = theUl.querySelectorAll('li');
+
+            function theclickBtnClick() {
+                theClickBtn.addEventListener('click', function() {
+                    this.classList.add('clicked');
+                    setTimeout(() => {
+                        this.classList.add('off');
+                    }, 1220);
+                    setTimeout(() => {
+                        theUl.classList.add('on');
+                    }, 1530);
+                    setTimeout(() => {
+                        theLis[0].classList.add('on');
+                    }, 2150);
+                })
+            }
+
+            function theLisClick() {
+                theLis.forEach((li, i) => {
+                    li.addEventListener('click', function() {
+                        if (this.classList.contains('on')) {
+                            /*
+                            theClickBtn.classList.remove('clicked');
+                            theClickBtn.classList.remove('off');
+                            theUl.classList.remove('on');
+                            theLis.forEach((el) => {
+                                el.classList.remove('on');
+                            }) 초기화, 아직 쓸 떄가 아님.*/
+                            theUl.classList.add('goOn');
+                            return; // 기존 이벤트 중단
+                        }
+
+                        theLis.forEach((el) => {
+                            el.classList.remove('on');
+                        })
+                        this.classList.add('on');
+                    })
+                })
+            }
+
+            theclickBtnClick();
+            theLisClick();
+        }
+
+
+
         letBodyTakeIsReady();
         intro_parallax();
         hoverThenPlanetGoesOn();
+        theProjectsSection()
     };
 
 
