@@ -1,7 +1,7 @@
 /* components.js => 컴포넌트( 슬라이더, 모달, UI 등 ) 관리 js 파일 */
 
 function initSwiper() {
-  var swiper = new Swiper(".skill-swiper-1", {
+  var swiper01 = new Swiper(".skill-swiper-1", {
       slidesPerView: 5.5,
       spaceBetween: 30,
       centeredSlides: true,
@@ -18,13 +18,13 @@ function initSwiper() {
         
           const observer = new MutationObserver(() => { // 콜백 함수 안에서 .skill-swiper-wrapper 요소에 "active" 클래스가 있는지 확인.
               if (swiper_wrapper.classList.contains('active')) {
-                  swiper.allowTouchMove = false; // 터치 이동 비활성화
+                  swiper01.allowTouchMove = false; // 터치 이동 비활성화
               } else {
-                  swiper.allowTouchMove = true; // 터치 이동 활성화
+                  swiper01.allowTouchMove = true; // 터치 이동 활성화
               }
               // "active" 클래스가 추가되면 allowTouchMove = false;,
               // "active" 클래스가 없어지면 allowTouchMove = true;
-              swiper.update(); // Swiper에게 변경 사항을 반영하도록 업데이트 실행
+              swiper01.update(); // Swiper에게 변경 사항을 반영하도록 업데이트 실행
           });
 
           // observer 실행 (class 속성 감시)
@@ -36,7 +36,7 @@ function initSwiper() {
       }
   });
 
-  var swiper = new Swiper(".skill-swiper-2", {
+  var swiper02 = new Swiper(".skill-swiper-2", {
     slidesPerView: 5.5,
     spaceBetween: 30,
     centeredSlides: true,
@@ -53,13 +53,13 @@ function initSwiper() {
       
         const observer = new MutationObserver(() => { // 콜백 함수 안에서 .skill-swiper-wrapper 요소에 "active" 클래스가 있는지 확인.
             if (swiper_wrapper.classList.contains('active')) {
-                swiper.allowTouchMove = false; // 터치 이동 비활성화
+                swiper02.allowTouchMove = false; // 터치 이동 비활성화
             } else {
-                swiper.allowTouchMove = true; // 터치 이동 활성화
+                swiper02.allowTouchMove = true; // 터치 이동 활성화
             }
             // "active" 클래스가 추가되면 allowTouchMove = false;,
             // "active" 클래스가 없어지면 allowTouchMove = true;
-            swiper.update(); // Swiper에게 변경 사항을 반영하도록 업데이트 실행
+            swiper02.update(); // Swiper에게 변경 사항을 반영하도록 업데이트 실행
         });
 
         // observer 실행 (class 속성 감시)
@@ -71,7 +71,7 @@ function initSwiper() {
     }
 });
 
-var swiper = new Swiper(".projects_swiper", {
+var swiper03 = new Swiper(".projects_swiper", {
   slidesPerView: 1,
   centeredSlides: true,
   spaceBetween: 30,

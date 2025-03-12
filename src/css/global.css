@@ -558,3 +558,8 @@ body.is-ready{
         transform: rotateY(-40deg) translate(0%, 0%);
     }
 }
+@keyframes spinning
+{
+  0% { transform: rotate(0deg) translateZ(2vw);}
+  100% { transform: rotate(360deg) translateZ(2vw);}
+}

@@ -84,4 +84,15 @@
         background: var(--point4-clr);
         box-shadow: 1px 1px 10px var(--point4-clr);
     }
+    .leftDiv > div > a:hover {
+        text-shadow: 0px 0px 20px var(--point3-clr);
+        filter: blur(.2px) brightness(1.2);
+    }
+    .leftDiv_moreinfo_btn:hover div {
+        background-color: rgb(125,240,250);
+        cursor: pointer;
+    }
+    .leftDiv_moreinfo_btn:hover span {
+        color: var(--color-secondary);
+    }
 }

@@ -190,16 +190,15 @@
     width: 3rem;
     height: 3rem;
     position: absolute;
-    left: 40px;
-    top: 40px;
-    transform: translateZ(2vw);
+    right: 2rem;
+    top: 40px;  
     z-index: 10002;
 }
 .leftDiv_exit_btn span{
     position: absolute;
     left: calc(50% -(70% / 2));
     display: block;
-    height: 2px;
+    height: 3px;
     width: 70%;
     background-color: var(--color-primary);
 }
@@ -210,4 +209,36 @@
 .leftDiv_exit_btn span:nth-child(2){
     bottom: calc(50% - 4px);
     transform: translate(0, -3px) rotate(-45deg);
+}
+.leftDiv_moreinfo_btn{
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    width: calc(150px * var(--size));
+    height: calc(150px * var(--size));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.leftDiv_moreinfo_btn div{
+    border: 0.8vw rgb(125,240,250) dashed;
+    /* border-style: ; */
+    background-color: transparent;
+    border-radius: 50%;
+    position: absolute;
+    opacity: 0.8;
+    font-size: 3vw;
+    animation: spinning 50s linear infinite;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    transition: background-color .5s linear;
+}
+.leftDiv_moreinfo_btn span {
+    font-size: calc(17px * var(--size));
+    font-weight: bold;
+    transition: color .5s linear;
 }
