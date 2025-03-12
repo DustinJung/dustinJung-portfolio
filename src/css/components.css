@@ -212,13 +212,14 @@
 }
 .leftDiv_moreinfo_btn{
     position: absolute;
-    bottom: 20px;
-    right: 40px;
+    bottom: 2rem;
+    right: 3rem;
     width: calc(150px * var(--size));
     height: calc(150px * var(--size));
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: .7;
 }
 .leftDiv_moreinfo_btn div{
     border: 0.8vw rgb(125,240,250) dashed;
