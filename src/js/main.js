@@ -73,28 +73,15 @@ window.onload = function() {
             }, 5200)
         };
         function hoverThenPlanetGoesOn() {
-            let theTextBox = document.querySelector('#my-skills-section > .this-planet-wrapper');
             let thePlanet = document.querySelector('.the-planet');
-            let timeout;
             let inPlanet = document.querySelector('#in-the-planet');
             let warp_btn = document.getElementById('go-oustide-btn');
             let body = document.querySelector('body');
-
-            function planetHover() {
-                thePlanet.addEventListener('mouseenter', function() {
-                    clearTimeout(timeout);
-                    theTextBox.classList.add('on');
-                })
-    
-                thePlanet.addEventListener('mouseleave', function() {
-                    timeout = setTimeout(() => {
-                        theTextBox.classList.remove('on');
-                    }, 150);
-                })
-            }
+            let theSection = document.querySelector('#my-skills-section');
 
             function planetClick() {
                 thePlanet.addEventListener('click', function() {
+                    theSection.scrollIntoView({ behavior: 'smooth' });
                     this.classList.add('on');
                     setTimeout(() => {
                         thePlanet.style.touchAction = 'none';
@@ -385,7 +372,6 @@ window.onload = function() {
             }
 
 
-            planetHover();
             planetClick();
             createParticles();
             theCardEffect();
@@ -449,7 +435,7 @@ window.onload = function() {
                     btn.addEventListener('click', function() {
                         floatDivWrappers[i].classList.remove('on');
                         setTimeout(() => {
-                            theSign.classList.remove('.on');
+                            theSign.classList.remove('on');
                             theUl.classList.remove('goOn');
                         })
                     })
