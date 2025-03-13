@@ -1616,7 +1616,7 @@ input.desc-title {
     font-weight: bold;
 }
 .moreinfo_wrapper > div > dl > dd {
-    text-indent: 1rem;
+    padding-left: 1rem;
     line-height: 1.5;
     margin-bottom: .325rem;
 }
@@ -1636,4 +1636,6 @@ input.desc-title {
 }
 .moreinfo_wrapper > div > dl > .sub-dd {
     margin-left: 1rem;
+    padding-top: .325rem;
+    padding-bottom: .325rem;
 }
