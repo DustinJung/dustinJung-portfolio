@@ -826,46 +826,48 @@
                         <dl>
                             <dt>문제 & 해결 과정</dt>
 
-                            <dt class="sub-dt">➥ 애플 애니메이션 구현 문제</dt>
-                            <dd class="sub-dd"><span class="point-dot">•</span> 애플 애니메이션처럼, 여러 스크롤 기반 애니메이션을 동시다발적으로 구현하면서, 동시에 slide되는 요소의 scale되는 트리거도 계속 바뀌는 것을 구현하고자 함</dd>
-                            <dd class="sub-dd"><span class="point-angle">›</span> 기존 script에만 의존하던 방식에서, css sticky 속성과 margin-top의 음수설정을 활용해서 아래에서 위로 걷히는 부분 구현함</dd>
-                            <dd class="sub-dd"><span class="point-angle">›</span> 동시에 gsap 스크롤 트리거를 위해, tabindex와 aria-hidden을 적용한 트리거 전용 div를 만들어서 스크롤 트리거를 다채롭게 적용함</dd>
-                            <dd class="sub-dd"><span class="point-angle">›</span> 각 swiper에 scale이 커지게끔 absolute로 띄운 img들을 하나 더 배치하고, not 선택자를 사용해 display none을 해서, 각 swiper의 active 클래스가 있는 element만 scale이 커지게 적용, 이로 인해 swiper active가 바뀌어도 가운데 요소만 커지는 것을 구현함</dd>
-                            <dd class="sub-dd"><span class="point-notice">※</span> 개선 방향: swiper의 MutationObserver와 GSAP에서 killAnimation, 트리거 새로고침 등을 활용하면, trick을 쓰지 않고 swipe마다 새로고침하는 방식으로 개선할 수 있을 것으로 보임. 하지만, 현재 실력 부족으로 위 방식으로 해결함.</dd>
+                            <dt class="sub-dt index0Dt">➥ 애플 애니메이션 구현 문제<svg xmlns="http://www.w3.org/2000/svg" class="rotate-angle" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg></dt>
+                            <dd class="sub-dd index0Dd"><span class="point-dot">•</span> 애플 애니메이션처럼, 여러 스크롤 기반 애니메이션을 동시다발적으로 구현하면서, 동시에 slide되는 요소의 scale되는 트리거도 계속 바뀌는 것을 구현하고자 함</dd>
+                            <dd class="sub-dd index0Dd"><span class="point-angle">›</span> 기존 script에만 의존하던 방식에서, css sticky 속성과 margin-top의 음수설정을 활용해서 아래에서 위로 걷히는 부분 구현함</dd>
+                            <dd class="sub-dd index0Dd"><span class="point-angle">›</span> 동시에 gsap 스크롤 트리거를 위해, tabindex와 aria-hidden을 적용한 트리거 전용 div를 만들어서 스크롤 트리거를 다채롭게 적용함</dd>
+                            <dd class="sub-dd index0Dd"><span class="point-angle">›</span> 각 swiper에 scale이 커지게끔 absolute로 띄운 img들을 하나 더 배치하고, not 선택자를 사용해 display none을 해서, 각 swiper의 active 클래스가 있는 element만 scale이 커지게 적용, 이로 인해 swiper active가 바뀌어도 가운데 요소만 커지는 것을 구현함</dd>
+                            <dd class="sub-dd index0Dd"><span class="point-notice">※</span> 개선 방향: swiper의 MutationObserver와 GSAP에서 killAnimation, 트리거 새로고침 등을 활용하면, trick을 쓰지 않고 swipe마다 새로고침하는 방식으로 개선할 수 있을 것으로 보임. 하지만, 현재 실력 부족으로 위 방식으로 해결함.</dd>
 
-                            <dt class="sub-dt">➥ 많은 애니메이션 사용으로 인한 느린 로딩 문제와 그에 따른 사용자 경험</dt>
-                            <dd class="sub-dd"><span class="point-dot">•</span> GSAP 애니메이션, 비디오, 고해상도 이미지 사용으로 인해 로딩 속도가 느려졌으며, 페이지가 완전히 로드되지 않은 상태에서 애니메이션이 실행되면 의도한 효과가 나오지 않는 문제가 발생함.</dd>
-                            <dd class="sub-dd"><span class="point-angle">›</span> 첫 번째 해결책으로, Pre-loader를 도입함. 스크롤 기반 애니메이션을 만들 때 Pre-loader는 필수적이라고 판단함.</dd>
-                            <dd class="sub-dd"><span class="point-angle">›</span> 프리로더는 문서 내 모든 이미지를 검색한 후, 총 이미지 개수를 변수에 저장하고, 현재 로드된 이미지 개수를 기준으로 퍼센트를 계산하여 진행도를 표시함. GSAP의 `onUpdate()`를 활용하여 `textContent` 값이 100%까지 부드럽게 증가하도록 구현. 로딩이 완료되면 `callback()`을 통해 프리로더를 제거하고 페이지의 모든 요소가 정상적으로 작동하도록 처리함.</dd>
-                            <dd class="sub-dd"><span class="point-angle">›</span> 로드 속도 최적화를 위해 리소스 용량을 줄이는 작업을 진행함. PNG를 SVG 및 AVIF로 변환하고, CSS/JS Minify 적용, 폰트 CDN을 `preconnect`로 미리 연결하여 성능을 개선함.</dd>
-                            <dd class="sub-dd"><span class="point-notice">※</span> 배운 점: GSAP을 과도하게 사용하는 것보다 Vanilla JS와 CSS 속성을 적극 활용하는 것이 성능 저하를 방지하는 데 효과적임. 또한, `width/height/left/top` 변경보다는 `transform`과 `opacity`를 활용하는 것이 렌더링 성능을 최적화하는 데 더 유리함.</dd>                            
+                            <dt class="sub-dt index1Dt">➥ 많은 애니메이션 사용으로 인한 느린 로딩 문제와 그에 따른 사용자 경험<svg xmlns="http://www.w3.org/2000/svg" class="rotate-angle" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg></dt>
+                            <dd class="sub-dd index1Dd"><span class="point-dot">•</span> GSAP 애니메이션, 비디오, 고해상도 이미지 사용으로 인해 로딩 속도가 느려졌으며, 페이지가 완전히 로드되지 않은 상태에서 애니메이션이 실행되면 의도한 효과가 나오지 않는 문제가 발생함.</dd>
+                            <dd class="sub-dd index1Dd"><span class="point-angle">›</span> 첫 번째 해결책으로, Pre-loader를 도입함. 스크롤 기반 애니메이션을 만들 때 Pre-loader는 필수적이라고 판단함.</dd>
+                            <dd class="sub-dd index1Dd"><span class="point-angle">›</span> 프리로더는 문서 내 모든 이미지를 검색한 후, 총 이미지 개수를 변수에 저장하고, 현재 로드된 이미지 개수를 기준으로 퍼센트를 계산하여 진행도를 표시함. GSAP의 `onUpdate()`를 활용하여 `textContent` 값이 100%까지 부드럽게 증가하도록 구현. 로딩이 완료되면 `callback()`을 통해 프리로더를 제거하고 페이지의 모든 요소가 정상적으로 작동하도록 처리함.</dd>
+                            <dd class="sub-dd index1Dd"><span class="point-angle">›</span> 로드 속도 최적화를 위해 리소스 용량을 줄이는 작업을 진행함. PNG를 SVG 및 AVIF로 변환하고, CSS/JS Minify 적용, 폰트 CDN을 `preconnect`로 미리 연결하여 성능을 개선함.</dd>
+                            <dd class="sub-dd index1Dd"><span class="point-notice">※</span> 배운 점: GSAP을 과도하게 사용하는 것보다 Vanilla JS와 CSS 속성을 적극 활용하는 것이 성능 저하를 방지하는 데 효과적임. 또한, `width/height/left/top` 변경보다는 `transform`과 `opacity`를 활용하는 것이 렌더링 성능을 최적화하는 데 더 유리함.</dd>                            
                             <!--<dd class="sub-dd"><span class="point-notice">※</span> 개인적으로 획득한 노하우로,, gsap를 사용할 때 '큰 텍스트 덩어리' 와 'fiter속성이 있는 요소'를 애니메이션 대상으로 잡으면 성능 손해가 크다는 점, css의 keyframes나 간단한 건 css+vanila JS로 구현하는 것이 성능 측면에서 이점이 많다는 점, width/height/left/top 값의 변화보다는, transform 속성에서 변화를 가져가는 것이, 레이아웃 영향도 없고 성능 영향도 적다는 점, 그리고 will-change 속성을 적절히 이용하여, </dd> -->
 
-                            <dt class="sub-dt">➥ 웹 접근성과 검색엔진 최적화, 그리고 UX 개선</dt>
-                            <dd class="sub-dd"><span class="point-dot">•</span> 웹표준을 준수하며, 웹 접근성, SEO 최적화, UX 개선의 중요성을 크게 깨달았고, 이에 초점을 맞춰 프로젝트를 진행함.</dd>
-                            <dd class="sub-dd"><span class="point-angle">›</span> 접근성을 높이기 위해 `aria-hidden`, `alt` 속성, `tabindex="-1"` 등을 활용하여 스크린 리더에서 불필요한 요소를 감춤. 또한 배경 비디오에는 `role="presentation"`을 추가하고, 탭이동(`tab`)이 가능한 요소에 `focus` 스타일을 적용하여 키보드 사용자 경험을 개선함.</dd>
-                            <dd class="sub-dd"><span class="point-angle">›</span> 버튼 클릭 시 열리는 Modal 창에서는 `ESC` 키를 누르면 자동으로 닫히도록 기능을 추가하여, 사용자의 편의성을 높임.</dd>
-                            <dd class="sub-dd"><span class="point-angle">›</span> 다크모드 & 라이트모드 환경에 맞춘 파비콘을 제작하고, 구형 브라우저에서도 지원되는 대체 파비콘을 적용. 또한 애플 홈 화면 아이콘(iOS)도 다크/라이트 모드에 따라 각각 제작하여 최적의 사용자 경험을 제공함.</dd>
-                            <dd class="sub-dd"><span class="point-angle">›</span> SEO 최적화를 위해 `meta name="description"`을 작성하고, Open Graph 및 Twitter Card 메타 태그를 추가하여, 페이지가 SNS에서 공유될 때 최적화된 썸네일과 함께 미리보기가 잘 표시되도록 구성함.</dd>
-                            <dd class="sub-dd"><span class="point-notice">※</span> 개선 사항: 모달이 열렸을 때 `tabindex`를 모달 내부로 제한하고, 다른 모달로 이동할 때 `tabindex`를 동적으로 변경하는 기능을 구현하려 했으나, 완벽하게 작동하지 않아 결국 프로젝트에서 제외함. 하지만 이 기능은 <span class="lightblue">웹 접근성과 UX에서 필수적인 요소</span>이며, 반드시 개선이 필요하다고 판단함. 따라서 향후 `focus-trap` 또는 `aria-hidden` 속성을 활용한 보다 완벽한 구현 방안을 연구할 계획.</dd>
+                            <dt class="sub-dt index2Dt">➥ 웹 접근성과 검색엔진 최적화, 그리고 UX 개선<svg xmlns="http://www.w3.org/2000/svg" class="rotate-angle" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg></dt>
+                            <dd class="sub-dd index2Dd"><span class="point-dot">•</span> 웹표준을 준수하며, 웹 접근성, SEO 최적화, UX 개선의 중요성을 크게 깨달았고, 이에 초점을 맞춰 프로젝트를 진행함.</dd>
+                            <dd class="sub-dd index2Dd"><span class="point-angle">›</span> 접근성을 높이기 위해 `aria-hidden`, `alt` 속성, `tabindex="-1"` 등을 활용하여 스크린 리더에서 불필요한 요소를 감춤. 또한 배경 비디오에는 `role="presentation"`을 추가하고, 탭이동(`tab`)이 가능한 요소에 `focus` 스타일을 적용하여 키보드 사용자 경험을 개선함.</dd>
+                            <dd class="sub-dd index2Dd"><span class="point-angle">›</span> 버튼 클릭 시 열리는 Modal 창에서는 `ESC` 키를 누르면 자동으로 닫히도록 기능을 추가하여, 사용자의 편의성을 높임.</dd>
+                            <dd class="sub-dd index2Dd"><span class="point-angle">›</span> 다크모드 & 라이트모드 환경에 맞춘 파비콘을 제작하고, 구형 브라우저에서도 지원되는 대체 파비콘을 적용. 또한 애플 홈 화면 아이콘(iOS)도 다크/라이트 모드에 따라 각각 제작하여 최적의 사용자 경험을 제공함.</dd>
+                            <dd class="sub-dd index2Dd"><span class="point-angle">›</span> SEO 최적화를 위해 `meta name="description"`을 작성하고, Open Graph 및 Twitter Card 메타 태그를 추가하여, 페이지가 SNS에서 공유될 때 최적화된 썸네일과 함께 미리보기가 잘 표시되도록 구성함.</dd>
+                            <dd class="sub-dd index2Dd"><span class="point-notice">※</span> 개선 사항: 모달이 열렸을 때 `tabindex`를 모달 내부로 제한하고, 다른 모달로 이동할 때 `tabindex`를 동적으로 변경하는 기능을 구현하려 했으나, 완벽하게 작동하지 않아 결국 프로젝트에서 제외함. 하지만 이 기능은 <span class="lightblue">웹 접근성과 UX에서 필수적인 요소</span>이며, 반드시 개선이 필요하다고 판단함. 따라서 향후 `focus-trap` 또는 `aria-hidden` 속성을 활용한 보다 완벽한 구현 방안을 연구할 계획.</dd>
 
                             
-                            <dt class="sub-dt">➥ 폴더 구조 정리와 유지보수를 위한 CSS/JS 파일 분리, 함수의 모듈화</dt>
-                            <dd class="sub-dd"><span class="point-dot">•</span> 프로젝트의 폴더 구조, CSS/JS 파일의 기능별 분리, 함수 모듈화가 유지보수성과 코드 확장성에 큰 영향을 미친다는 점을 깨닫고 이를 적극적으로 적용함.</dd>
-                            <dd class="sub-dd"><span class="point-angle">›</span> 프로젝트 폴더를 `src / public / assets / docs` 4개의 카테고리로 나누고, 내부에서도 세부적으로 분류하여 체계적인 구조를 설계함.</dd>
-                            <dd class="sub-dd"><span class="point-angle">›</span> JS와 CSS는 각각 용도별로 세분화하고, JS는 기능별 모듈화하여 `main.js`에서 전체적인 흐름을 제어하도록 구성함.</dd>
-                            <dd class="sub-dd"><span class="point-angle">›</span> JS 내부에서도 하나의 함수에 너무 많은 기능이 포함되지 않도록 분리하여, 수정이 용이하도록 모듈화에 신경 씀.</dd>
-                            <dd class="sub-dd"><span class="point-angle">›</span> CSS에서는 `:root` 변수를 활용해 <span class="lightblue">기획 단계에서 정한 폰트, 컬러, 간격 값</span>을 변수로 저장하고, 자주 사용되는 스타일은 전역 클래스로 만들어 일관성을 유지함.</dd>
-                            <dd class="sub-dd"><span class="point-angle">›</span> 또한, HTML 내에서 CSS와 JS를 <span class="lightblue">최적화된 로딩 순서에 맞춰 배치</span>하고, `defer` 속성을 활용하여 불필요한 렌더링 지연을 최소화함.</dd>
-                            <dd class="sub-dd"><span class="point-notice">※</span> 개선 사항: CSS에서 사용하는 변수명과 JS에서의 변수, 함수명은 <span class="lightblue">그 목적과 역할이 직관적으로 전달될 수 있도록 명확하게 작성해야 한다는 점을 이번 프로젝트를 통해 절실히 깨달음.</span> 하지만 이 부분에서 미흡한 점이 있었고, 특히 <span class="lightblue">BEM(Block Element Modifier) 네이밍 체계에 대한 이해가 부족했던 점이 아쉬움으로 남음.</span><br>
+                            <dt class="sub-dt index3Dt">➥ 폴더 구조 정리와 유지보수를 위한 CSS/JS 파일 분리, 함수의 모듈화<svg xmlns="http://www.w3.org/2000/svg" class="rotate-angle" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg></dt>
+                            <dd class="sub-dd index3Dd"><span class="point-dot">•</span> 프로젝트의 폴더 구조, CSS/JS 파일의 기능별 분리, 함수 모듈화가 유지보수성과 코드 확장성에 큰 영향을 미친다는 점을 깨닫고 이를 적극적으로 적용함.</dd>
+                            <dd class="sub-dd index3Dd"><span class="point-angle">›</span> 프로젝트 폴더를 `src / public / assets / docs` 4개의 카테고리로 나누고, 내부에서도 세부적으로 분류하여 체계적인 구조를 설계함.</dd>
+                            <dd class="sub-dd index3Dd"><span class="point-angle">›</span> JS와 CSS는 각각 용도별로 세분화하고, JS는 기능별 모듈화하여 `main.js`에서 전체적인 흐름을 제어하도록 구성함.</dd>
+                            <dd class="sub-dd index3Dd"><span class="point-angle">›</span> JS 내부에서도 하나의 함수에 너무 많은 기능이 포함되지 않도록 분리하여, 수정이 용이하도록 모듈화에 신경 씀.</dd>
+                            <dd class="sub-dd index3Dd"><span class="point-angle">›</span> CSS에서는 `:root` 변수를 활용해 <span class="lightblue">기획 단계에서 정한 폰트, 컬러, 간격 값</span>을 변수로 저장하고, 자주 사용되는 스타일은 전역 클래스로 만들어 일관성을 유지함.</dd>
+                            <dd class="sub-dd index3Dd"><span class="point-angle">›</span> 또한, HTML 내에서 CSS와 JS를 <span class="lightblue">최적화된 로딩 순서에 맞춰 배치</span>하고, `defer` 속성을 활용하여 불필요한 렌더링 지연을 최소화함.</dd>
+                            <dd class="sub-dd index3Dd"><span class="point-notice">※</span> 개선 사항: CSS에서 사용하는 변수명과 JS에서의 변수, 함수명은 <span class="lightblue">그 목적과 역할이 직관적으로 전달될 수 있도록 명확하게 작성해야 한다는 점을 이번 프로젝트를 통해 절실히 깨달음.</span> 하지만 이 부분에서 미흡한 점이 있었고, 특히 <span class="lightblue">BEM(Block Element Modifier) 네이밍 체계에 대한 이해가 부족했던 점이 아쉬움으로 남음.</span><br>
                                 추가로 <span class="lightblue">네이밍 규칙이 체계적으로 정리되어 있다면</span>, 코드만 보더라도 개발자 간의 협업이 쉬워지고, 프로젝트를 처음 접하는 사람도 설명 없이 의도를 파악할 수 있기 때문에 <span class="lightblue">코드의 유지보수성이 극대화될 것이라고 판단</span>함.<br>
                                 또한, 이번 경험을 바탕으로 BEM 네이밍을 더욱 체계적으로 적용하는 방법을 연구하고, 변수명과 함수명을 설계할 때 의도를 명확하게 드러내는 습관을 길러야겠다고 다짐함.</dd>
-                            
-                            <dt>ClAYN 프로젝트에 대한 추가적인 정보는 Velog / Github / ClAYN 사이트에서 열람 가능합니다.</dt>
-                            <dd><a href="https://github.com/DustinJung/CLAYN" target="_blank">CLAYN Github 레포지토리(폴더-코드구조 열람)</a></dd>
-                            <dd><a href="https://velog.io/@gosoomdoce/series/3%EC%B0%A8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" target="_blank">Velog Project CLAYN 시리즈(CLAYN의 기획부터 끝까지, 작업 서순)</a></dd>
-                            <dd><a href="https://velog.io/@gosoomdoce/series/GSAP" target="_blank">Velog GSAP 시리즈(gsap의공부, 최적화 진행)</a></dd>
-                            <dd><a href="https://dustinjung.github.io/CLAYN/" target="_blank">CLAYN 사이트</a></dd>
+                        </dl>
+
+                        <dl>
+                            <dt>ClAYN 프로젝트에 대한 추가적인 정보는  <a href="https://velog.io/@gosoomdoce/series/3%EC%B0%A8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" target="_blank" rel="noopener noreferrer" class="mo_link">Velog</a> / <a href="https://github.com/DustinJung/CLAYN" target="_blank" rel="noopener noreferrer" class="mo_link">Github</a> / <a href="https://dustinjung.github.io/CLAYN/" target="_blank" rel="noopener noreferrer" class="mo_link">ClAYN</a> 사이트에서 열람 가능합니다.</dt>
+                            <dd><a href="https://github.com/DustinJung/CLAYN" target="_blank" rel="noopener noreferrer">CLAYN Github 레포지토리(폴더-코드구조 열람)</a></dd>
+                            <dd><a href="https://velog.io/@gosoomdoce/series/3%EC%B0%A8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" target="_blank" rel="noopener noreferrer">Velog Project CLAYN 시리즈(CLAYN의 기획부터 끝까지, 작업 서순)</a></dd>
+                            <dd><a href="https://velog.io/@gosoomdoce/series/GSAP" target="_blank" rel="noopener noreferrer">Velog GSAP 시리즈(gsap의공부, 최적화 진행)</a></dd>
+                            <dd><a href="https://dustinjung.github.io/CLAYN/" target="_blank" rel="noopener noreferrer">CLAYN 사이트</a></dd>
                         </dl>
                     </div>
                 </div>

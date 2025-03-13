@@ -1633,9 +1633,37 @@ input.desc-title {
     font-size: calc(28px * var(--size));
     margin-left: 1rem;
     margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 .moreinfo_wrapper > div > dl > .sub-dd {
     margin-left: 1rem;
     padding-top: .325rem;
     padding-bottom: .325rem;
+}
+.sub-dt {
+    cursor: pointer;
+}
+.sub-dd {
+    display: none;
+}
+.sub-dd.open {
+    display: block;
+}
+.rotate-angle {
+    width: 21px;
+    height: 21px;
+    fill: var(--color-primary);
+    transform: rotate(0deg);
+    transition: transform .3s ease;
+}
+.rotate-angle.down {
+    transform: rotate(180deg);
+}
+.mo_link {
+    display: inline-block;
+    color: var(--color-secondary);
+    opacity: 1;
+    transition: color .3s ease, opacity .3s ease;
 }

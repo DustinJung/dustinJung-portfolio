@@ -467,12 +467,58 @@ window.onload = function() {
                 })
             }
 
+            function dldtddArcodian() {
+                    document.querySelectorAll(".sub-dt").forEach((dt, index) => {
+                        let angles = document.querySelectorAll('.rotate-angle');
+                        let angle = dt.querySelector('.rotate-angle');
+                        dt.addEventListener("click", function () {
+                            if(dt.classList.contains('on')) {
+                                dt.classList.remove('on');
+                                document.querySelectorAll('.sub-dd').forEach(dd => {
+                                    if(dd.classList.contains('open')) {
+                                        dd.classList.remove('open'); // 모든 dd 삭제
+                                    }
+                                    angles.forEach((theAngle, i) => {
+                                        if(theAngle.classList.contains('down')) {
+                                            theAngle.classList.remove('down');
+                                        }
+                                    })
+                                })
+
+                                return;
+                            }
+                            dt.classList.add('on');
+                            let targetDd = document.querySelectorAll(`.index${index}Dd`);
+
+                            
+                            //if문으로 이미 open 있는걸 또 누르면, 그냥 접기만 하려는거로 판단하고 return 활용해야함
+                        
+                            // 현재 열린 다른 dd 닫기
+                            document.querySelectorAll(".sub-dd").forEach(dd => {
+                                angles.forEach((theAngle, i) => {
+                                    if(theAngle.classList.contains('down')) {
+                                        theAngle.classList.remove('down');
+                                    }
+                                })
+                                if(dd.classList.contains('open')) {
+                                    dd.classList.remove('open'); // 모든 dd 삭제
+                                }
+                            });
+                            
+                            // 클릭한 dt의 dd만 토글
+                            targetDd.forEach(dd => dd.classList.toggle("open"));
+                            angle.classList.toggle('down'); // 클릭한 dd open
+                        });
+                    });
+            }
+
 
             theclickBtnClick();
             theLisClick();
             exitBtnClick();
             moreInfoBtnClick();
             infoExitClick();
+            dldtddArcodian();
         }
 
 

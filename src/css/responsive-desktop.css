@@ -102,4 +102,13 @@
     .moreinfo_wrapper > div > dl > dd > a:hover {
         color: #cbc03c;
     }
+    .sub-dt:hover {
+        opacity: .8;
+        color: #1ebbc7;
+        transition: opacity .3s ease, color .3s ease;
+    }
+    .mo_link:hover {
+        color: var(--red);
+        opacity: .7;
+    }
 }
