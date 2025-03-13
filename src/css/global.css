@@ -74,12 +74,15 @@ body.is-ready{
 }
 .lightblue {
     color: #00cdfb !important;
-    filter: blur(.2px) brightness(0.8);
     text-shadow: 0 0 3px #63c4db5c;
 }
 .lightgreen {
     color: #0c8101 !important;
     filter: blur(.2px) brightness(0.5);
+    text-shadow: 0 0 3px #0b641b71;
+}
+.yellapoint {
+    color: var(--point3-clr) !important;
     text-shadow: 0 0 3px #0b641b71;
 }
 .point-dot {

@@ -1627,6 +1627,7 @@ input.desc-title {
     display: inline-block;
     color: var(--point3-clr);
     transition: color .3s ease;
+    text-decoration: underline;
 }
 .moreinfo_wrapper > div > dl > .sub-dt {
     color: var(--color-primary);

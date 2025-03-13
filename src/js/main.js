@@ -462,13 +462,33 @@ window.onload = function() {
                         info_div[i].classList.remove('on');
                         setTimeout(() => {
                             floatDivWrappers[i].classList.add('on');
+                            info_div.forEach((div, i) => {
+                                div.querySelectorAll(".sub-dt").forEach((dt, index) => {
+                                    dt.classList.remove('on');
+                                    let angles = document.querySelectorAll('.rotate-angle');
+                                    let angle = dt.querySelector('.rotate-angle');
+                                    document.querySelectorAll(".sub-dd").forEach(dd => {
+                                        let angles = document.querySelectorAll('.rotate-angle');
+                                        angles.forEach((theAngle, i) => {
+                                            if(theAngle.classList.contains('down')) {
+                                                theAngle.classList.remove('down');
+                                            }
+                                        })
+                                        if(dd.classList.contains('open')) {
+                                            dd.classList.remove('open'); // 모든 dd 삭제
+                                        }
+                                    });
+                                });
+                            });
+
                         }, 200);
                     })
                 })
             }
 
             function dldtddArcodian() {
-                    document.querySelectorAll(".sub-dt").forEach((dt, index) => {
+                info_div.forEach((div, i) => {
+                    div.querySelectorAll(".sub-dt").forEach((dt, index) => {
                         let angles = document.querySelectorAll('.rotate-angle');
                         let angle = dt.querySelector('.rotate-angle');
                         dt.addEventListener("click", function () {
@@ -508,8 +528,11 @@ window.onload = function() {
                             // 클릭한 dt의 dd만 토글
                             targetDd.forEach(dd => dd.classList.toggle("open"));
                             angle.classList.toggle('down'); // 클릭한 dd open
+
+                            
                         });
                     });
+                })
             }
 
 
