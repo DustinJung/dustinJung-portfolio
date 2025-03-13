@@ -388,6 +388,8 @@ window.onload = function() {
             let floatDivWrappers = document.querySelectorAll('.floatDivWrapper');
             let exit_btns = document.querySelectorAll('.leftDiv_exit_btn');
             let more_info_btns = document.querySelectorAll('.leftDiv_moreinfo_btn');
+            let info_div = document.querySelectorAll('.moreinfo_wrapper');
+            let info_exit_btns = document.querySelectorAll('.info_exit_btn');
 
             function theclickBtnClick() {
                 theClickBtn.addEventListener('click', function() {
@@ -446,14 +448,31 @@ window.onload = function() {
             function moreInfoBtnClick() {
                 more_info_btns.forEach((info_btn, i) => {
                     info_btn.addEventListener('click', function() {
-                        
+                        floatDivWrappers[i].classList.remove('on');
+                        setTimeout(() => {
+                            info_div[i].classList.add('on');
+                        }, 200);
                     })
                 })
             }
 
+            function infoExitClick() {
+                info_exit_btns.forEach((btn, i) => {
+                    btn.addEventListener('click', function() {
+                        info_div[i].classList.remove('on');
+                        setTimeout(() => {
+                            floatDivWrappers[i].classList.add('on');
+                        }, 200);
+                    })
+                })
+            }
+
+
             theclickBtnClick();
             theLisClick();
             exitBtnClick();
+            moreInfoBtnClick();
+            infoExitClick();
         }
 
 

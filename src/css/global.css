@@ -41,12 +41,13 @@ body.is-ready{
     --color-primary-invert: #00494e;
     --color-secondary: #ff598e;
     --color-secondary-invert: #5c001d;
-    --scrollbar-track-clr: #1A1D22; /* 다크 그레이 */
-}
-:root{
     --red: #fc199a;
     --yellow: #ffcc00;
     --green: #61e2ff;
+    --scrollbar-track-clr: #1A1D22; /* 다크 그레이 */
+}
+:root{
+
     --close: radial-gradient(circle, var(--red), var(--red) 7px, transparent 8px);
     --min: radial-gradient(circle, var(--yellow), var(--yellow) 7px, transparent 8px);
     --max: radial-gradient(circle, var(--green), var(--green) 7px, transparent 8px);
@@ -80,6 +81,15 @@ body.is-ready{
     color: #0c8101 !important;
     filter: blur(.2px) brightness(0.5);
     text-shadow: 0 0 3px #0b641b71;
+}
+.point-dot {
+    color: var(--point2-clr);
+}
+.point-angle {
+    color: var(--point-clr);
+}
+.point-notice {
+    color: var(--color-secondary);
 }
 
 

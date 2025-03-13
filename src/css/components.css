@@ -243,3 +243,29 @@
     font-weight: bold;
     transition: color .5s linear;
 }
+
+.info_exit_btn {
+    width: 3rem;
+    height: 3rem;
+    position: absolute;
+    right: 2rem;
+    top: 2rem;  
+    z-index: 10002;
+    transform: translate(50%, -50%);
+}
+.info_exit_btn span{
+    position: absolute;
+    left: calc(50% -(70% / 2));
+    display: block;
+    height: 3px;
+    width: 70%;
+    background-color: var(--color-primary);
+}
+.info_exit_btn span:nth-child(1){
+    top: calc(50% - 4px);
+    transform: translate(0, 3px) rotate(45deg);
+}
+.info_exit_btn span:nth-child(2){
+    bottom: calc(50% - 4px);
+    transform: translate(0, -3px) rotate(-45deg);
+}

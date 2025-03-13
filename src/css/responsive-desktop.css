@@ -95,4 +95,11 @@
     .leftDiv_moreinfo_btn:hover span {
         color: var(--color-secondary);
     }
+    .info_exit_btn:hover span{
+        background: var(--point4-clr);
+        box-shadow: 1px 1px 10px var(--point4-clr);
+    }
+    .moreinfo_wrapper > div > dl > dd > a:hover {
+        color: #cbc03c;
+    }
 }

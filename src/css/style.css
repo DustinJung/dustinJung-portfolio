@@ -12,6 +12,7 @@
     animation: 
         letHeaderDown .4s 5.5s cubic-bezier(0.21, 1.05, 0.38, 1.15) forwards, 
         letHeadertongtong .625s 5.9s ease-out forwards;
+    pointer-events: none;
 }
 #header-section header {
     padding: 20px;
@@ -22,12 +23,14 @@
     margin: 0 auto;
     height: 100px;
     justify-content: space-between;
+    pointer-events: none;
 }
 #header-section header .my-name {
     font-size: 21px;
     transition: all 0.2s ease-in-out;
     position: relative;
     padding: .25rem;
+    pointer-events: auto;
 }
 
 /*intro*/
@@ -1569,4 +1572,68 @@ input.desc-title {
     color: var(--point3-clr);
     margin-top: 3rem;
     display: inline-block;
+}
+.moreinfo_wrapper {
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+    border: 0.3vw solid rgba(125, 240, 250, 0.8);
+    border-radius: 5px;
+    box-shadow: 0px 0px 7px rgba(125, 240, 250, 0.8);
+    touch-action: none;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity .4s ease;
+}
+.moreinfo_wrapper.on {
+    touch-action: auto;
+    pointer-events: auto;
+    z-index: 0;
+    opacity: 1;
+}
+.moreinfo_wrapper > div {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding: 2rem;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    gap: 1rem;
+}
+.moreinfo_wrapper > div > dl {
+    font-size: calc(24px * var(--size));
+}
+.moreinfo_wrapper > div > dl > dt {
+    font-size: calc(38px * var(--size));
+    margin-bottom: 1rem;
+    color: var(--point-clr);
+    font-weight: bold;
+}
+.moreinfo_wrapper > div > dl > dd {
+    text-indent: 1rem;
+    line-height: 1.5;
+    margin-bottom: .325rem;
+}
+.moreinfo_wrapper > div > dl > dd > a {
+    margin: 0;
+    padding: 0;
+    text-indent: 0;
+    display: inline-block;
+    color: var(--point3-clr);
+    transition: color .3s ease;
+}
+.moreinfo_wrapper > div > dl > .sub-dt {
+    color: var(--color-primary);
+    font-size: calc(28px * var(--size));
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+.moreinfo_wrapper > div > dl > .sub-dd {
+    margin-left: 1rem;
 }
