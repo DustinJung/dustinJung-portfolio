@@ -387,6 +387,7 @@ window.onload = function() {
             let theSign = document.getElementById('the-place-sign');
             let floatDivWrappers = document.querySelectorAll('.floatDivWrapper');
             let exit_btns = document.querySelectorAll('.leftDiv_exit_btn');
+            let more_info_btns = document.querySelectorAll('.leftDiv_moreinfo_btn');
 
             function theclickBtnClick() {
                 theClickBtn.addEventListener('click', function() {
@@ -438,6 +439,14 @@ window.onload = function() {
                             theSign.classList.remove('on');
                             theUl.classList.remove('goOn');
                         })
+                    })
+                })
+            }
+
+            function moreInfoBtnClick() {
+                more_info_btns.forEach((info_btn, i) => {
+                    info_btn.addEventListener('click', function() {
+                        
                     })
                 })
             }

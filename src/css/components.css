@@ -214,15 +214,15 @@
     position: absolute;
     bottom: 2rem;
     right: 3rem;
-    width: calc(150px * var(--size));
-    height: calc(150px * var(--size));
+    width: calc(90px * var(--size));
+    height: calc(90px * var(--size));
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: .7;
 }
 .leftDiv_moreinfo_btn div{
-    border: 0.8vw rgb(125,240,250) dashed;
+    border: 0.6vw rgb(125,240,250) dashed;
     /* border-style: ; */
     background-color: transparent;
     border-radius: 50%;
@@ -239,7 +239,7 @@
     transition: background-color .5s linear;
 }
 .leftDiv_moreinfo_btn span {
-    font-size: calc(17px * var(--size));
+    font-size: calc(14px * var(--size));
     font-weight: bold;
     transition: color .5s linear;
 }
