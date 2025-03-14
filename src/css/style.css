@@ -1695,3 +1695,68 @@ input.desc-title {
     opacity: 1;
     transition: color .3s ease, opacity .3s ease;
 }
+
+
+/*to-study-section*/
+#to-study-section {
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.to-study-span-wrapper {
+    font-size: calc(52px * var(--size));
+    color: var(--color-primary);
+    position: absolute;
+    left: 10%;
+    top: 10%;
+    transform: translate(-10%, -10%);
+    transform:rotateX(30deg) rotateZ(-15deg) rotateY(15deg);
+    font-family: var(--orbitron);
+    font-weight: bold;
+}
+.to-study-wrapper {
+    position:relative;
+    perspective: 1000px; 
+    perspective-origin: center center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    transform:rotateX(30deg) rotateZ(-15deg) rotateY(15deg);
+    background: rgba(184, 237, 255, 0.05);
+    border:solid 3px rgba(127, 222, 254, 0.05);
+    border-radius:15px; 
+}
+.why-btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 100%;
+    border:solid 1px #9effff;
+}
+.why-btn-wrapper > li {
+    font-size: calc(24px * var(--size));
+    position: relative;
+    color: #9effff;
+    background: rgba(184, 237, 255, 0.1);
+    border: solid 1px #9effff;
+    border-radius: 5px;
+    padding: calc(12px * var(--size));
+    margin: calc(12px * var(--size));
+    transform: rotateX(30deg);
+    cursor: pointer;
+}
+.thats-the-reason-wrapper {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    width: 80%;
+    height: 100%;
+    border:solid 1px #9effff;
+    border-left: none;
+}
