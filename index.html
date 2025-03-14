@@ -978,20 +978,41 @@
                                 debounce 같은 기법을 활용해 최소한으로 실행해야 한다는 점을 확실히 인지</dd>
                             
                             
-                            <dt class="sub-dt index3Dt">➥ 폴더 구조 정리와 유지보수를 위한 CSS/JS 파일 분리, 함수의 모듈화<svg xmlns="http://www.w3.org/2000/svg" class="rotate-angle" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg></dt>
-                            <dd class="sub-dd index3Dd"><span class="point-dot">•</span> 프로젝트의 폴더 구조, CSS/JS 파일의 기능별 분리, 함수 모듈화가 유지보수성과 코드 확장성에 큰 영향을 미친다는 점을 깨닫고 이를 적극적으로 적용함.</dd>
-                            <dd class="sub-dd index3Dd"><span class="point-angle">›</span> 프로젝트 폴더를 `src / public / assets / docs` 4개의 카테고리로 나누고, 내부에서도 세부적으로 분류하여 체계적인 구조를 설계함.</dd>
-                            <dd class="sub-dd index3Dd"><span class="point-angle">›</span> JS와 CSS는 각각 용도별로 세분화하고, JS는 기능별 모듈화하여 `main.js`에서 전체적인 흐름을 제어하도록 구성함.</dd>
-                            <dd class="sub-dd index3Dd"><span class="point-angle">›</span> JS 내부에서도 하나의 함수에 너무 많은 기능이 포함되지 않도록 분리하여, 수정이 용이하도록 모듈화에 신경 씀.</dd>
-                            <dd class="sub-dd index3Dd"><span class="point-angle">›</span> CSS에서는 `:root` 변수를 활용해 <span class="lightblue">기획 단계에서 정한 폰트, 컬러, 간격 값</span>을 변수로 저장하고, 자주 사용되는 스타일은 전역 클래스로 만들어 일관성을 유지함.</dd>
-                            <dd class="sub-dd index3Dd"><span class="point-angle">›</span> 또한, HTML 내에서 CSS와 JS를 <span class="lightblue">최적화된 로딩 순서에 맞춰 배치</span>하고, `defer` 속성을 활용하여 불필요한 렌더링 지연을 최소화함.</dd>
-                            <dd class="sub-dd index3Dd"><span class="point-notice">※</span> 개선 사항: CSS에서 사용하는 변수명과 JS에서의 변수, 함수명은 <span class="lightblue">그 목적과 역할이 직관적으로 전달될 수 있도록 명확하게 작성해야 한다는 점을 이번 프로젝트를 통해 절실히 깨달음.</span> 하지만 이 부분에서 미흡한 점이 있었고, 특히 <span class="lightblue">BEM(Block Element Modifier) 네이밍 체계에 대한 이해가 부족했던 점이 아쉬움으로 남음.</span><br>
-                                추가로 <span class="lightblue">네이밍 규칙이 체계적으로 정리되어 있다면</span>, 코드만 보더라도 개발자 간의 협업이 쉬워지고, 프로젝트를 처음 접하는 사람도 설명 없이 의도를 파악할 수 있기 때문에 <span class="lightblue">코드의 유지보수성이 극대화될 것이라고 판단</span>함.<br>
-                                또한, 이번 경험을 바탕으로 BEM 네이밍을 더욱 체계적으로 적용하는 방법을 연구하고, 변수명과 함수명을 설계할 때 의도를 명확하게 드러내는 습관을 길러야겠다고 다짐함.</dd>
+                                <dt class="sub-dt index3Dt">➥ HTML 스케일링 문제
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="rotate-angle" viewBox="0 0 320 512">
+                                        <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/>
+                                    </svg>
+                                </dt>
+                                
+                                <dd class="sub-dd index3Dd"><span class="point-dot">•</span> HTML의 구조가 지나치게 비대해지는 문제가 발생했으며,  
+                                    콘텐츠가 추가될수록 HTML 코드의 개수도 증가하는 문제가 있었음.</dd>
+                                
+                                <dd class="sub-dd index3Dd"><span class="point-dot">•</span> `map`, `filter`, `find`, `includes`, `some`, `every` 등의 JavaScript 메서드에 익숙하지 않았고,  
+                                    이를 대체하기 위해 <span class="yellapoint">중첩 if문과 직접 HTML을 추가하는 방식</span>을 사용</dd>
+                                
+                                <dd class="sub-dd index3Dd"><span class="point-dot">•</span> 이로 인해,  
+                                    - 중첩된 `if`문이 많아질수록 가독성이 떨어졌고  
+                                    - 특정 변수마다 다르게 적용할 HTML이 필요해지면서  
+                                    - 결과적으로 HTML 파일의 크기가 지나치게 커지는 문제가 발생함</dd>
+                                
+                                <dd class="sub-dd index3Dd"><span class="point-notice">※</span> <span class="yellapoint">아쉬운 점:</span><br>
+                                    `if`문을 활용한 해결책은 나름대로 유효했지만,
+                                    그 이전에 `map`, `filter`, `find`, `includes` 등의 메서드를 먼저 학습한 이후에 적용했다면  
+                                    더 효율적으로 HTML을 줄일 기회였다는 점이, 개인적으로 아쉬움.</dd>
+                                
+                                <dd class="sub-dd index3Dd"><span class="point-notice">※</span> <span class="yellapoint">배운 점:</span><br>  
+                                    어떻게 해서든 구현하기 위해`if`문으로 sort 기능을 구현하는 과정에서, 스크립트를 설계하는 사고력이 크게 향상되었고, 이 경험이 이후 프로젝트에서도 큰 도움이 되었음.</dd>
+                                
+                                <dd class="sub-dd index3Dd"><span class="point-notice">※</span> <span class="yellapoint">React 없이도 HTML 최적화는 최대한 해야 한다는 점을 인지:</span><br>
+                                    JS의 Web Component를 활용하면 HTML을 컴포넌트 단위로 관리할 수 있었을 것이라는 점이 아쉬움으로 남았기에- 향후, JavaScript 기반으로 HTML을 더 동적으로 관리하는 방법을 연구할 계획</dd>
+                                
+                                <dd class="sub-dd index3Dd"><span class="point-notice">※</span> <span class="yellapoint">이 경험을 통해 얻은 가장 중요한 교훈:</span>  
+                                    비대해진 HTML 구조는 성능과 유지보수에 직접적인 영향을 미친다는 점을 체감했으며, 코드 최적화와 성능 문제를 항상 염두에 두는 계기가 된 프로젝트였음.</dd>
+                                
                         </dl>
 
                         <dl>
-                            <dt>ClAYN 프로젝트에 대한 추가적인 정보는  <a href="https://velog.io/@gosoomdoce/series/3%EC%B0%A8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" target="_blank" rel="noopener noreferrer" class="mo_link">Velog</a> / <a href="https://github.com/DustinJung/CLAYN" target="_blank" rel="noopener noreferrer" class="mo_link">Github</a> / <a href="https://dustinjung.github.io/CLAYN/" target="_blank" rel="noopener noreferrer" class="mo_link">ClAYN</a> 사이트에서 열람 가능합니다.</dt>
+                            <dt>ClAYN 프로젝트에 대한 추가적인 정보는  <a href="http://selectmore.dothome.co.kr/clothes/product_accessories/clothes_accessories_warmers.html" target="_blank" rel="noopener noreferrer" class="mo_link">설명 페이지</a> / <a href="http://selectmore.dothome.co.kr/index.html" target="_blank" rel="noopener noreferrer" class="mo_link">Select More. 페이지</a> / <a href="https://dustinjung.github.io/CLAYN/" target="_blank" rel="noopener noreferrer" class="mo_link">Velog</a> 사이트에서 열람 가능합니다.</dt>
                             <dd><a href="https://github.com/DustinJung/CLAYN" target="_blank" rel="noopener noreferrer">CLAYN Github 레포지토리(폴더-코드구조 열람)</a></dd>
                             <dd><a href="https://velog.io/@gosoomdoce/series/3%EC%B0%A8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" target="_blank" rel="noopener noreferrer">Velog Project CLAYN 시리즈(CLAYN의 기획부터 끝까지, 작업 서순)</a></dd>
                             <dd><a href="https://velog.io/@gosoomdoce/series/GSAP" target="_blank" rel="noopener noreferrer">Velog GSAP 시리즈(gsap의공부, 최적화 진행)</a></dd>
