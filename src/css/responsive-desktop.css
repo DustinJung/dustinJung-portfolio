@@ -111,4 +111,8 @@
         color: var(--red);
         opacity: .7;
     }
+    .why-btn-wrapper > li:hover { 
+        color:#010818;
+        background:#9effff;
+      }
 }

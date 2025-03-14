@@ -555,13 +555,32 @@ window.onload = function() {
             dldtddArcodian();
             letsGoChogiSangtae();
         }
+        function okTheToStudyIHaveToDo() {
+            const buttons = document.querySelectorAll(".why-li");
+            const contentWrapper = document.querySelector(".thats-the-reason-wrapper");
+            const contents = document.querySelectorAll(".thats-the-reason-div");
+        
+            buttons.forEach((button, index) => {
+                button.addEventListener("click", () => {
+                    // 부모 요소 내에서의 상대적 위치를 계산
+                    const targetScroll = contents[index].offsetLeft - contentWrapper.offsetLeft;
+                    
+                    contentWrapper.scrollTo({
+                        left: targetScroll,
+                        behavior: "smooth" // 부드러운 스크롤 효과
+                    });
+                });
+            });
+        }
+        
 
 
 
         letBodyTakeIsReady();
         intro_parallax();
         hoverThenPlanetGoesOn();
-        theProjectsSection()
+        theProjectsSection();
+        okTheToStudyIHaveToDo();
     };
 
 
