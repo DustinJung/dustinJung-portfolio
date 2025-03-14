@@ -269,3 +269,25 @@
     bottom: calc(50% - 4px);
     transform: translate(0, -3px) rotate(-45deg);
 }
+.letsGoChuem {
+    position: absolute;
+    text-align: center;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: calc(32px * var(--size));
+    letter-spacing: 1.5px;
+    padding: 1rem 2rem; 
+    transition: opacity .3s ease;
+    opacity: 0;
+    touch-action: none;
+    z-index: -1;
+    pointer-events: none;
+}
+.letsGoChuem.on {
+    opacity: 1;
+    z-index: 0;
+    touch-action: auto;
+    pointer-events: auto;
+    cursor: pointer;
+}

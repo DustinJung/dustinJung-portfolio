@@ -1551,7 +1551,20 @@ input.desc-title {
     color: var(--main-clr);
     overflow-y: scroll;
     height: 80%;
-
+}
+.leftDiv > div::-webkit-scrollbar{
+    width: 6px;
+    background: transparent;
+    height: 1px;
+}
+.leftDiv > div::-webkit-scrollbar-thumb{
+    background: rgba(0, 255, 255, 0.3);
+    border: 1px solid rgba(0, 255, 255, 0.5);
+    border-radius: 3px;
+}
+.leftDiv > div::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-clr);
+    border-radius: 5px;
 }
 .leftDiv > div > p > span {
     font-weight: bold;
@@ -1605,6 +1618,20 @@ input.desc-title {
     height: 100%;
     overflow-y: scroll;
     gap: 1rem;
+}
+.moreinfo_wrapper > div::-webkit-scrollbar{
+    width: 6px;
+    background: transparent;
+    height: 1px;
+}
+.moreinfo_wrapper > div::-webkit-scrollbar-thumb{
+    background: rgba(0, 255, 255, 0.3);
+    border: 1px solid rgba(0, 255, 255, 0.5);
+    border-radius: 3px;
+}
+.moreinfo_wrapper > div::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-clr);
+    border-radius: 5px;
 }
 .moreinfo_wrapper > div > dl {
     font-size: calc(24px * var(--size));

@@ -381,6 +381,7 @@ window.onload = function() {
 
         function theProjectsSection() {
             let megaX = document.getElementById('mega-x-ui');
+            let chuemBtn = document.querySelector('.letsGoChuem');
             let theClickBtn = megaX.querySelector('#mega-click-btn');
             let theUl = megaX.querySelector('ul');
             let theLis = theUl.querySelectorAll('li');
@@ -403,6 +404,9 @@ window.onload = function() {
                     setTimeout(() => {
                         theLis[0].classList.add('on');
                     }, 2150);
+                    setTimeout(() => {
+                        chuemBtn.classList.add('on');
+                    }, 2300);
                 })
             }
 
@@ -410,15 +414,9 @@ window.onload = function() {
                 theLis.forEach((li, i) => {
                     li.addEventListener('click', function() {
                         if (this.classList.contains('on')) {
-                            /*
-                            theClickBtn.classList.remove('clicked');
-                            theClickBtn.classList.remove('off');
-                            theUl.classList.remove('on');
-                            theLis.forEach((el) => {
-                                el.classList.remove('on');
-                            }) 초기화, 아직 쓸 떄가 아님.*/
                             theUl.classList.add('goOn');
                             theSign.classList.add('on');
+                            chuemBtn.classList.remove('on');
                             setTimeout(() => {
                                 floatDivWrappers[i].classList.add('on');
                             }, 300)
@@ -436,6 +434,7 @@ window.onload = function() {
             function exitBtnClick() {
                 exit_btns.forEach((btn, i) => {
                     btn.addEventListener('click', function() {
+                        chuemBtn.classList.add('on');
                         floatDivWrappers[i].classList.remove('on');
                         setTimeout(() => {
                             theSign.classList.remove('on');
@@ -535,6 +534,18 @@ window.onload = function() {
                 })
             }
 
+            function letsGoChogiSangtae() {
+                chuemBtn.addEventListener('click', function() {
+                    theClickBtn.classList.remove('clicked');
+                    theClickBtn.classList.remove('off');
+                    theUl.classList.remove('on');
+                    theLis.forEach((el) => {
+                        el.classList.remove('on');
+                    });
+                    this.classList.remove('on');
+                })
+            }
+
 
             theclickBtnClick();
             theLisClick();
@@ -542,6 +553,7 @@ window.onload = function() {
             moreInfoBtnClick();
             infoExitClick();
             dldtddArcodian();
+            letsGoChogiSangtae();
         }
 
 
