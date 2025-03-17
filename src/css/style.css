@@ -1767,16 +1767,6 @@ input.desc-title {
     flex-direction: column;
     gap: 1rem;
 }
-.thats-the-reason-div-01 picture{
-    display: block;
-    display: flex;
-    align-items: center;
-}
-.thats-the-reason-div-01 picture img {
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-}
 .reason-div-text-wrapper {
     display: flex;
     flex-direction: column;
