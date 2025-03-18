@@ -2023,7 +2023,7 @@ footer > div {
     color: var(--point3-clr);
 }
 .stars {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -2044,6 +2044,7 @@ footer > div {
     width: 100%;
     max-width: 320px;
     position: relative;
+    padding: 3px;
 }
 
 #contact-form input,
