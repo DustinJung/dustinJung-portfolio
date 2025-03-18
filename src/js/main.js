@@ -644,8 +644,8 @@ window.onload = function() {
                                 theBtn.classList.remove('disabled');
         
                                 form.classList.remove("is-submitted");
-                            }, 5000);
-                        }, 3000);
+                            }, 6000);
+                        }, 1000);
                     } else { // 서버가 '응답을 보냈지만 실패한 경우, 예시로 오류코드 400, 401, 500'
                         alert("전송에 실패했습니다. 다시 시도해주세요.");
                         emailInput.disabled = false;
