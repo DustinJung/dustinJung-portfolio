@@ -1996,8 +1996,8 @@ footer > div {
 .grid-column-2 {
     display: flex;
     flex-direction: column;
-    gap: 2vh;
-    padding: 2rem 1rem;
+    padding: 2rem 1rem 20px;
+    justify-content: center;
 }
 .contact-info {
     font-size: calc(32px * var(--size));

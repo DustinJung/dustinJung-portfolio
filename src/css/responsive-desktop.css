@@ -149,4 +149,15 @@
     .sns-list a:hover::before {
         transform: scaleX(1);
     }
+    .nav_exit_btn:hover {
+        transform: rotate(180deg);
+    }
+    .nav_exit_btn:hover span {
+        background-color: var(--point2-clr);
+        box-shadow: 0 0 10px var(--point2-clr);
+    }
+    #nav-menu-modal ul li:hover {
+        color: var(--point2-clr);
+        text-shadow: 0 0 10px var(--point2-clr), 0 0 20px var(--point2-clr);
+    }
 }

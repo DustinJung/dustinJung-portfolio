@@ -107,239 +107,228 @@ body::after {
 
     <script>
         const menuItems = [
-    { 
-        label: 'Projects',
-        icon: '🎯'
-    },
-    { 
-        label: 'About',
-        icon: '👤'
-    },
-    { 
-        label: 'Skills',
-        icon: '⚡'
-    },
-    { 
-        label: 'Contact',
-        icon: '✉️'
-    },
-    { 
-        label: 'Blog',
-        icon: '📝'
-    }
-];
+            { label: 'Projects', icon: '🎯' },
+            { label: 'About', icon: '👤' },
+            { label: 'Skills', icon: '⚡' },
+            { label: 'Contact', icon: '✉️' },
+            { label: 'Blog', icon: '📝' }
+        ]; // 1. 배열 데이터 만들기, 이 데이터를 기반으로 메뉴 생성
 
-class DonutMenu {
-    constructor(containerId) {
-        this.container = document.getElementById(containerId);
-        this.svgNS = "http://www.w3.org/2000/svg";
-        this.size = 400;
-        this.innerRadius = 120; // Updated inner radius
-        this.outerRadius = 200;
-        this.sliceAngle = 360 / menuItems.length;
-        this.activeSliceIndex = null;
-        this.createMenu();
-        this.setupMouseTracking();
-    }
-
-    createMenu() {
-        const svg = document.createElementNS(this.svgNS, "svg");
-        svg.setAttribute("viewBox", `0 0 ${this.size} ${this.size}`);
-        svg.setAttribute("width", "100%");
-        svg.setAttribute("height", "100%");
-
-        const centerX = this.size / 2;
-        const centerY = this.size / 2;
-
-        // Create outer circle
-        const outerCircle = document.createElementNS(this.svgNS, "circle");
-        outerCircle.setAttribute("cx", centerX);
-        outerCircle.setAttribute("cy", centerY);
-        outerCircle.setAttribute("r", this.outerRadius);
-        outerCircle.setAttribute("fill", "none");
-        outerCircle.setAttribute("stroke", "rgba(255, 255, 255, 0.2)");
-        svg.appendChild(outerCircle);
-
-        // Create following border arc
-        const followingBorder = document.createElementNS(this.svgNS, "path");
-        followingBorder.setAttribute("class", "following-border");
-        followingBorder.style.opacity = "0";
-        svg.appendChild(followingBorder);
-
-        menuItems.forEach((item, index) => {
-            const startAngle = index * this.sliceAngle;
-            const endAngle = startAngle + this.sliceAngle;
-            
-            const slice = this.createSlice(
-                centerX,
-                centerY,
-                this.innerRadius,
-                this.outerRadius,
-                startAngle,
-                endAngle,
-                item,
-                index
-            );
-            svg.appendChild(slice);
-        });
-
-        this.container.appendChild(svg);
-        this.followingBorder = followingBorder;
-    }
-
-    createSlice(cx, cy, innerRadius, outerRadius, startAngle, endAngle, item, index) {
-        const group = document.createElementNS(this.svgNS, "g");
-        
-        const startRad = (startAngle - 90) * Math.PI / 180;
-        const endRad = (endAngle - 90) * Math.PI / 180;
-
-        const x1 = cx + innerRadius * Math.cos(startRad);
-        const y1 = cy + innerRadius * Math.sin(startRad);
-        const x2 = cx + outerRadius * Math.cos(startRad);
-        const y2 = cy + outerRadius * Math.sin(startRad);
-        const x3 = cx + outerRadius * Math.cos(endRad);
-        const y3 = cy + outerRadius * Math.sin(endRad);
-        const x4 = cx + innerRadius * Math.cos(endRad);
-        const y4 = cy + innerRadius * Math.sin(endRad);
-
-        const path = document.createElementNS(this.svgNS, "path");
-        const d = [
-            `M ${x1} ${y1}`,
-            `L ${x2} ${y2}`,
-            `A ${outerRadius} ${outerRadius} 0 0 1 ${x3} ${y3}`,
-            `L ${x4} ${y4}`,
-            `A ${innerRadius} ${innerRadius} 0 0 0 ${x1} ${y1}`,
-            'Z'
-        ].join(' ');
-
-        path.setAttribute("d", d);
-        path.setAttribute("class", "menu-slice");
-        path.setAttribute("fill", "rgba(255, 255, 255, 0.1)");
-        path.setAttribute("cursor", "pointer");
-
-        // Calculate center point for text and icon
-        const midAngle = (startAngle + endAngle) / 2;
-        const midRad = (midAngle - 90) * Math.PI / 180;
-        const textRadius = (innerRadius + outerRadius) / 2;
-        const textX = cx + textRadius * Math.cos(midRad);
-        const textY = cy + textRadius * Math.sin(midRad);
-
-        // Create icon
-        const icon = document.createElementNS(this.svgNS, "text");
-        icon.textContent = item.icon;
-        icon.setAttribute("x", textX);
-        icon.setAttribute("y", textY - 10);
-        icon.setAttribute("class", "menu-icon");
-        icon.setAttribute("text-anchor", "middle");
-        icon.setAttribute("font-size", "24");
-        icon.setAttribute("fill", "rgba(255, 255, 255, 0.9)");
-        icon.setAttribute("pointer-events", "none");
-
-        // Create label
-        const label = document.createElementNS(this.svgNS, "text");
-        label.textContent = item.label;
-        label.setAttribute("x", textX);
-        label.setAttribute("y", textY + 15);
-        label.setAttribute("class", "menu-label");
-        label.setAttribute("text-anchor", "middle");
-        label.setAttribute("font-size", "14");
-        label.setAttribute("fill", "rgba(255, 255, 255, 0.9)");
-        label.setAttribute("pointer-events", "none");
-
-        // Create tooltip container
-      
-        // const tooltip = document.createElement('div');
-        // tooltip.className = 'menu-tooltip';
-        // tooltip.innerHTML = item.tooltip;
-        // tooltip.style.opacity = '0';
-        // tooltip.style.maxWidth = '200px';
-        // this.container.appendChild(tooltip);
-
-        // Event handlers
-        path.addEventListener('mouseenter', () => {
-            this.activeSliceIndex = index;
-            // tooltip.style.opacity = '1';
-            this.updateFollowingBorder(startAngle, endAngle);
-        });
-
-        path.addEventListener('mouseleave', () => {
-            this.activeSliceIndex = null;
-            // tooltip.style.opacity = '0';
-            this.followingBorder.style.opacity = "0";
-        });
-
-        path.addEventListener('mousemove', (e) => {
-            const rect = this.container.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            // tooltip.style.transform = `translate(${x + 15}px, ${y}px)`;
-        });
-
-        group.appendChild(path);
-        group.appendChild(icon);
-        group.appendChild(label);
-        return group;
-    }
-
-    setupMouseTracking() {
-        this.container.addEventListener('mousemove', (e) => {
-            if (this.activeSliceIndex !== null) {
-                const rect = this.container.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                // Convert to SVG coordinates
-                const svgX = (x / rect.width) * this.size;
-                const svgY = (y / rect.height) * this.size;
-                
-                this.updateFollowingBorderPosition(svgX, svgY);
+        class DonutMenu {
+            constructor(containerId) {
+                // constructor는 클래스를 생성할 때 자동으로 실행되는 함수
+                // containerId라는 HTML 요소 ID를 매개변수로 받음 → 메뉴를 그릴 위치를 찾기 위해 필요.
+                this.container = document.getElementById(containerId); // 콘테이너의 html상 id값을 받아서, 어디다 그릴지 위치 지정하는 역할.
+                this.svgNS = "http://www.w3.org/2000/svg"; // 일반적인 요소와 달리, svg는 document.createElementNS()를 사용해야함, SVG 요소를 생성할 때 필요한 네임스페이스(SVG 문서의 고유 주소)를 저장
+                this.size = 320; // 도넛 메뉴의 총 size 너비를 지정함. viewbox에 적용될 예정.
+                this.innerRadius = 80; // 도넛의 안쪽 지름, 
+                this.outerRadius = 240; // 도넛의 바깥쪽 지름
+                this.sliceAngle = 360 / menuItems.length; // constructor의 sliceAngle(각도를) 메뉴의 '개수'로 나눈다 => 각 메뉴 조각이 개수에 따라 알맞는 각도를 가지게끔 설정
+                this.activeSliceIndex = null; // 밑에 mouse를 가져다 댔을 때, 활성화 된 인덱스의 순번을 저장할 변수, 현재는 아무것도 없으니 null로 처리.
+                this.createMenu(); // creatMenu() 안에다가 실제로 도넛 모양을 만드는 스크립트를 짜넣고, 여기서 그것을 호출
+                this.setupMouseTracking(); // 마우스를 올리면 그에 맞게 active된 곳의 fill값이 바뀌는데, 그 기능을 호출하는 함수.
+                // 여기서 this.변수명이란, 클래스 안에서 데이터를 저장하는 이름표 같은 것, 이를 쓰면, 클래스 안 어디서든 값을 가져다 쓸 수 있음. 즉, containerId가 this로 들어간다는 소리!
             }
+
+            createMenu() {
+                // svg라는 그림판을 하나 만들어서, 도넛 모양의 메뉴를 그릴 준비를 하는 것.
+                const svg = document.createElementNS(this.svgNS, "svg"); // svg를 html상에 만들 땐, document.createElementNS()를 써야함. this.svgNS 자리는 svg만들 때 꼭 필요한 네임스페이스주소, "svg"자리는 만들 요소가 svg라는 뜻
+                svg.setAttribute("viewBox", `0 0 ${this.size} ${this.size}`); // viewbox란? 하나의 커다란 캔버스를 만들어서 상대적인 크기를 조절하는 방식. 여기선 0 0(레프트탑00값)에서 시작해서 오른쪽 아래 요소 요소 만큼 그릴 공간으로 설정하겠단 뜻 근데 그 요소가 this.size가 됨 근데 위에서 320이라 정했으니, 여기선 320 320이 되는 것
+                svg.setAttribute("width", "100%");
+                svg.setAttribute("height", "100%"); // width와 height를 부모요소에 맞게 알아서 조정하기 위함, 변수-버그 방지
+
+                const centerX = this.size / 2;
+                const centerY = this.size / 2; // 원의 '중심'을 찾기 위해, size에서 반을 나눈 값을 변수에 담는다. 이는 밑에서 사용.
+
+                // Create outer circle
+                const outerCircle = document.createElementNS(this.svgNS, "circle"); // 바깥 원 만들기
+                outerCircle.setAttribute("cx", centerX);
+                outerCircle.setAttribute("cy", centerY);
+                outerCircle.setAttribute("r", this.outerRadius);
+                outerCircle.setAttribute("fill", "none");
+                outerCircle.setAttribute("stroke", "rgba(255, 255, 255, 0.2)");
+                svg.appendChild(outerCircle);
+
+                // Create following border arc
+                const followingBorder = document.createElementNS(this.svgNS, "path");
+                followingBorder.setAttribute("class", "following-border");
+                followingBorder.style.opacity = "0";
+                svg.appendChild(followingBorder);
+
+                menuItems.forEach((item, index) => {
+                    const startAngle = index * this.sliceAngle;
+                    const endAngle = startAngle + this.sliceAngle;
+                    
+                    const slice = this.createSlice(
+                        centerX,
+                        centerY,
+                        this.innerRadius,
+                        this.outerRadius,
+                        startAngle,
+                        endAngle,
+                        item,
+                        index
+                    );
+                    svg.appendChild(slice);
+                });
+
+                this.container.appendChild(svg);
+                this.followingBorder = followingBorder;
+            }
+
+            createSlice(cx, cy, innerRadius, outerRadius, startAngle, endAngle, item, index) {
+                const group = document.createElementNS(this.svgNS, "g");
+                
+                const startRad = (startAngle - 90) * Math.PI / 180;
+                const endRad = (endAngle - 90) * Math.PI / 180;
+
+                const x1 = cx + innerRadius * Math.cos(startRad);
+                const y1 = cy + innerRadius * Math.sin(startRad);
+                const x2 = cx + outerRadius * Math.cos(startRad);
+                const y2 = cy + outerRadius * Math.sin(startRad);
+                const x3 = cx + outerRadius * Math.cos(endRad);
+                const y3 = cy + outerRadius * Math.sin(endRad);
+                const x4 = cx + innerRadius * Math.cos(endRad);
+                const y4 = cy + innerRadius * Math.sin(endRad);
+
+                const path = document.createElementNS(this.svgNS, "path");
+                const d = [
+                    `M ${x1} ${y1}`,
+                    `L ${x2} ${y2}`,
+                    `A ${outerRadius} ${outerRadius} 0 0 1 ${x3} ${y3}`,
+                    `L ${x4} ${y4}`,
+                    `A ${innerRadius} ${innerRadius} 0 0 0 ${x1} ${y1}`,
+                    'Z'
+                ].join(' ');
+
+                path.setAttribute("d", d);
+                path.setAttribute("class", "menu-slice");
+                path.setAttribute("fill", "rgba(255, 255, 255, 0.1)");
+                path.setAttribute("cursor", "pointer");
+
+                // Calculate center point for text and icon
+                const midAngle = (startAngle + endAngle) / 2;
+                const midRad = (midAngle - 90) * Math.PI / 180;
+                const textRadius = (innerRadius + outerRadius) / 2;
+                const textX = cx + textRadius * Math.cos(midRad);
+                const textY = cy + textRadius * Math.sin(midRad);
+
+                // Create icon
+                const icon = document.createElementNS(this.svgNS, "text");
+                icon.textContent = item.icon;
+                icon.setAttribute("x", textX);
+                icon.setAttribute("y", textY - 10);
+                icon.setAttribute("class", "menu-icon");
+                icon.setAttribute("text-anchor", "middle");
+                icon.setAttribute("font-size", "24");
+                icon.setAttribute("fill", "rgba(255, 255, 255, 0.9)");
+                icon.setAttribute("pointer-events", "none");
+
+                // Create label
+                const label = document.createElementNS(this.svgNS, "text");
+                label.textContent = item.label;
+                label.setAttribute("x", textX);
+                label.setAttribute("y", textY + 15);
+                label.setAttribute("class", "menu-label");
+                label.setAttribute("text-anchor", "middle");
+                label.setAttribute("font-size", "14");
+                label.setAttribute("fill", "rgba(255, 255, 255, 0.9)");
+                label.setAttribute("pointer-events", "none");
+
+                // Create tooltip container
+            
+                // const tooltip = document.createElement('div');
+                // tooltip.className = 'menu-tooltip';
+                // tooltip.innerHTML = item.tooltip;
+                // tooltip.style.opacity = '0';
+                // tooltip.style.maxWidth = '200px';
+                // this.container.appendChild(tooltip);
+
+                // Event handlers
+                path.addEventListener('mouseenter', () => {
+                    this.activeSliceIndex = index;
+                    // tooltip.style.opacity = '1';
+                    this.updateFollowingBorder(startAngle, endAngle);
+                });
+
+                path.addEventListener('mouseleave', () => {
+                    this.activeSliceIndex = null;
+                    // tooltip.style.opacity = '0';
+                    this.followingBorder.style.opacity = "0";
+                });
+
+                path.addEventListener('mousemove', (e) => {
+                    const rect = this.container.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    // tooltip.style.transform = `translate(${x + 15}px, ${y}px)`;
+                });
+
+                group.appendChild(path);
+                group.appendChild(icon);
+                group.appendChild(label);
+                return group;
+            }
+
+            setupMouseTracking() {
+                this.container.addEventListener('mousemove', (e) => {
+                    if (this.activeSliceIndex !== null) {
+                        const rect = this.container.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        // Convert to SVG coordinates
+                        const svgX = (x / rect.width) * this.size;
+                        const svgY = (y / rect.height) * this.size;
+                        
+                        this.updateFollowingBorderPosition(svgX, svgY);
+                    }
+                });
+            }
+
+            updateFollowingBorder(startAngle, endAngle) {
+                const cx = this.size / 2;
+                const cy = this.size / 2;
+                const arcLength = this.sliceAngle;
+                
+                this.startAngle = startAngle;
+                this.followingBorder.style.opacity = "1";
+            }
+
+            updateFollowingBorderPosition(mouseX, mouseY) {
+                const cx = this.size / 2;
+                const cy = this.size / 2;
+                
+                // Calculate angle from center to mouse
+                let angle = Math.atan2(mouseY - cy, mouseX - cx) * 180 / Math.PI + 90;
+                if (angle < 0) angle += 360;
+                
+                // Create arc path
+                const startAngle = angle - this.sliceAngle / 2;
+                const endAngle = angle + this.sliceAngle / 2;
+                
+                const startRad = (startAngle - 90) * Math.PI / 180;
+                const endRad = (endAngle - 90) * Math.PI / 180;
+                
+                const x1 = cx + this.outerRadius * Math.cos(startRad);
+                const y1 = cy + this.outerRadius * Math.sin(startRad);
+                const x2 = cx + this.outerRadius * Math.cos(endRad);
+                const y2 = cy + this.outerRadius * Math.sin(endRad);
+                
+                const d = [
+                    `M ${x1} ${y1}`,
+                    `A ${this.outerRadius} ${this.outerRadius} 0 0 1 ${x2} ${y2}`
+                ].join(' ');
+                
+                this.followingBorder.setAttribute("d", d);
+            }
+        }
+
+        // Initialize menu
+        document.addEventListener('DOMContentLoaded', () => {
+            new DonutMenu('skill-container');
         });
-    }
-
-    updateFollowingBorder(startAngle, endAngle) {
-        const cx = this.size / 2;
-        const cy = this.size / 2;
-        const arcLength = this.sliceAngle;
-        
-        this.startAngle = startAngle;
-        this.followingBorder.style.opacity = "1";
-    }
-
-    updateFollowingBorderPosition(mouseX, mouseY) {
-        const cx = this.size / 2;
-        const cy = this.size / 2;
-        
-        // Calculate angle from center to mouse
-        let angle = Math.atan2(mouseY - cy, mouseX - cx) * 180 / Math.PI + 90;
-        if (angle < 0) angle += 360;
-        
-        // Create arc path
-        const startAngle = angle - this.sliceAngle / 2;
-        const endAngle = angle + this.sliceAngle / 2;
-        
-        const startRad = (startAngle - 90) * Math.PI / 180;
-        const endRad = (endAngle - 90) * Math.PI / 180;
-        
-        const x1 = cx + this.outerRadius * Math.cos(startRad);
-        const y1 = cy + this.outerRadius * Math.sin(startRad);
-        const x2 = cx + this.outerRadius * Math.cos(endRad);
-        const y2 = cy + this.outerRadius * Math.sin(endRad);
-        
-        const d = [
-            `M ${x1} ${y1}`,
-            `A ${this.outerRadius} ${this.outerRadius} 0 0 1 ${x2} ${y2}`
-        ].join(' ');
-        
-        this.followingBorder.setAttribute("d", d);
-    }
-}
-
-// Initialize menu
-document.addEventListener('DOMContentLoaded', () => {
-    new DonutMenu('skill-container');
-});
     </script>
 </body>
 </html>

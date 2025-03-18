@@ -661,6 +661,20 @@ window.onload = function() {
                 });
             });
         }
+        function navModal() {
+            let navBtn = document.querySelector('.navigation');
+            let theNav = document.getElementById('nav-menu-modal');
+            let exitBtn = document.querySelector('.nav_exit_btn');
+
+            navBtn.addEventListener('click', function() {
+                theNav.classList.add('on');
+            });
+
+            exitBtn.addEventListener('click', function() {
+                theNav.classList.remove('on');
+            })
+            
+        }
         
         
         
@@ -674,6 +688,7 @@ window.onload = function() {
         okTheToStudyIHaveToDo();
         createStars();
         formBtnFunction();
+        navModal();
     };
 
 

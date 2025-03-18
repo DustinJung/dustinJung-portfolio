@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Donut</title>
+    <style>
+        body {
+            padding: 80px;
+            background: #222;
+        }
+
+        /* 도넛 스타일 */
+        .donut {
+            --donut-size: 320px;
+            --base-width: calc(var(--donut-size) * 0.22);
+            --grow-size: 30px;
+            --hover-width: calc(var(--base-width) + var(--grow-size));
+
+            position: relative;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            width: var(--donut-size);
+            height: var(--donut-size);
+        }
+
+        .donut:after {
+            content: '';
+            position: absolute;
+            z-index: 101;
+            left: 0;
+            right: 0;
+            width: calc(var(--donut-size) - var(--base-width) * 2);
+            height: calc(var(--donut-size) - var(--base-width) * 2);
+            left: var(--base-width);
+            top: var(--base-width);
+            border-radius: 100%;
+            background: transparent;
+        }
+
+        .donut:before {
+            content: '';
+            display: block;
+            border-radius: 100%;
+            width: 6px;
+            height: 6px;
+            background: blue;
+            position: absolute;
+            left: calc(50% - 3px);
+            top: calc(50% - 3px);
+        }
+
+        /* 도넛 조각 */
+        .donut__item {
+            --rotation: 45deg;
+            --c-rotation: calc(-1 * var(--rotation));
+            --m: calc(-1 * var(--grow-size));
+
+            display: block;
+            width: 50%;
+            height: 50%;
+            position: absolute;
+            cursor: pointer;
+            transform: rotate(var(--rotation));
+            transform-origin: right bottom;
+            transition: filter 0.3s ease-out;
+        }
+
+        .donut__item:hover {
+            filter: drop-shadow(0 0 10px rgba(50, 50, 0, 0.5));
+            z-index: 100;
+        }
+
+        .donut__item:hover .donut__item__info {
+            --width: calc(var(--base-width) + var(--grow-size));
+            --translate-base: 10%;
+            font-size: 12px;
+        }
+
+        .donut__item:hover .donut__item__slice:before {
+            box-shadow: 0px 0px 0px var(--hover-width) var(--color, white);
+        }
+
+        /* 도넛 조각 내부 텍스트 및 아이콘 */
+        .donut__item__info {
+            --margin: 6px;
+            --width: var(--base-width);
+            --translate-base: 50%;
+            color: #fff;
+
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            width: calc(var(--width) - var(--margin) * 2);
+            height: calc(var(--width) - var(--margin) * 2);
+            transition: all 0.3s ease-out;
+            transform-origin: center;
+            transform: translate(calc(var(--translate-base) + var(--margin) * 2.5), calc(var(--translate-base) + var(--margin) * 2.5)) rotate(var(--c-rotation));
+        }
+
+        .donut__item__info img {
+            max-width: 29px;
+            max-height: 29px;
+        }
+
+        /* 도넛 조각의 색상 & 효과 */
+        .donut__item__slice {
+            position: absolute;
+            clip: rect(var(--m), calc(var(--donut-size) / 2), calc(var(--donut-size) / 2), var(--m));
+        }
+
+        .donut__item__slice:before {
+            content: '';
+            display: block;
+            border-radius: 100%;
+            width: calc(var(--donut-size) - var(--base-width) * 2);
+            height: calc(var(--donut-size) - var(--base-width) * 2);
+            position: relative;
+            left: var(--base-width);
+            top: var(--base-width);
+            box-shadow: 0px 0px 0px var(--base-width) var(--color, white);
+            transition: all 0.2s ease-out;
+        }
+
+        /* 도넛 조각 회전 */
+        .donut__item:nth-child(2) {
+            --rotation: 135deg;
+        }
+
+        .donut__item:nth-child(3) {
+            --rotation: 225deg;
+        }
+
+        .donut__item:nth-child(4) {
+            --rotation: -45deg;
+        }
+    </style>
+</head>
+<body>
+    <ul class="donut">
+        <li class="donut__item" style="--color: rgba(255, 255, 255, 0.1)">
+            <div class="donut__item__slice"></div>
+            <div class="donut__item__info">
+                Lorem, ipsum.
+            </div>
+        </li>
+        <li class="donut__item" style="--color: rgba(255, 255, 255, 0.1)">
+            <div class="donut__item__slice"></div>
+            <div class="donut__item__info">
+                Animi<br/>temporibus?
+            </div>
+        </li>
+        <li class="donut__item" style="--color: rgba(255, 255, 255, 0.1)">
+            <div class="donut__item__slice"></div>
+            <div class="donut__item__info">
+                Porro, provident.
+            </div>
+        </li>
+        <li class="donut__item" style="--color: rgba(255, 255, 255, 0.1)">
+            <div class="donut__item__slice"></div>
+            <div class="donut__item__info">
+                Raportowanie
+                i usługi poświadczające
+            </div>
+        </li>
+    </ul>
+</body>
+</html>
