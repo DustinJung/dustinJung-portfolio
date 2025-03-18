@@ -64,6 +64,68 @@ function letUfoHaveOn() {
 
 
 
+function theLastSection() {
+    let ctx = gsap.context(() => {
+        let bigSection = document.querySelector('#okay-ill-be-wating-contact-section');
+        let bigWrapper = bigSection.querySelector('.waiting-section-text-wrapper');
+        let smallWrapper = bigWrapper.querySelector('.each-other-wrapper');
+        let theSpans = bigWrapper.querySelectorAll('.smallSpan');
+
+        let existingTrigger = ScrollTrigger.getById("theSectionTrigger");
+        if (existingTrigger) existingTrigger.kill();
+
+        gsap.fromTo(theSpans, {
+            y: "100%"
+        }, {
+            y: "0%",
+            duration: 1.5,
+            ease: 'power3.out',
+            stagger: 0.3,
+            scrollTrigger: {
+                trigger: bigSection,
+                start: 'top 80%',
+                id: 'theSectionTrigger',
+            }
+        })
+    });
+
+    return () => ctx.revert();
+}
+
+function coreWrapperHide() {
+    let ctx = gsap.context((self) => {
+        self.add(() => {
+            let theWrapper = document.querySelector('.core-wrapper');
+            let bigSection = document.querySelector('#okay-ill-be-wating-contact-section');
+
+            if (!bigSection || !theWrapper) return;
+
+            let existingTrigger = ScrollTrigger.getById("daSectionTrigger");
+            if (existingTrigger) existingTrigger.kill();
+
+            gsap.fromTo(theWrapper, 
+                { autoAlpha: 0 }, 
+                { 
+                    autoAlpha: 1,
+                    duration: 2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: bigSection,
+                        start: "20% 60%",
+                        id: "daSectionTrigger",
+                        markers: false,
+                    }
+                }
+            );
+        });
+    });
+
+    return () => {
+        let existingTrigger = ScrollTrigger.getById("daSectionTrigger");
+        if (existingTrigger) existingTrigger.kill();
+        ctx.revert();
+    };
+}
 
 
 
@@ -73,6 +135,8 @@ function letUfoHaveOn() {
 function initAnimations() {
     letUfoHaveOn();
     waitForTheUfo();
+    theLastSection();
+    coreWrapperHide();
 };
 
 export { initAnimations };

@@ -576,3 +576,39 @@ body.is-ready{
   0% { transform: rotate(0deg) translateZ(2vw);}
   100% { transform: rotate(360deg) translateZ(2vw);}
 }
+@keyframes rotate-the-core-wrapper {
+    0% { transform: translate(-50%, -50%) rotateY(0deg);}
+    100% { transform: translate(-50%, -50%) rotateY(360deg);}
+}
+@keyframes arrow-animation {
+    0% {
+        transform: translateZ(0);
+    }
+    
+    33% {
+        transform: translate3d(0, 1em, 0);
+    }
+    100% {
+        transform: translate3d(0, 1em, 0);
+    }
+}
+@keyframes text-animation {
+    0% {
+        transform: translateZ(0);
+    }
+    33% {
+        transform: translate3d(0, 1.5em, 0);
+    }
+    
+    100% {
+        transform: translate3d(0, 1.5em, 0);
+    }
+}
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 1;
+    }
+}

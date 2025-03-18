@@ -115,4 +115,14 @@
         color:#010818;
         background:#9effff;
       }
+    #contact-form {
+      max-width: 420px;
+    }
+    #contact-form button:hover {
+        background-color: #c1b107db;
+    }
+    .contact-form-text:not(.disabled).-success {
+        max-width: 420px;
+        width: 420px;
+    }
 }

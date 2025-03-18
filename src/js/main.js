@@ -562,6 +562,12 @@ window.onload = function() {
         
             buttons.forEach((button, index) => {
                 button.addEventListener("click", () => {
+                    buttons.forEach((buttonz, i) => {
+                        if(buttonz.classList.contains('on')) {
+                            buttonz.classList.remove('on');
+                        }
+                    })
+                    button.classList.add('on');
                     // 부모 요소 내에서의 상대적 위치를 계산
                     const targetScroll = contents[index].offsetLeft - contentWrapper.offsetLeft;
                     
@@ -572,6 +578,91 @@ window.onload = function() {
                 });
             });
         }
+        function createStars() {
+            const starsContainer = document.createElement('div');
+            starsContainer.className = 'stars';
+        
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.setProperty('--twinkle-duration', `${1 + Math.random() * 3}s`);
+                starsContainer.appendChild(star);
+            }
+        
+            const footer = document.getElementById("sticky-footer"); 
+            footer.appendChild(starsContainer); 
+        }
+        function formBtnFunction() {
+            let theBtn = document.getElementById("submit-btn");
+            let emailInput = document.getElementById("email");
+            let messageInput = document.getElementById("message");
+            let form = document.getElementById("contact-form");
+        
+            form.addEventListener("submit", function (e) {
+                e.preventDefault(); // 1. html 기본 폼 제출을 막는다 => Formspree에서 필수,
+        
+                theBtn.disabled = true;
+                theBtn.classList.add('disabled');
+                emailInput.disabled = true;
+                messageInput.disabled = true; // 중복 제출 방지
+        
+                // Formspree API로 JSON 데이터 만들기
+                let formData = {
+                    email: emailInput.value,
+                    message: messageInput.value,
+                };
+        
+                fetch(form.action, { //fetch()는 JavaScript에서 서버와 데이터를 주고받을 때 사용하는 함수, 웹사이트에서 서버로 요청을 보내고, 서버에서 응답을 받아오는 역할
+                    method: "POST", //form.action의 method를 가져오고, 
+                    headers: {
+                        "Content-Type": "application/json", //formspree에서 필수, 보낼 데이터가 json이라는 걸 알려줌
+                        "Accept": "application/json", // formspree에서 필수, 받을 데이터를 json으로 보내달라고 요쳥하는 것.
+                    },
+                    body: JSON.stringify(formData), // formData는 자바스크립트 객체임. 그러나 서버는 JSON 문자열이 필요해서, formData를 JSON.stringify로 변환한 것. method가 post고 우리가 데이터를 보내는 거기 때문에, body: 가 필수적이다.
+                    // 만약 여기서 body가 없으면, 서버는 요청은 확인하지만, 뭘 보내는 지 인식하지 못함.
+                })
+                .then(response => { // response는 서버에서 오는 응답 객체, 이 응답 객체에는 응답 상태, 응답 본문(JSON 데이터), 헤더 정보 등이 들어 있음.
+                    if (response.ok) { // fetch API에서 제공하는 기본 속성, respons.ok는 서버 응답이 성공했는지(true/false)를 확인하는 속성.
+                        // 즉, 성공적으로 적용되었을 경우, 
+                        setTimeout(function () {
+                            form.classList.add("is-submitted"); 
+                            setTimeout(function () {
+                                // 입력값 초기화
+                                emailInput.value = "";
+                                messageInput.value = "";
+        
+                                // Placeholder 원래대로 복구
+                                emailInput.placeholder = "Your email";
+                                messageInput.placeholder = "Let's connect! Send me a message.";
+        
+                                // 입력 필드 & 버튼 다시 활성화
+                                emailInput.disabled = false;
+                                messageInput.disabled = false;
+                                theBtn.disabled = false;
+                                theBtn.classList.remove('disabled');
+        
+                                form.classList.remove("is-submitted");
+                            }, 5000);
+                        }, 3000);
+                    } else { // 서버가 '응답을 보냈지만 실패한 경우, 예시로 오류코드 400, 401, 500'
+                        alert("전송에 실패했습니다. 다시 시도해주세요.");
+                        emailInput.disabled = false;
+                        messageInput.disabled = false;
+                        theBtn.disabled = false;
+                    }
+                })
+                .catch(error => { // 이쪽 에러는 네트워크 쪽 오류일 확률이 높음, 인터넷 끊김, 서버 다운, fetch()오류
+                    alert("에러가 발생했습니다. 네트워크를 확인해주세요.");
+                    emailInput.disabled = false;
+                    messageInput.disabled = false;
+                    theBtn.disabled = false;
+                });
+            });
+        }
+        
+        
         
 
 
@@ -581,6 +672,8 @@ window.onload = function() {
         hoverThenPlanetGoesOn();
         theProjectsSection();
         okTheToStudyIHaveToDo();
+        createStars();
+        formBtnFunction();
     };
 
 

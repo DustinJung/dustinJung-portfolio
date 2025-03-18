@@ -259,6 +259,8 @@ main {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
+    z-index: 1;
 }
 .section {
     width: 100%;
@@ -1699,7 +1701,10 @@ input.desc-title {
 #to-study-section {
     width: 100vw;
     height: 100vh;
-    background: transparent;
+    background-color: #0B0C10;
+    background-image: url(../../public/images/intro/night-sky-nuki4k.png);
+    background-repeat: repeat-y;
+    background-position: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -1710,7 +1715,7 @@ input.desc-title {
     color: var(--color-primary);
     font-family: var(--orbitron);
     font-weight: bold;
-    z-index: -1;
+    z-index: 0;
     opacity: .7;
     margin-left: 10vw;
 
@@ -1720,7 +1725,7 @@ input.desc-title {
     margin-left: auto;
     margin-right: auto;
     width: 80%;
-    height: 80%;
+    height: 60%;
     display: flex;
     flex-direction: row;
     background: rgba(184, 237, 255, 0.05);
@@ -1732,7 +1737,23 @@ input.desc-title {
     flex-direction: column;
     width: 20%;
     height: 100%;
+    padding: 1rem;
     border:solid 1px #9effff;
+    overflow-y: scroll;
+}
+.why-btn-wrapper::-webkit-scrollbar{
+    width: 6px;
+    background: transparent;
+    height: 1px;
+}
+.why-btn-wrapper::-webkit-scrollbar-thumb{
+    background: var(--color-primary-invert);
+    border: 1px solid var(--color-primary-invert);
+    border-radius: 3px;
+}
+.why-btn-wrapper::-webkit-scrollbar-track {
+    background: rgba(69, 19, 118, 0.162);
+    border-radius: 5px;
 }
 .why-btn-wrapper > li {
     font-size: calc(24px * var(--size));
@@ -1743,6 +1764,11 @@ input.desc-title {
     padding: calc(12px * var(--size));
     margin: calc(12px * var(--size));
     cursor: pointer;
+    transition: opacity .3s ease, color .3s ease;
+}
+.why-btn-wrapper > li.on {
+    background: #9effff;
+    color: rgb(0, 21, 27) !important;
 }
 .thats-the-reason-wrapper {
     display: flex;
@@ -1758,9 +1784,23 @@ input.desc-title {
     width: 100%;
     height: 100%;
     flex-shrink: 0;
-    padding: 1rem;
+    padding: 2rem 1rem; 
     overflow-y: scroll;
     font-size: calc(24px * var(--size));
+}
+.thats-the-reason-div::-webkit-scrollbar{
+    width: 6px;
+    background: transparent;
+    height: 1px;
+}
+.thats-the-reason-div::-webkit-scrollbar-thumb{
+    background: var(--color-primary-invert);
+    border: 1px solid var(--color-primary-invert);
+    border-radius: 3px;
+}
+.thats-the-reason-div::-webkit-scrollbar-track {
+    background: rgba(69, 19, 118, 0.162);
+    border-radius: 5px;
 }
 .thats-the-reason-div-01 {
     display: flex;
@@ -1775,4 +1815,296 @@ input.desc-title {
     white-space: normal;
     word-wrap: break-word;
     word-break: break-word;
+}
+#okay-ill-be-wating-contact-section {
+    height: 100vh;
+    background-color: #0B0C10;
+    background-image: url(../../public/images/intro/night-sky-nuki4k.png);
+    background-repeat: repeat-y;
+    background-position: center;
+}
+.core-wrapper {
+    width: 180px;
+    height: 180px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotateY(0deg);
+    transform-style: preserve-3d;
+    animation: rotate-the-core-wrapper 8s linear infinite;
+    z-index: 1;
+}
+.last-orbit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid rgb(255 255 255 / 66%);
+    transform-style: preserve-3d;
+    box-shadow: 0px 0px 10px var(--color-primary);
+}
+.last-orbit:nth-child(1) {
+    transform: rotateX(60deg) rotateY(10deg);
+}
+.last-orbit:nth-child(2) {
+    transform: rotateX(-45deg) rotateY(30deg);
+}
+.last-orbit:nth-child(3) {
+    transform: rotateX(30deg) rotateY(-20deg);
+}
+.orbit-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: transparent;
+}
+.orbit-core > img {
+    width: 100%;
+    height: 100%;
+}
+.waiting-section-text-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -10%);
+    text-align: center;
+    z-index: 2;
+    font-size: calc(48px * var(--size));
+}
+.each-other-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.each-other-wrapper > div {
+    overflow: hidden;
+}
+.each-other-wrapper > div > span {
+    display: block;
+    will-change: transform;
+}
+.footer-btn-wrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    height: 3.375em;
+    width: 15em;
+    left: 50%;
+    bottom: calc(var(--vh, 1vh)* 7);
+    transform: translate(-50%);
+    text-align: center;
+    background: white;
+    border-radius: 100px;
+    box-shadow: 0 6px 10px #0000000a, 0 2px 4px #0000000a;
+    overflow: hidden;
+    font-size: 1.1em;
+}
+.down-arrow-container {
+    position: relative;
+    overflow: hidden;
+    width: 1em;
+    height: 1em;
+}
+.down-arrow-container .down-arrow {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    animation: 3s infinite cubic-bezier(.1,0,.1,1) arrow-animation;
+}
+.down-arrow svg {
+    width: 100%;
+    height: 100%
+}
+.down-arrow:last-child {
+    position: absolute;
+    top: -1em;
+}
+.footer-down-text-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+.footer-down-text:last-child {
+    position: absolute;
+    top: -1.5em;
+}
+.footer-down-text-wrapper .footer-down-text {
+    white-space: nowrap;
+    line-height: 1.5;
+    font-size: .75em;
+    color: var(--body-bg-clr);
+    font-weight: bold;
+    animation: 3s .2s infinite cubic-bezier(.1,0,.1,1) text-animation;
+}
+footer {
+    width: 100%;
+    height: 200vh;
+    margin-top: -100vh;
+    z-index: 0;
+    position: relative;
+    background: var(--main-clr);
+    color: var(--color-primary-invert);
+}
+footer > div {
+    position: sticky;
+    height: 100vh;
+    width: 100%;
+    left: 0;
+    top: 0;
+    padding: 2rem 1rem; 
+    background: var(--body-bg-clr);
+    color: var(--main-clr);
+}
+.footer-grid {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 1.5fr 2fr;
+    grid-row-gap: calc(15 * 1vh);
+    grid-column-gap: 1rem;
+    align-items: stretch; 
+}
+
+.grid-column {
+    position: relative;
+    height: auto; 
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.my-img {
+    max-height: 100%; 
+    width: auto; 
+    aspect-ratio: 3 / 4; 
+    object-fit: contain; 
+    position: absolute;
+    left: 20%;
+    bottom: 10%;
+    z-index: 3;
+}
+.grid-column-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    padding: 2rem 1rem;
+}
+.contact-info {
+    font-size: calc(32px * var(--size));
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    overflow-y: scroll;
+}
+.contact-info::-webkit-scrollbar{
+    width: 6px;
+    background: transparent;
+    height: 1px;
+}
+.contact-info::-webkit-scrollbar-thumb{
+    background: rgba(0, 255, 255, 0.3);
+    border: 1px solid rgba(0, 255, 255, 0.5);
+    border-radius: 3px;
+}
+.contact-info::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-clr);
+    border-radius: 5px;
+}
+.contact-info strong {
+    color: var(--point3-clr);
+}
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--twinkle-duration) ease-in-out infinite;
+}
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    position: relative;
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: white;
+}
+#contact-form textarea {
+    height: 200px;
+    border-radius: 10px;
+    resize: none;
+}
+
+#contact-form button {
+    background-color: var(--point3-clr);
+    color: var(--body-bg-clr);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: color .3s ease, background-color .3s ease;
+    width: 100%;
+}
+#contact-form button.disabled {
+    cursor: not-allowed; 
+    opacity: 0.5;
+    background-color: gray;
+    color: white;
+}
+.contact-form-text{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transition: opacity .5s ease-out;
+    transform: translateX(-50%);
+    font-size: calc(21px * var(--size));
+}
+#contact-form.is-submitted .contact-form-wrapper{
+    opacity: 0;
+    pointer-events: none;
+    transition: none;
+}
+.contact-form-text.-success{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-column-gap: 1rem;
+}
+#contact-form:not(.is-submitted) .contact-form-text.-success{
+    opacity: 0;
+    pointer-events: none;
+    transition: none;   
+}
+.contact-form-text.-success {
+    max-width: 320px;
+    width: 320px;
+}
+.contact-form-text.-success p{
+    letter-spacing: .65px;
+    text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.3);
 }

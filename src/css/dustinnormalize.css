@@ -100,3 +100,9 @@ input:focus, textarea:focus, button:focus {
     white-space: nowrap;
     width: 1px;
 }
+
+/*텍스트 밸런스*/
+.text_balance{
+    text-wrap: balance;
+    word-break: keep-all;
+}
