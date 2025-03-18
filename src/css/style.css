@@ -25,7 +25,8 @@
     justify-content: space-between;
     pointer-events: none;
 }
-#header-section header .my-name {
+#header-section header .my-name,
+#header-section header .navigation {
     font-size: 21px;
     transition: all 0.2s ease-in-out;
     position: relative;

@@ -6,14 +6,16 @@
     #its-me-wrapper{
         max-width: 1280px;
     }
-    header > a.my-name:hover {
+    header > a.my-name:hover,
+    header > button:hover {
         color: var(--point-clr);
         text-shadow: 0 0 1px var(--point-clr), 0 0 3px var(--point2-clr), 0 0 3px var(--point-clr);
         filter: blur(0.2px);
         -webkit-filter: blur(0.2px);
     }
 
-    header > a.my-name::after {
+    header > a.my-name::after,
+    header > button::after {
         content: "";
         position: absolute;
         left: 50%;
@@ -25,7 +27,8 @@
         transition: width 0.2s ease-in-out, left 0.2s ease-in-out;
         will-change: width, left;
     }
-    header > a.my-name:hover::after {
+    header > a.my-name:hover::after,
+    header > button:hover::after {
         width: 100%;
         left: 0;
     }
