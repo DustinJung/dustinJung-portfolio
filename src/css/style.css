@@ -2002,7 +2002,7 @@ footer > div {
     font-size: calc(32px * var(--size));
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: calc(70px * var(--size));
     overflow-y: scroll;
 }
 .contact-info::-webkit-scrollbar{
@@ -2107,4 +2107,22 @@ footer > div {
 .contact-form-text.-success p{
     letter-spacing: .65px;
     text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.3);
+}
+.contact-list a,
+.sns-list a {
+    display: inline-block;
+    position: relative;
+    transition: color .2s ease-in;
+}
+.okay-the-contacts-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+.contact-list,
+.sns-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
