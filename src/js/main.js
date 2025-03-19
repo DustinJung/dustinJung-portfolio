@@ -664,7 +664,20 @@ window.onload = function() {
         function navModal() {
             let navBtn = document.querySelector('.navigation');
             let theNav = document.getElementById('nav-menu-modal');
+            let ul = theNav.querySelector('#theNavUl');
+            let lis = ul.querySelectorAll('li');
+            let body = document.querySelector('body');
             let exitBtn = document.querySelector('.nav_exit_btn');
+            let section_01 = document.getElementById('intro-section');
+            let section_02 = document.getElementById('introduce-myself');
+            let section_03 = document.getElementById('my-skills-section');
+            let section_04 = document.getElementById('my-projects-section');
+            let section_05 = document.getElementById('to-study-section');
+            let section_06 = document.getElementById('okay-ill-be-wating-contact-section');
+            let section_07 = document.getElementById('sticky-footer');
+            let theSections = [ section_01, section_02, section_03, section_04, section_05, section_06, section_07 ];
+            
+
 
             navBtn.addEventListener('click', function() {
                 theNav.classList.add('on');
@@ -674,6 +687,26 @@ window.onload = function() {
                 theNav.classList.remove('on');
             })
             
+            lis.forEach((li, i) => {
+                li.addEventListener('click', function() {
+                    theNav.classList.remove('on');
+            
+                    let targetScroll;
+            
+                    if (i === lis.length - 1) {
+                        const pageHeight = document.documentElement.scrollHeight;
+                        const stickyFooterHeight = document.getElementById('sticky-footer').offsetHeight;
+                        targetScroll = pageHeight - stickyFooterHeight;
+                    } else {
+                        targetScroll = theSections[i].getBoundingClientRect().top + window.scrollY;
+                    }
+            
+                    window.scrollTo({
+                        top: targetScroll,
+                        behavior: "smooth",
+                    });
+                });
+            });
         }
         
         
