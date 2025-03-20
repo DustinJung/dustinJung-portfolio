@@ -43,7 +43,13 @@
         flex-direction: column;
     }
     #hello-dustin-desc > .dustin-desc-column {
-        max-height: 50%;
+        max-height: 44%;
+    }
+    #hello-im-dustin-wrapper.on #desc-duce-myself {
+        max-height: 54%;
+    }
+    #desc-duce-myself > div {
+        padding: 3%;
     }
     #desc-duce-myself > div {
         overflow-y: scroll;
@@ -169,6 +175,9 @@
     .my_projects_section {
         position: static !important;
     }
+    .leftDiv_exit_btn span {
+        background: var(--point3-clr);
+    }
     #my-projects-section .leftDiv {
         width: 100%;
         height: 50%;
@@ -187,6 +196,7 @@
     }
     .leftDiv > h3 {
         margin-top: 0;
+        width: 70%;
     }
     #my-projects-section .leftDiv {
         gap: 1rem;
@@ -194,8 +204,8 @@
     .leftDiv_exit_btn {
         right: 1rem;
         top: 1rem;
-        width: 2rem;
-        height: 2rem;
+        width: 3rem;
+        height: 3rem;
     }
     .leftDiv_moreinfo_btn {
         right: 1.625rem;
@@ -237,5 +247,29 @@
     .waiting-section-text-wrapper {
         font-size: calc(30px* var(--size));
         width: 100%;
+    }
+
+    /*footer*/
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 2fr 8fr;
+        grid-row-gap: 1rem;
+        align-items: start;
+    }
+    .grid-column-1 {
+        width: 240px;
+        height: 200px;
+        justify-self: center;
+    }
+    .grid-column-2 {
+        height: 100%;
+    }
+    .contact-list a, .sns-list a {
+        word-break: break-all;
+    }
+    footer > div {
+        padding: 5rem 1rem 0;
     }
 }

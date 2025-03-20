@@ -1956,7 +1956,7 @@ input.desc-title {
 footer {
     width: 100%;
     height: calc(var(--vh) * 200);
-    margin-top: -calc(var(--vh) * 100);
+    margin-top: calc(var(--vh) * -100);
     z-index: 0;
     position: relative;
     background: var(--main-clr);

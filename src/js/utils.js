@@ -142,24 +142,24 @@ function initUtils() {
             document.documentElement.style.setProperty('--vh', `${vh}px`);
         }
     
+        function setSize() {
+            requestAnimationFrame(() => {
+                const scale = Math.min(window.innerWidth, window.innerHeight) / 1200;
+                const size = 0.5 + scale * 0.7;
+    
+                var r = document.querySelector(':root');
+                r.style.setProperty('--size', size);
+                r.style.setProperty('--sizeBig', 1);
+                r.style.setProperty('--scale', scale);
+            });
+        }
+    
         function gsapRefresh() {
-            function resizeHandler() {
-                requestAnimationFrame(() => {
-                    const scale = Math.min(window.innerWidth, window.innerHeight) / 1200;
-                    const size = 0.5 + scale * 0.7;
+            setSize();
     
-                    var r = document.querySelector(':root');
-                    r.style.setProperty('--size', size);
-                    r.style.setProperty('--sizeBig', 1);
-                    r.style.setProperty('--scale', scale);
-    
-                    if (window.matchMedia("(min-width: 1280px)").matches) {
-                        setVH(); // 데스크탑에서만 vh 업데이트
-                    }
-                });
+            if (window.matchMedia("(min-width: 1280px)").matches) {
+                setVH(); // 데스크탑에서만 vh 업데이트
             }
-    
-            resizeHandler();
     
             let resizeTimeout;
             window.addEventListener("resize", () => {
@@ -169,7 +169,10 @@ function initUtils() {
                     if (window.innerWidth >= 1280) {
                         ScrollTrigger.refresh();
                     }
-                    resizeHandler();
+                    setSize(); // resize 시 size 업데이트
+                    if (window.matchMedia("(min-width: 1280px)").matches) {
+                        setVH(); // 데스크탑에서만 vh 업데이트
+                    }
                 }, 200);
             });
         }
@@ -187,8 +190,10 @@ function initUtils() {
             window.addEventListener("resize", handleResize); // resize 이벤트 등록
         } else {
             setVH(); // 모바일에서는 최초 한 번만 실행
+            setSize(); // 모바일에서도 최초 1회는 실행
         }
     }
+    
     
     
     
