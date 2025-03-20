@@ -137,6 +137,11 @@ function initUtils() {
             window.addEventListener("scroll", handleScroll);
         }
     
+        function setVH() {
+            let vh = window.visualViewport ? window.visualViewport.height * 0.01 : window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+    
         function gsapRefresh() {
             function resizeHandler() {
                 requestAnimationFrame(() => {
@@ -148,8 +153,9 @@ function initUtils() {
                     r.style.setProperty('--sizeBig', 1);
                     r.style.setProperty('--scale', scale);
     
-                    let vh = window.visualViewport ? window.visualViewport.height * 0.01 : window.innerHeight * 0.01;
-                    document.documentElement.style.setProperty('--vh', `${vh}px`);
+                    if (window.matchMedia("(min-width: 1280px)").matches) {
+                        setVH(); // 데스크탑에서만 vh 업데이트
+                    }
                 });
             }
     
@@ -160,7 +166,7 @@ function initUtils() {
                 clearTimeout(resizeTimeout);
     
                 resizeTimeout = setTimeout(() => {
-                    if (window.innerWidth > 1024) {
+                    if (window.innerWidth >= 1280) {
                         ScrollTrigger.refresh();
                     }
                     resizeHandler();
@@ -175,11 +181,16 @@ function initUtils() {
     
         // 초기 실행
         intro_parallax();
-        gsapRefresh();
     
-        // resize 이벤트 등록
-        window.addEventListener("resize", handleResize);
+        if (window.matchMedia("(min-width: 1280px)").matches) {
+            gsapRefresh(); // 데스크탑에서는 계속 업데이트
+            window.addEventListener("resize", handleResize); // resize 이벤트 등록
+        } else {
+            setVH(); // 모바일에서는 최초 한 번만 실행
+        }
     }
+    
+    
     
     
 
