@@ -733,7 +733,6 @@ window.onload = function() {
 
 
         letBodyTakeIsReady();
-        intro_parallax();
         hoverThenPlanetGoesOn();
         theProjectsSection();
         okTheToStudyIHaveToDo();
