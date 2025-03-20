@@ -266,6 +266,7 @@ main {
 .section {
     width: 100%;
     position: relative;
+    overflow: hidden;
 }
 
 /*introduce-section*/
@@ -1359,6 +1360,7 @@ input.desc-title {
     left: 0;
     top: 0;
     z-index: -2;
+    overflow: hidden;
 }
 .leftDiv,
 .rightDiv {
@@ -1969,6 +1971,7 @@ footer > div {
     padding: 2rem 1rem; 
     background: var(--body-bg-clr);
     color: var(--main-clr);
+    overflow: hidden;
 }
 .footer-grid {
     display: grid;
