@@ -38,6 +38,7 @@
 #intro-section {
     width: 100%;
     height: calc(var(--vh) * 100);
+    min-height: 80vh;
     position: relative;
     top: 0;
     left: 0;
