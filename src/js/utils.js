@@ -124,46 +124,52 @@ function initUtils() {
     //resize
     function initEffects() {
         function intro_parallax() {
-            if (!window.matchMedia("(min-width: 1280px)").matches) return;
+            function handleScroll() {
+                if (!window.matchMedia("(min-width: 1280px)").matches) return; // 모바일이면 실행 안 함
     
-            window.addEventListener("scroll", function () {
                 let scrollValue = window.scrollY;
                 let its_me = document.querySelector('#its-me-wrapper > div');
-                
+    
                 its_me.style.transform = `translate(0, ${scrollValue * 0.3}px)`;
                 document.getElementById("take-a-look").style.transform = `translate(-50%, ${scrollValue * 0.2}px)`;
-            });
+            }
+    
+            window.addEventListener("scroll", handleScroll);
         }
     
         function gsapRefresh() {
-            const resizeHandler = () => {
+            function resizeHandler() {
                 requestAnimationFrame(() => {
                     const scale = Math.min(window.innerWidth, window.innerHeight) / 1200;
                     const size = 0.5 + scale * 0.7;
-                
+    
                     var r = document.querySelector(':root');
                     r.style.setProperty('--size', size);
                     r.style.setProperty('--sizeBig', 1);
                     r.style.setProperty('--scale', scale);
-            
+    
                     let vh = window.visualViewport ? window.visualViewport.height * 0.01 : window.innerHeight * 0.01;
                     document.documentElement.style.setProperty('--vh', `${vh}px`);
                 });
-            };
-            // 1. 렌더링 최적화에 좋음, 2. 레이아웃 재계산 최소화 가능 3. 애니메이션 및 css속성 부드럽게 적용 가능
+            }
     
             resizeHandler();
+    
+            let resizeTimeout;
             window.addEventListener("resize", () => {
-                ScrollTrigger.refresh();
-                resizeHandler();
+                clearTimeout(resizeTimeout);
+    
+                resizeTimeout = setTimeout(() => {
+                    if (window.innerWidth > 1024) {
+                        ScrollTrigger.refresh();
+                    }
+                    resizeHandler();
+                }, 200);
             });
         }
     
         function handleResize() {
-            // intro_parallax()를 resize될 때마다 다시 실행하려면 기존 이벤트 제거 후 다시 추가
-            window.removeEventListener("scroll", intro_parallax);
-            intro_parallax();
-    
+            // Resize될 때 다시 실행할 함수들
             gsapRefresh();
         }
     
@@ -175,8 +181,9 @@ function initUtils() {
         window.addEventListener("resize", handleResize);
     }
     
-    // 실행
-    initEffects();
+    
+
+    
     
 
 
@@ -184,10 +191,9 @@ function initUtils() {
 
 
 
-
+    initEffects();
     scrollOpacityHide();
     scrambleTextHover();
-    gsapRefresh();
     betweenBtnHover();
 }
 
