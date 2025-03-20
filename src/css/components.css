@@ -24,7 +24,7 @@
     position: fixed;
     left: 0;
     right: 0;
-    bottom: 3dvh;
+    bottom: calc(var(--vh) * 3);
     z-index: 100;
     display: flex;
     align-items: center;
@@ -47,9 +47,9 @@
     font-weight: 700;
     line-height: 1;
     color: var(--color-primary);
-    border: min(.45vw, .45dvh) solid var(--color-primary);
-    border-radius: min(1vw, 1dvh);
-    border-top-left-radius: min(2.8vw, 2.8dvh);
+    border: min(.45vw, calc(var(--vh) * .45)) solid var(--color-primary);
+    border-radius: min(1vw, calc(var(--vh) * 1));
+    border-top-left-radius: min(2.8vw, calc(var(--vh) * 2.8));
     transition: letter-spacing .3s ease-in-out, transform .14s ease-out, opacity .14s ease-out;
     backdrop-filter: blur(4px);
     opacity: 1;
@@ -74,8 +74,8 @@
     right: 0;
     bottom: 0;
     z-index: -1;
-    border-radius: min(.8vw, .8dvh);
-    border-top-left-radius: min(2.4vw, 2.4dvh);
+    border-radius: min(.8vw, calc(var(--vh) * .8));
+    border-top-left-radius: min(2.4vw, calc(var(--vh) * 2.4));
     background: var(--color-primary-invert);
     transition: opacity .14s ease-out;
     opacity: .4;
