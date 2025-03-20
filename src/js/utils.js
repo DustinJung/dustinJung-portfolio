@@ -122,31 +122,62 @@ function initUtils() {
     
 
     //resize
-    function gsapRefresh() {
-        const resizeHandler = () => {
-            const scale = Math.min(window.innerWidth, window.innerHeight) / 1200;
-            const size = 0.5 + scale * 0.7;
-        
-            var r = document.querySelector(':root');
-            r.style.setProperty('--size', size);
-            r.style.setProperty('--sizeBig', 1);
-            r.style.setProperty('--scale', scale);
-
-            requestAnimationFrame(() => {
-                let vh = window.visualViewport ? window.visualViewport.height * 0.01 : window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--vh', `${vh}px`);
+    function initEffects() {
+        function intro_parallax() {
+            if (!window.matchMedia("(min-width: 1280px)").matches) return;
+    
+            window.addEventListener("scroll", function () {
+                let scrollValue = window.scrollY;
+                let its_me = document.querySelector('#its-me-wrapper > div');
+                
+                its_me.style.transform = `translate(0, ${scrollValue * 0.3}px)`;
+                document.getElementById("take-a-look").style.transform = `translate(-50%, ${scrollValue * 0.2}px)`;
             });
-        };
-        resizeHandler();
-        window.addEventListener("resize", () => {
-            ScrollTrigger.refresh(); 
+        }
+    
+        function gsapRefresh() {
+            const resizeHandler = () => {
+                requestAnimationFrame(() => {
+                    const scale = Math.min(window.innerWidth, window.innerHeight) / 1200;
+                    const size = 0.5 + scale * 0.7;
+                
+                    var r = document.querySelector(':root');
+                    r.style.setProperty('--size', size);
+                    r.style.setProperty('--sizeBig', 1);
+                    r.style.setProperty('--scale', scale);
             
-            //resize시 변수 변경
-
-
+                    let vh = window.visualViewport ? window.visualViewport.height * 0.01 : window.innerHeight * 0.01;
+                    document.documentElement.style.setProperty('--vh', `${vh}px`);
+                });
+            };
+            // 1. 렌더링 최적화에 좋음, 2. 레이아웃 재계산 최소화 가능 3. 애니메이션 및 css속성 부드럽게 적용 가능
+    
             resizeHandler();
-        });
+            window.addEventListener("resize", () => {
+                ScrollTrigger.refresh();
+                resizeHandler();
+            });
+        }
+    
+        function handleResize() {
+            // intro_parallax()를 resize될 때마다 다시 실행하려면 기존 이벤트 제거 후 다시 추가
+            window.removeEventListener("scroll", intro_parallax);
+            intro_parallax();
+    
+            gsapRefresh();
+        }
+    
+        // 초기 실행
+        intro_parallax();
+        gsapRefresh();
+    
+        // resize 이벤트 등록
+        window.addEventListener("resize", handleResize);
     }
+    
+    // 실행
+    initEffects();
+    
 
 
 
