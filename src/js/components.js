@@ -2,12 +2,28 @@
 
 function initSwiper() {
   var swiper01 = new Swiper(".skill-swiper-1", {
-      slidesPerView: 5.5,
+      breakpoints: {
+        1280: {
+            slidesPerView: 5.5,
+            centeredSlides: true,
+        },
+        769: {  // 화면 너비 768px 이상일 때
+            slidesPerView: 2.5,
+            centeredSlides: true,
+        },
+        0: {  // 화면 너비 480px 이상일 때
+            slidesPerView: 1.5,
+            centeredSlides: false,
+        }
+    },
       spaceBetween: 30,
-      centeredSlides: true,
       observer: true,  // Swiper가 DOM 변경을 감지할 수 있도록 설정
       observeParents: true, // Swiper의 부모 요소 변경도 감지
       allowTouchMove: true, // 기본적으로 터치 가능
+      keyboard: {
+        enabled: true, 
+        onlyInViewport: true, // Swiper가 화면에 있을 때만 키보드 포커스 허용
+    },
       on: {
         init: () => {
           var swiper_wrapper = document.querySelector('.skill-swiper-wrapper');
@@ -32,17 +48,36 @@ function initSwiper() {
           // attributes: true → class, style 같은 속성이 변경될 때 감지
           // attributeFilter: ['class'] → "class" 속성만 감지하도록 설정 (불필요한 감지 방지)
 
+        },
+        resize: () => {
+          swiper01.update();
         }
       }
   });
 
   var swiper02 = new Swiper(".skill-swiper-2", {
-    slidesPerView: 5.5,
+    breakpoints: {
+      1280: {
+          slidesPerView: 5.5,
+          centeredSlides: true,
+      },
+      769: {  // 화면 너비 768px 이상일 때
+          slidesPerView: 2.5,
+          centeredSlides: true,
+      },
+      0: {  // 화면 너비 480px 이상일 때
+          slidesPerView: 1.5,
+          centeredSlides: false,
+      }
+  },
     spaceBetween: 30,
-    centeredSlides: true,
     observer: true,  // Swiper가 DOM 변경을 감지할 수 있도록 설정
     observeParents: true, // Swiper의 부모 요소 변경도 감지
     allowTouchMove: true, // 기본적으로 터치 가능
+    keyboard: {
+      enabled: true, 
+      onlyInViewport: true, // Swiper가 화면에 있을 때만 키보드 포커스 허용
+  },
     on: {
       init: () => {
         var swiper_wrapper = document.querySelector('.skill-swiper-wrapper');
@@ -67,6 +102,9 @@ function initSwiper() {
         // attributes: true → class, style 같은 속성이 변경될 때 감지
         // attributeFilter: ['class'] → "class" 속성만 감지하도록 설정 (불필요한 감지 방지)
 
+      },
+      resize: () => {
+        swiper02.update();
       }
     }
 });
@@ -78,6 +116,10 @@ var swiper03 = new Swiper(".projects_swiper", {
   observer: true,  
   observeParents: true, 
   allowTouchMove: true, 
+  keyboard: {
+    enabled: true, 
+    onlyInViewport: true, 
+  },
   pagination: {
     el: ".swiper-pagination",
     type: "progressbar",
@@ -89,12 +131,14 @@ var swiper03 = new Swiper(".projects_swiper", {
   },
   on: {
     init: function () {
-      this.update();
+      setTimeout(() => this.update(), 100);  
     },
-    paginationRender: function () {
+    resize: function () {
+      this.update(); 
     }
   }
 });
+
 
 
 }

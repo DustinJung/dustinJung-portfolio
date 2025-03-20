@@ -81,6 +81,7 @@ window.onload = function() {
 
             function planetClick() {
                 thePlanet.addEventListener('click', function() {
+                    body.classList.remove('is-ready');
                     theSection.scrollIntoView({ behavior: 'smooth' });
                     this.classList.add('on');
                     setTimeout(() => {
@@ -93,7 +94,6 @@ window.onload = function() {
                     setTimeout(() => {
                         this.classList.add('nowGo');
                         inPlanet.classList.add('on');
-                        body.classList.remove('is-ready');
                         setTimeout(() => {
                             inPlanet.classList.add('goOn');
                             let theWrappers = document.querySelectorAll('.skill-gage-wrapper');
@@ -140,7 +140,7 @@ window.onload = function() {
                         let desc = descs[containerIndex]; 
                         let close_btn = desc.querySelector('.desc-close-btn'); 
             
-                        // 🎯 마우스 호버 시 카드 효과
+                        // 마우스 호버 시 카드 효과
                         container.addEventListener('mousemove', function(e) {
                             if (isMoving) return;
                             cancelAnimationFrame(animationFrame); 
@@ -391,9 +391,20 @@ window.onload = function() {
             let more_info_btns = document.querySelectorAll('.leftDiv_moreinfo_btn');
             let info_div = document.querySelectorAll('.moreinfo_wrapper');
             let info_exit_btns = document.querySelectorAll('.info_exit_btn');
+            let theSection = document.getElementById('my-projects-section');
+            let theTargetScroll;
 
             function theclickBtnClick() {
                 theClickBtn.addEventListener('click', function() {
+                    
+                    theTargetScroll = theSection.getBoundingClientRect().top + window.scrollY;
+
+                    window.scrollTo({
+                        top: theTargetScroll,
+                        behavior: 'smooth',
+                    })
+                    
+
                     this.classList.add('clicked');
                     setTimeout(() => {
                         this.classList.add('off');
@@ -708,7 +719,25 @@ window.onload = function() {
                 });
             });
         }
-        
+        function disableNavigationTabindex() {
+            let rightDivs = document.querySelectorAll('.rightDiv');
+            let floatDivs = document.querySelectorAll('.floatDivWrapper');
+            
+            rightDivs.forEach((div, i) => {
+                div.querySelectorAll('.swiper-button-next, .swiper-button-prev').forEach(button => {
+                    button.tabIndex = -1;
+                });
+
+                floatDivs.forEach((floatDiv, i) => {
+                    if(floatDiv.classList.contains('on')) {
+                        floatDiv.querySelectorAll('.swiper-button-next, .swiper-button-prev').forEach(button => {
+                            button.tabIndex = 0;
+                        });
+                    }
+                })                
+            })
+
+        }
         
         
 
@@ -722,6 +751,7 @@ window.onload = function() {
         createStars();
         formBtnFunction();
         navModal();
+        disableNavigationTabindex();
     };
 
 

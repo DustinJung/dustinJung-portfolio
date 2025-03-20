@@ -1,4 +1,5 @@
 /* global.css => 공통 모듈 CSS */
+
 ::selection {
     color: var(--main-clr);
     background: var(--point2-clr);
@@ -10,7 +11,7 @@ body{
     background-position: center;
     color: #F8F9FA;
     width: 100%;
-    overflow: hidden;
+    overflow: hidden !important;
 }
 body::-webkit-scrollbar{
     width: 6px;
@@ -27,7 +28,7 @@ body::-webkit-scrollbar-track {
     border-radius: 5px;
 }
 body.is-ready{
-    overflow-y: auto;
+    overflow-y: auto !important;
     overflow-x: hidden;
 }
 :root{

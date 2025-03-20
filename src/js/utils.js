@@ -71,21 +71,56 @@ function initUtils() {
 
     function betweenBtnHover() {
         let btns = document.querySelectorAll('.betweenBtn');
-        btns.forEach((btn, i) => {
+        let mediaQuery = window.matchMedia("(min-width: 1280px)");
+    
+        function handleHover(event) {
             let el1 = document.querySelectorAll('.betweenBtnFirst');
             let el2 = document.querySelectorAll('.betweenBtnSecond');
-            btn.addEventListener('mouseenter', function() {
+    
+            let i = Array.from(btns).indexOf(event.currentTarget);
+            if (i === -1) return;
+    
+            if (event.type === 'mouseenter') {
                 el1[i].classList.add('on');
                 el2[i].classList.add('on');
-            })
-            btn.addEventListener('mouseleave', function() {
-                if(el1[i].classList.contains('on') && el2[i].classList.contains('on')) {
-                    el1[i].classList.remove('on');
-                    el2[i].classList.remove('on');
-                }                
-            })
-        })
+            } else if (event.type === 'mouseleave') {
+                el1[i].classList.remove('on');
+                el2[i].classList.remove('on');
+            }
+        }
+    
+        function addHoverEvents() {
+            btns.forEach(btn => {
+                btn.addEventListener('mouseenter', handleHover);
+                btn.addEventListener('mouseleave', handleHover);
+            });
+        }
+    
+        function removeHoverEvents() {
+            btns.forEach(btn => {
+                btn.removeEventListener('mouseenter', handleHover);
+                btn.removeEventListener('mouseleave', handleHover);
+            });
+        }
+    
+        function checkMediaQuery(e) {
+            if (e.matches) {
+                addHoverEvents();
+            } else {
+                removeHoverEvents();
+            }
+        }
+    
+        // 초기 실행
+        checkMediaQuery(mediaQuery);
+    
+        // 화면 크기 변경 감지
+        mediaQuery.addEventListener("change", checkMediaQuery);
     }
+    
+    // 실행
+    betweenBtnHover();
+    
     
 
     //resize

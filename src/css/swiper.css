@@ -1,1 +1,12 @@
 /* swiper 관련 css */
+
+.rightDiv .swiper-button-next, 
+.rightDiv .swiper-button-prev {
+    color: var(--color-primary);
+}
+.rightDiv .swiper-pagination-progressbar {
+    background: #4c4e4e6b;
+}
+.rightDiv .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+    background: var(--color-primary);
+}

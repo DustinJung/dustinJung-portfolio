@@ -799,6 +799,7 @@ main {
 }
 #in-the-planet {
     width: 100vw;
+    max-width: 100%;
     height: 100vh;
     position: fixed;
     background: radial-gradient(circle at center, #1d2f2f, #02050a 80%);
@@ -834,6 +835,7 @@ main {
     left: 0;
     top: 0;
     width: 100vw;
+    max-width: 100%;
     height: 100vh;
     z-index: 0;
     touch-action: none;
@@ -944,6 +946,7 @@ main {
 }
 .skill-swiper-wrapper {
     width: 100vw;
+    max-width: 100%;
     padding: 1.5rem 0;
     opacity: 0;
     touch-action: none;
@@ -1315,6 +1318,7 @@ input.desc-title {
 /*my-porjects-section*/
 #my-projects-section {
     width: 100vw;
+    max-width: 100%;
     height: 100vh;
     perspective: 100vw;
     background: transparent;
@@ -1701,6 +1705,7 @@ input.desc-title {
 /*to-study-section*/
 #to-study-section {
     width: 100vw;
+    max-width: 100%;
     height: 100vh;
     background-color: #0B0C10;
     background-image: url(../../public/images/intro/night-sky-nuki4k.png);
