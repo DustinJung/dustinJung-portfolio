@@ -46,10 +46,11 @@
         max-height: 44%;
     }
     #hello-im-dustin-wrapper.on #desc-duce-myself {
-        max-height: 54%;
+        max-height: 52%;
     }
     #desc-duce-myself > div {
         padding: 3%;
+        height: 99%;
     }
     #desc-duce-myself > div {
         overflow-y: scroll;
@@ -221,6 +222,8 @@
     .why-btn-wrapper {
         width: 100%;
         padding: 0;
+        overflow-y: auto;
+        border: none;
     }
     .thats-the-reason-wrapper {
         width: 100%;
@@ -241,6 +244,10 @@
         height: 50%;
         border: 1px solid var(--point4-clr);
         border-radius: 0px;
+    }
+    .thats-the-reason-wrapper {
+        border-left: solid 1px #9effff;
+        border-top: none;
     }
 
     /*waiting section*/
@@ -266,10 +273,14 @@
     .grid-column-2 {
         height: 100%;
     }
+    .contact-info {
+        align-items: center;
+        font-size: calc(27px* var(--size));
+    }
     .contact-list a, .sns-list a {
         word-break: break-all;
     }
     footer > div {
-        padding: 5rem 1rem 0;
+        padding: 5rem 0rem 0;
     }
 }
