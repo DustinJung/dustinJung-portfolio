@@ -798,7 +798,7 @@ main {
     animation: okGo 2s ease-out forwards !important;
 }
 #in-the-planet {
-    width: 100vw;
+    width: 100%;
     max-width: 100%;
     height: 100vh;
     position: fixed;
@@ -834,7 +834,7 @@ main {
     position: absolute;
     left: 0;
     top: 0;
-    width: 100vw;
+    width: 100%;
     max-width: 100%;
     height: 100vh;
     z-index: 0;
@@ -945,7 +945,7 @@ main {
     opacity: 1;
 }
 .skill-swiper-wrapper {
-    width: 100vw;
+    width: 100%;
     max-width: 100%;
     padding: 1.5rem 0;
     opacity: 0;
@@ -1317,7 +1317,7 @@ input.desc-title {
 
 /*my-porjects-section*/
 #my-projects-section {
-    width: 100vw;
+    width: 100%;
     max-width: 100%;
     height: 100vh;
     perspective: 100vw;
@@ -1704,7 +1704,7 @@ input.desc-title {
 
 /*to-study-section*/
 #to-study-section {
-    width: 100vw;
+    width: 100%;
     max-width: 100%;
     height: 100vh;
     background-color: #0B0C10;

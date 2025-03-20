@@ -1,5 +1,8 @@
 /* global.css => 공통 모듈 CSS */
-
+html, body {
+    width: 100%;
+    max-width: 100%;
+}
 ::selection {
     color: var(--main-clr);
     background: var(--point2-clr);

@@ -1,12 +1,12 @@
 /* responsive-mobile.css => 767px 이하 */
 @media (max-width: 767px) {
-
+    /*dvh 포팅*/
     /*header section*/
     #header-section header {
         padding: 10px;
-        max-width: 100%;
         margin: 0;
         height: 70px;
+        max-width: 100vw;
     }
 
     #header-section header .my-name,
@@ -143,7 +143,7 @@
     #the-place-sign {
         position: absolute;
         left: 50%;
-        top: 0%;
+        top: 10%;
         font-size: calc(52px* var(--size));
         transform: rotateZ(2deg) translate(-50%, 0%);
         color: var(--color-primary);
@@ -200,5 +200,42 @@
     .leftDiv_moreinfo_btn {
         right: 1.625rem;
         bottom: 1rem;
+    }
+
+    /* to - study*/
+    .to-study-wrapper {
+        height: 75%;
+        flex-direction: column;
+        width: 90%;
+    }
+    .why-btn-wrapper {
+        width: 100%;
+        padding: 0;
+    }
+    .thats-the-reason-wrapper {
+        width: 100%;
+    }
+    .why-btn-wrapper {
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: 200px;
+    }
+    .why-btn-wrapper > li {
+        font-size: calc(19px* var(--size));
+        padding: calc(10px* var(--size));
+        margin: 0;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50%;
+        border: 1px solid var(--point4-clr);
+        border-radius: 0px;
+    }
+
+    /*waiting section*/
+    .waiting-section-text-wrapper {
+        font-size: calc(30px* var(--size));
+        width: 100%;
     }
 }

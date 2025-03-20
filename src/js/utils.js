@@ -118,8 +118,6 @@ function initUtils() {
         mediaQuery.addEventListener("change", checkMediaQuery);
     }
     
-    // 실행
-    betweenBtnHover();
     
     
 
@@ -133,6 +131,11 @@ function initUtils() {
             r.style.setProperty('--size', size);
             r.style.setProperty('--sizeBig', 1);
             r.style.setProperty('--scale', scale);
+
+            requestAnimationFrame(() => {
+                let vh = window.visualViewport ? window.visualViewport.height * 0.01 : window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            });
         };
         resizeHandler();
         window.addEventListener("resize", () => {
