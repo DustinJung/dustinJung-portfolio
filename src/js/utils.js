@@ -121,94 +121,101 @@ function initUtils() {
     
     
 
-    //resize
-    function initEffects() {
-        function intro_parallax() {
-            function handleScroll() {
-                if (!window.matchMedia("(min-width: 1367px)").matches) return; 
-    
-                let scrollValue = window.scrollY;
-                let its_me = document.querySelector('#its-me-wrapper > div');
-    
-                its_me.style.transform = `translate(0, ${scrollValue * 0.3}px)`;
-                document.getElementById("take-a-look").style.transform = `translate(-50%, ${scrollValue * 0.2}px)`;
-            }
-    
-            window.addEventListener("scroll", handleScroll);
-        }
-    
-        function setVH() {
-            let vh = window.visualViewport ? window.visualViewport.height * 0.01 : window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-        }
-    
-        function setSize() {
-            requestAnimationFrame(() => {
-                const scale = Math.min(window.innerWidth, window.innerHeight) / 1200;
-                const size = 0.5 + scale * 0.7;
-    
-                var r = document.querySelector(':root');
-                r.style.setProperty('--size', size);
-                r.style.setProperty('--sizeBig', 1);
-                r.style.setProperty('--scale', scale);
-            });
-        }
-    
-        function gsapRefresh() {
-            setSize();
-            setVH(); 
-    
-            let resizeTimeout;
-            let resizeTimeoutForMobile;
-            
-            window.addEventListener("resize", () => {
-              clearTimeout(resizeTimeout);
-              clearTimeout(resizeTimeoutForMobile);
-            
-              resizeTimeout = setTimeout(() => {
-                if (window.innerWidth > 1366) {
-                  ScrollTrigger.refresh();
-                }
-            
-                setSize(); // 공통 처리
-            
-                // 모바일용: 700ms 뒤에 vh 다시 설정
-                resizeTimeoutForMobile = setTimeout(() => {
-                  setVH();
-                  ScrollTrigger.refresh();
-                }, 700);
-              }, 200);
-            });
-            
-    
-            window.addEventListener("orientationchange", () => {
-                setTimeout(() => {
-                    setVH();
-                    ScrollTrigger.refresh();
-                }, 300);
-            });
-        }
-    
-        function handleResize() {
-            gsapRefresh();
-        }
-    
-        intro_parallax();
-    
-        if (window.matchMedia("(min-width: 1367px)").matches) {
-            gsapRefresh();
-            window.addEventListener("resize", handleResize);
-        } else {
-            gsapRefresh();
+//resize
+function initEffects() {
+    function intro_parallax() {
+        function handleScroll() {
+            if (!window.matchMedia("(min-width: 1367px)").matches) return; 
+
+            let scrollValue = window.scrollY;
+            let its_me = document.querySelector('#its-me-wrapper > div');
+
+            its_me.style.transform = `translate(0, ${scrollValue * 0.3}px)`;
+            document.getElementById("take-a-look").style.transform = `translate(-50%, ${scrollValue * 0.2}px)`;
         }
 
-        // visualViewport 변화 감지해서 vh 보정
-        if (window.visualViewport) {
-            window.visualViewport.addEventListener('resize', () => {
-                setVH();
-            });
-        }
+        window.addEventListener("scroll", handleScroll);
     }
+
+    function setVH() {
+        let vh = window.visualViewport ? window.visualViewport.height * 0.01 : window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+
+    function setSize() {
+        requestAnimationFrame(() => {
+            const scale = Math.min(window.innerWidth, window.innerHeight) / 1200;
+            const size = 0.5 + scale * 0.7;
+
+            var r = document.querySelector(':root');
+            r.style.setProperty('--size', size);
+            r.style.setProperty('--sizeBig', 1);
+            r.style.setProperty('--scale', scale);
+        });
+    }
+
+    function gsapRefresh() {
+        setSize();
+        setVH(); 
+
+        let resizeTimeout;
+        let resizeTimeoutForMobile;
+
+        window.addEventListener("resize", () => {
+            clearTimeout(resizeTimeout);
+            clearTimeout(resizeTimeoutForMobile);
+
+            resizeTimeout = setTimeout(() => {
+                if (window.innerWidth > 1366) {
+                    ScrollTrigger.refresh();
+                }
+
+                setSize();
+
+                // 모바일용: 700ms 뒤에 vh 다시 설정
+                resizeTimeoutForMobile = setTimeout(() => {
+                    debounceSetVH(500); // 디바운스된 setVH 사용
+                    ScrollTrigger.refresh();
+                }, 700);
+            }, 200);
+        });
+
+        window.addEventListener("orientationchange", () => {
+            setTimeout(() => {
+                debounceSetVH(500);
+                ScrollTrigger.refresh();
+            }, 300);
+        });
+    }
+
+    function debounceSetVH(delay = 500) {
+        clearTimeout(window.__vhTimeout);
+        window.__vhTimeout = setTimeout(() => {
+            setVH();
+        }, delay);
+    }
+
+    function handleResize() {
+        gsapRefresh();
+    }
+
+    intro_parallax();
+
+    if (window.matchMedia("(min-width: 1367px)").matches) {
+        gsapRefresh();
+        window.addEventListener("resize", handleResize);
+    } else {
+        gsapRefresh();
+    }
+
+    // visualViewport 변화 감지해서 vh 보정 (디바운스 적용)
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', () => {
+            debounceSetVH(500);
+        });
+    }
+}
+
     
     
     
