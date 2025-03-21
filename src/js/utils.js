@@ -125,7 +125,7 @@ function initUtils() {
     function initEffects() {
         function intro_parallax() {
             function handleScroll() {
-                if (!window.matchMedia("(min-width: 1366px)").matches) return; 
+                if (!window.matchMedia("(min-width: 1367px)").matches) return; 
     
                 let scrollValue = window.scrollY;
                 let its_me = document.querySelector('#its-me-wrapper > div');
@@ -162,16 +162,19 @@ function initUtils() {
             window.addEventListener("resize", () => {
                 clearTimeout(resizeTimeout);
                 resizeTimeout = setTimeout(() => {
-                    if (window.innerWidth >= 1366) {
+                    if (window.innerWidth > 1366) {
+                        setVH();
                         ScrollTrigger.refresh();
                     }
                     setSize();
-                    setVH(); 
                 }, 200);
             });
     
             window.addEventListener("orientationchange", () => {
-                setTimeout(setVH, 300);
+                setTimeout(() => {
+                    setVH();
+                    ScrollTrigger.refresh();
+                }, 300);
             });
         }
     
@@ -181,7 +184,7 @@ function initUtils() {
     
         intro_parallax();
     
-        if (window.matchMedia("(min-width: 1366px)").matches) {
+        if (window.matchMedia("(min-width: 1367px)").matches) {
             gsapRefresh();
             window.addEventListener("resize", handleResize);
         } else {
