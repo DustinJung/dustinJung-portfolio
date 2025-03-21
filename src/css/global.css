@@ -2,6 +2,7 @@
 html, body {
     width: 100%;
     max-width: 100%;
+    min-height: 100lvh;
 }
 ::selection {
     color: var(--main-clr);
