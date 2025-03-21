@@ -164,21 +164,24 @@ function initEffects() {
         window.addEventListener("resize", () => {
             clearTimeout(resizeTimeout);
             clearTimeout(resizeTimeoutForMobile);
-
+        
             resizeTimeout = setTimeout(() => {
-                if (window.innerWidth > 1366) {
+                const isDesktop = window.innerWidth > 1366;
+        
+                if (isDesktop) {
+                    setSize();
+                    debounceSetVH(200);
                     ScrollTrigger.refresh();
+                } else {
+                    resizeTimeoutForMobile = setTimeout(() => {
+                        debounceSetVH(500);
+                        setSize();
+                        ScrollTrigger.refresh();
+                    }, 700);
                 }
-
-                setSize();
-
-                // 모바일용: 700ms 뒤에 vh 다시 설정
-                resizeTimeoutForMobile = setTimeout(() => {
-                    debounceSetVH(500); // 디바운스된 setVH 사용
-                    ScrollTrigger.refresh();
-                }, 700);
             }, 200);
         });
+        
 
         window.addEventListener("orientationchange", () => {
             setTimeout(() => {
