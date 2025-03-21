@@ -806,7 +806,7 @@ main {
 #in-the-planet {
     width: 100%;
     max-width: 100%;
-    height: calc(var(--vh) * 100);
+    height: calc(var(--ip) * 100);
     position: absolute;
     background: radial-gradient(circle at center, #1d2f2f, #02050a 80%);
     z-index: 30;
