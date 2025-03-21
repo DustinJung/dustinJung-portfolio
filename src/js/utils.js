@@ -125,7 +125,7 @@ function initUtils() {
     function initEffects() {
         function intro_parallax() {
             function handleScroll() {
-                if (!window.matchMedia("(min-width: 1280px)").matches) return; // 모바일이면 실행 안 함
+                if (!window.matchMedia("(min-width: 1366px)").matches) return; 
     
                 let scrollValue = window.scrollY;
                 let its_me = document.querySelector('#its-me-wrapper > div');
@@ -156,43 +156,39 @@ function initUtils() {
     
         function gsapRefresh() {
             setSize();
-    
-            if (window.matchMedia("(min-width: 1280px)").matches) {
-                setVH(); // 데스크탑에서만 vh 업데이트
-            }
+            setVH(); 
     
             let resizeTimeout;
             window.addEventListener("resize", () => {
                 clearTimeout(resizeTimeout);
-    
                 resizeTimeout = setTimeout(() => {
-                    if (window.innerWidth >= 1280) {
+                    if (window.innerWidth >= 1366) {
                         ScrollTrigger.refresh();
                     }
-                    setSize(); // resize 시 size 업데이트
-                    if (window.matchMedia("(min-width: 1280px)").matches) {
-                        setVH(); // 데스크탑에서만 vh 업데이트
-                    }
+                    setSize();
+                    setVH(); 
                 }, 200);
+            });
+    
+            window.addEventListener("orientationchange", () => {
+                setTimeout(setVH, 300);
             });
         }
     
         function handleResize() {
-            // Resize될 때 다시 실행할 함수들
             gsapRefresh();
         }
     
-        // 초기 실행
         intro_parallax();
     
-        if (window.matchMedia("(min-width: 1280px)").matches) {
-            gsapRefresh(); // 데스크탑에서는 계속 업데이트
-            window.addEventListener("resize", handleResize); // resize 이벤트 등록
+        if (window.matchMedia("(min-width: 1366px)").matches) {
+            gsapRefresh();
+            window.addEventListener("resize", handleResize);
         } else {
-            setVH(); // 모바일에서는 최초 한 번만 실행
-            setSize(); // 모바일에서도 최초 1회는 실행
+            gsapRefresh();
         }
     }
+    
     
     
     

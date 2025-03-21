@@ -8,12 +8,12 @@ function initSwiper() {
             centeredSlides: true,
         },
         769: {  // 화면 너비 768px 이상일 때
-            slidesPerView: 2.5,
+            slidesPerView: 3.5,
             centeredSlides: true,
         },
         0: {  // 화면 너비 480px 이상일 때
-            slidesPerView: 1.5,
-            centeredSlides: false,
+            slidesPerView: 2.5,
+            centeredSlides: true,
         }
     },
       spaceBetween: 30,
@@ -62,12 +62,12 @@ function initSwiper() {
           centeredSlides: true,
       },
       769: {  // 화면 너비 768px 이상일 때
-          slidesPerView: 2.5,
+          slidesPerView: 3.5,
           centeredSlides: true,
       },
       0: {  // 화면 너비 480px 이상일 때
-          slidesPerView: 1.5,
-          centeredSlides: false,
+          slidesPerView: 2.5,
+          centeredSlides: true,
       }
   },
     spaceBetween: 30,

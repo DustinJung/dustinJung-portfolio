@@ -23,6 +23,9 @@
     }
 
     /*about me section*/
+    #intro-section > span.hello-world {
+        font-size: calc(28px * var(--size));
+    }
     #introduce-myself {
         padding: 10px;
     }
@@ -30,6 +33,12 @@
         width: 90%;
         height: 90%;
         padding: 10px;
+    }
+    #desc-duce-myself > div > h2 {
+        font-size: 24px;
+    }
+    #hello-im-dustin-wrapper.on #desc-duce-myself > div > p {
+        font-size: 21px;
     }
     #real-hello-im-dustin {
         padding: 1rem;
@@ -63,56 +72,7 @@
     }
 
     /*skill section*/
-    #my-skills-section {
-        perspective: none;
-        overflow: hidden;
-    }
-    #my-skills-section > .this-planet-wrapper {
-        transform: translate(-50%, 0) rotateZ(0deg) rotateY(0deg);
-        width: 330px;
-        margin: 0 auto;
-        left: 50%;
-        top: 0;
-    }
-    #in-the-planet {
-        width: 100%;
-        max-width: 100%;
-        height: 100%;
-        position: absolute;
-        background: radial-gradient(circle at center, #1d2f2f, #02050a 80%);
-        z-index: 30;
-        left: 0;
-        top: 0;
-        touch-action: none;
-        opacity: 0;
-        visibility: hidden;
-        display: none;
-        transition: opacity .6s;
-        overflow: hidden;
-    }
-    #in-the-planet::before {
-        position: absolute;
-    }
-    .the-particles {
-        width: 100%;
-        height: 100%;
-    }
-    .skill-swiper-wrapper {
-        width: 100%;
-    }
-    #go-outside-btn-wrapper {
-        position: absolute;
-        bottom: 5vh;
-    }
-    .betweenBtnFirst {
-        transition-delay: .1s;
-        transform: scale(1);
-    }
-    .betweenBtnSecond {
-        height: min(29.2vw, 22.2vh);
-        background: linear-gradient(100deg, #6a008ad0 30%, rgba(183, 31, 189, .1) 100%);
-        opacity: 1;
-    }
+    
 
     /*intro section*/
     .parallax_layer {
@@ -214,6 +174,254 @@
     }
 
     /* to - study*/
+    
+
+    /*waiting section*/
+    .waiting-section-text-wrapper {
+        font-size: calc(30px* var(--size));
+        width: 100%;
+    }
+
+
+    /*nav*/
+    #nav-menu-modal {
+        padding: 2rem 1em;
+        align-items: normal;
+        justify-content: flex-start;
+        height: 70%;
+    }
+    #nav-menu-modal ul {
+        width: 100%;
+        gap: .625rem;
+    }
+    #nav-menu-modal h4 {
+        text-align: center;
+    }
+    #nav-menu-modal ul li {
+        font-size: calc(22px * var(--size));
+        padding: 0.325rem 0;
+    }
+}
+
+@media (max-width: 767px) and (orientation: landscape) {
+
+    /* intro */
+    #take-a-look {
+        bottom : 0;
+    }
+
+    /* about me */
+
+    #intro-section > span.hello-world {
+        font-size: calc(28px * var(--size));
+    }
+    #introduce-myself {
+        padding: 10px;
+    }
+    #hello-im-dustin-wrapper {
+        width: 90%;
+        height: 90%;
+        padding: 10px;
+    }
+    #desc-duce-myself > div > h2 {
+        font-size: 24px;
+    }
+    #hello-im-dustin-wrapper.on #desc-duce-myself > div > p {
+        font-size: 21px;
+    }
+    #real-hello-im-dustin {
+        padding: 1rem;
+        gap: 10px;
+    }
+    .im-dustin-before-and-after {
+        width: calc(100% - 0.5rem);
+        height: calc(100% - 0.5rem);
+    }
+    #real-hello-im-dustin > #hello-dustin-desc {
+        flex-direction: row
+    }
+    #hello-dustin-desc > .dustin-desc-column {
+        max-height: 100%;
+    }
+    #hello-im-dustin-wrapper.on #desc-duce-myself {
+        max-height: 100%;
+    }
+    #desc-duce-myself > div {
+        padding: 3%;
+    }
+    #desc-duce-myself > div {
+        overflow-y: scroll;
+        display: block;
+    }
+    #desc-img-myself > div > div {
+        flex-direction: row;
+        gap: .325rem;
+        padding: 0;
+    }
+
+    /* skill section*/
+
+    /*skill section*/
+    #my-skills-section {
+        overflow: hidden;
+    }
+    #my-skills-section > .this-planet-wrapper {
+        width: 330px;
+    }
+    #in-the-planet {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        position: absolute;
+        background: radial-gradient(circle at center, #1d2f2f, #02050a 80%);
+        z-index: 30;
+        left: 0;
+        top: 0;
+        touch-action: none;
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+        transition: opacity .6s;
+        overflow: hidden;
+    }
+    #in-the-planet::before {
+        position: absolute;
+    }
+    .the-particles {
+        width: 100%;
+        height: 100%;
+    }
+    .skill-swiper-wrapper {
+        width: 100%;
+    }
+    #go-outside-btn-wrapper {
+        position: absolute;
+        bottom: 5vh;
+    }
+    .betweenBtnFirst {
+        transition-delay: .1s;
+        transform: scale(1);
+    }
+    .betweenBtnSecond {
+        height: min(29.2vw, 22.2vh);
+        background: linear-gradient(100deg, #6a008ad0 30%, rgba(183, 31, 189, .1) 100%);
+        opacity: 1;
+    }
+    /*to study*/
+    .to-study-wrapper {
+        height: 75%;
+        flex-direction: column;
+        width: 90%;
+    }
+    .why-btn-wrapper {
+        width: 100%;
+        padding: 0;
+        overflow-y: auto;
+        border: none;
+    }
+    .thats-the-reason-wrapper {
+        width: 100%;
+    }
+    .why-btn-wrapper {
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: 80px;
+    }
+    .why-btn-wrapper > li {
+        font-size: calc(19px* var(--size));
+        padding: calc(10px* var(--size));
+        margin: 0;
+        width: 25%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--point4-clr);
+        border-radius: 0px;
+    }
+    .thats-the-reason-wrapper {
+        border-left: solid 1px #9effff;
+        border-top: none;
+    }
+    
+    /*footer*/
+    .grid-column-2 {
+        height: 100%;
+    }
+    #contact-form {
+        max-width: 320px;
+    }
+    .contact-info {
+        align-items: center;
+        font-size: calc(27px* var(--size));
+    }
+    .contact-list a, .sns-list a {
+        word-break: break-all;
+    }
+    footer > div {
+        padding: 2rem 0rem 0;
+    }
+    .my-img {
+        width: 170px;
+    }
+    
+}
+
+@media (max-width: 767px) and (orientation: portrait) {
+    /* about me*/
+    
+    /*skill*/
+    #my-skills-section {
+        perspective: none;
+        overflow: hidden;
+    }
+    #my-skills-section > .this-planet-wrapper {
+        transform: translate(-50%, 0) rotateZ(0deg) rotateY(0deg);
+        width: 330px;
+        margin: 0 auto;
+        left: 50%;
+        top: 0;
+    }
+    #in-the-planet {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        position: absolute;
+        background: radial-gradient(circle at center, #1d2f2f, #02050a 80%);
+        z-index: 30;
+        left: 0;
+        top: 0;
+        touch-action: none;
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+        transition: opacity .6s;
+        overflow: hidden;
+    }
+    #in-the-planet::before {
+        position: absolute;
+    }
+    .the-particles {
+        width: 100%;
+        height: 100%;
+    }
+    .skill-swiper-wrapper {
+        width: 100%;
+    }
+    #go-outside-btn-wrapper {
+        position: absolute;
+        bottom: 5vh;
+    }
+    .betweenBtnFirst {
+        transition-delay: .1s;
+        transform: scale(1);
+    }
+    .betweenBtnSecond {
+        height: min(29.2vw, 22.2vh);
+        background: linear-gradient(100deg, #6a008ad0 30%, rgba(183, 31, 189, .1) 100%);
+        opacity: 1;
+    }
+
+    /*to study*/
     .to-study-wrapper {
         height: 75%;
         flex-direction: column;
@@ -250,14 +458,7 @@
         border-top: none;
     }
 
-    /*waiting section*/
-    .waiting-section-text-wrapper {
-        font-size: calc(30px* var(--size));
-        width: 100%;
-    }
-
     /*footer*/
-
     .footer-grid {
         display: grid;
         grid-template-columns: 1fr;

@@ -3,7 +3,6 @@ import { initAnimations } from "./animations.js";
 import { initComponents } from "./components.js";
 import { initUtils } from "./utils.js";
 
-
 function startWeb() {
     try {
         initComponents();
@@ -67,11 +66,20 @@ window.onload = function() {
             let warp_btn = document.getElementById('go-oustide-btn');
             let body = document.querySelector('body');
             let theSection = document.querySelector('#my-skills-section');
+            let theTargetScroll;
 
             function planetClick() {
                 thePlanet.addEventListener('click', function() {
+
                     body.classList.remove('is-ready');
-                    theSection.scrollIntoView({ behavior: 'smooth' });
+                    const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
+                    const sectionIndex = 2
+                    theTargetScroll = vh * 100 * sectionIndex;
+                    
+                    window.scrollTo({
+                        top: theTargetScroll,
+                        behavior: 'smooth',
+                    })
                     this.classList.add('on');
                     setTimeout(() => {
                         thePlanet.style.touchAction = 'none';
@@ -149,6 +157,15 @@ window.onload = function() {
                         });
             
                         container.addEventListener('click', function() {
+                            const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
+                            const sectionIndex = 2
+                            theTargetScroll = vh * 100 * sectionIndex;
+                            
+                            window.scrollTo({
+                                top: theTargetScroll,
+                                behavior: 'smooth',
+                            })
+
                             if (isMoving) return;
                             isMoving = true;
                         
@@ -193,8 +210,16 @@ window.onload = function() {
                         
                         
             
-                        // 🎯 close 버튼 클릭 시 초기화
+                        // close 버튼 클릭 시 초기화
                         close_btn.addEventListener('click', function() {
+                            const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
+                            const sectionIndex = 2
+                            theTargetScroll = vh * 100 * sectionIndex;
+                            
+                            window.scrollTo({
+                                top: theTargetScroll,
+                                behavior: 'smooth',
+                            })
                             desc.classList.remove('active');
                             desc.style.opacity = '0';
                             desc.style.transform = 'translate(-50%, -50%) scale(.2)';
@@ -218,10 +243,6 @@ window.onload = function() {
                     });
                 });
             }
-            
-            theCardEffect();
-            
-            
             theCardEffect();
                    
             function go_warp_outside() {
@@ -386,7 +407,10 @@ window.onload = function() {
             function theclickBtnClick() {
                 theClickBtn.addEventListener('click', function() {
                     
-                    theTargetScroll = theSection.getBoundingClientRect().top + window.scrollY;
+                    /*theTargetScroll = theSection.getBoundingClientRect().top + window.scrollY;*/
+                    const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
+                    const sectionIndex = 3
+                    theTargetScroll = vh * 100 * sectionIndex;
 
                     window.scrollTo({
                         top: theTargetScroll,
@@ -413,6 +437,14 @@ window.onload = function() {
             function theLisClick() {
                 theLis.forEach((li, i) => {
                     li.addEventListener('click', function() {
+                        const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
+                        const sectionIndex = 3
+                        theTargetScroll = vh * 100 * sectionIndex;
+    
+                        window.scrollTo({
+                            top: theTargetScroll,
+                            behavior: 'smooth',
+                        })
                         if (this.classList.contains('on')) {
                             theUl.classList.add('goOn');
                             theSign.classList.add('on');
@@ -434,6 +466,14 @@ window.onload = function() {
             function exitBtnClick() {
                 exit_btns.forEach((btn, i) => {
                     btn.addEventListener('click', function() {
+                        const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
+                        const sectionIndex = 3
+                        theTargetScroll = vh * 100 * sectionIndex;
+    
+                        window.scrollTo({
+                            top: theTargetScroll,
+                            behavior: 'smooth',
+                        })
                         chuemBtn.classList.add('on');
                         floatDivWrappers[i].classList.remove('on');
                         setTimeout(() => {
@@ -447,6 +487,14 @@ window.onload = function() {
             function moreInfoBtnClick() {
                 more_info_btns.forEach((info_btn, i) => {
                     info_btn.addEventListener('click', function() {
+                        const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
+                        const sectionIndex = 3
+                        theTargetScroll = vh * 100 * sectionIndex;
+    
+                        window.scrollTo({
+                            top: theTargetScroll,
+                            behavior: 'smooth',
+                        })
                         floatDivWrappers[i].classList.remove('on');
                         setTimeout(() => {
                             info_div[i].classList.add('on');
@@ -456,8 +504,17 @@ window.onload = function() {
             }
 
             function infoExitClick() {
+                
                 info_exit_btns.forEach((btn, i) => {
                     btn.addEventListener('click', function() {
+                        const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
+                        const sectionIndex = 3
+                        theTargetScroll = vh * 100 * sectionIndex;
+    
+                        window.scrollTo({
+                            top: theTargetScroll,
+                            behavior: 'smooth',
+                        })
                         info_div[i].classList.remove('on');
                         setTimeout(() => {
                             floatDivWrappers[i].classList.add('on');
@@ -559,9 +616,18 @@ window.onload = function() {
             const buttons = document.querySelectorAll(".why-li");
             const contentWrapper = document.querySelector(".thats-the-reason-wrapper");
             const contents = document.querySelectorAll(".thats-the-reason-div");
+            let theTargetScroll;
         
             buttons.forEach((button, index) => {
                 button.addEventListener("click", () => {
+                    const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
+                    const sectionIndex = 4;
+                    theTargetScroll = vh * 100 * sectionIndex;
+                    
+                    window.scrollTo({
+                        top: theTargetScroll,
+                        behavior: 'smooth',
+                    })
                     buttons.forEach((buttonz, i) => {
                         if(buttonz.classList.contains('on')) {
                             buttonz.classList.remove('on');
@@ -668,39 +734,42 @@ window.onload = function() {
             let lis = ul.querySelectorAll('li');
             let body = document.querySelector('body');
             let exitBtn = document.querySelector('.nav_exit_btn');
-            let section_01 = document.getElementById('intro-section');
-            let section_02 = document.getElementById('introduce-myself');
-            let section_03 = document.getElementById('my-skills-section');
-            let section_04 = document.getElementById('my-projects-section');
-            let section_05 = document.getElementById('to-study-section');
-            let section_06 = document.getElementById('okay-ill-be-wating-contact-section');
-            let section_07 = document.getElementById('sticky-footer');
-            let theSections = [ section_01, section_02, section_03, section_04, section_05, section_06, section_07 ];
-            
-
-
-            navBtn.addEventListener('click', function() {
+        
+            let theSections = [
+                document.getElementById('intro-section'),
+                document.getElementById('introduce-myself'),
+                document.getElementById('my-skills-section'),
+                document.getElementById('my-projects-section'),
+                document.getElementById('to-study-section'),
+                document.getElementById('okay-ill-be-wating-contact-section'),
+                document.getElementById('sticky-footer')
+            ];
+        
+            navBtn.addEventListener('click', function () {
                 theNav.classList.add('on');
             });
-
-            exitBtn.addEventListener('click', function() {
+        
+            exitBtn.addEventListener('click', function () {
                 theNav.classList.remove('on');
-            })
-            
+            });
+        
             lis.forEach((li, i) => {
-                li.addEventListener('click', function() {
+                li.addEventListener('click', function () {
                     theNav.classList.remove('on');
-            
+        
                     let targetScroll;
-            
+        
                     if (i === lis.length - 1) {
+                        // 마지막 li (푸터로 이동)
                         const pageHeight = document.documentElement.scrollHeight;
                         const stickyFooterHeight = document.getElementById('sticky-footer').offsetHeight;
                         targetScroll = pageHeight - stickyFooterHeight;
                     } else {
-                        targetScroll = theSections[i].getBoundingClientRect().top + window.scrollY;
+                        // vh 기준으로 이동
+                        const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
+                        targetScroll = vh * 100 * i;
                     }
-            
+        
                     window.scrollTo({
                         top: targetScroll,
                         behavior: "smooth",
@@ -708,6 +777,7 @@ window.onload = function() {
                 });
             });
         }
+        
         function disableNavigationTabindex() {
             let rightDivs = document.querySelectorAll('.rightDiv');
             let floatDivs = document.querySelectorAll('.floatDivWrapper');
