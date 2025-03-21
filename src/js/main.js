@@ -77,7 +77,7 @@ window.onload = function() {
                     
                     // 1. 먼저 위로 확 올려버리기 → 주소창 초기화 유도
                     window.scrollTo({
-                      top: window.innerHeight * 0.5,
+                      top: 0,
                       behavior: 'smooth',
                     });
                     
@@ -91,30 +91,33 @@ window.onload = function() {
                         top: theTargetScroll,
                         behavior: 'smooth',
                       });
-                    }, 400); // 타이밍은 기기에 따라 300~500ms 사이가 적당
+                    }, 550); // 타이밍은 기기에 따라 300~500ms 사이가 적당
 
-                    this.classList.add('on');
                     setTimeout(() => {
-                        thePlanet.style.touchAction = 'none';
-                        this.style.pointerEvents = 'none';
-                        this.style.touchAction = 'none';
-                        this.style.cursor = 'none';
-                    }, 2200);
-                    
-                    setTimeout(() => {
-                        this.classList.add('nowGo');
-                        inPlanet.classList.add('on');
+                        this.classList.add('on');
                         setTimeout(() => {
-                            inPlanet.classList.add('goOn');
-                            let theWrappers = document.querySelectorAll('.skill-gage-wrapper');
-                            theWrappers.forEach((wrapper) => {
-                                let span = wrapper.querySelector('span');
-                                span.classList.add('on');
-                            })
-                        }, 50);
-                    },2400);
+                            thePlanet.style.touchAction = 'none';
+                            this.style.pointerEvents = 'none';
+                            this.style.touchAction = 'none';
+                            this.style.cursor = 'none';
+                        }, 2200);
+                        
+                        setTimeout(() => {
+                            this.classList.add('nowGo');
+                            inPlanet.classList.add('on');
+                            setTimeout(() => {
+                                inPlanet.classList.add('goOn');
+                                let theWrappers = document.querySelectorAll('.skill-gage-wrapper');
+                                theWrappers.forEach((wrapper) => {
+                                    let span = wrapper.querySelector('span');
+                                    span.classList.add('on');
+                                })
+                            }, 50);
+                        },2400);
 
-                })
+                    })
+                    }, 600)
+
             }
             
             function createParticles() {
