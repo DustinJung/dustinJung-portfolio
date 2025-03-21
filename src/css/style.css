@@ -807,7 +807,7 @@ main {
     width: 100%;
     max-width: 100%;
     height: calc(var(--vh) * 100);
-    position: fixed;
+    position: absolute;
     background: radial-gradient(circle at center, #1d2f2f, #02050a 80%);
     z-index: 30;
     left: 0;
