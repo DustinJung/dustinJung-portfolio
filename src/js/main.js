@@ -73,24 +73,16 @@ window.onload = function() {
 
                     body.classList.remove('is-ready');
                     const sectionIndex = 2;
-                    const isModern = CSS.supports('height', '100lvh');
+                    const isModernBrowser = CSS.supports('height', '100lvh');
                     
-                    let targetScroll;
-                    
-                    if (isModern) {
-                      // 최신 브라우저 → rect 값으로 정확한 위치 이동
-                      targetScroll = document.getElementById('my-skills-section').getBoundingClientRect().top + window.scrollY;
-                    } else {
-                      // 구형 브라우저 → 기존 vh 계산 방식 유지
-                      const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
-                      targetScroll = vh * 100 * sectionIndex;
-                    }
+                    const theTargetScroll = isModernBrowser
+                        ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
+                        : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
                     
                     window.scrollTo({
-                      top: targetScroll,
-                      behavior: 'smooth',
+                        top: theTargetScroll,
+                        behavior: 'smooth',
                     });
-
                     this.classList.add('on');
                     setTimeout(() => {
                         thePlanet.style.touchAction = 'none';
