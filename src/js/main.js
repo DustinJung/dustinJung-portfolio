@@ -75,20 +75,23 @@ window.onload = function() {
                     const sectionIndex = 2;
                     const isModern = CSS.supports('height', '100lvh');
                     
-                // 1. 강제로 좀 더 아래로 이동해서 주소창을 숨기게 유도
-                window.scrollTo({
-                    top: window.innerHeight * (sectionIndex + 1.2), // 실제 위치보다 아래로!
-                    behavior: 'smooth',
-                });
-                
-                // 2. 살짝 기다렸다가 원래 위치로 이동
-                setTimeout(() => {
-                    const theTargetScroll = window.innerHeight * sectionIndex;
+                    // 1. 먼저 위로 확 올려버리기 → 주소창 초기화 유도
                     window.scrollTo({
-                    top: theTargetScroll,
-                    behavior: 'smooth',
+                      top: window.innerHeight * 0.5,
+                      behavior: 'smooth',
                     });
-                }, 400); // 주소창이 숨겨지는 시간
+                    
+                    // 2. 살짝 기다렸다가 → 진짜 행성 위치로 이동
+                    setTimeout(() => {
+                      const theTargetScroll = isModern
+                        ? window.innerHeight * sectionIndex
+                        : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex;
+                    
+                      window.scrollTo({
+                        top: theTargetScroll,
+                        behavior: 'smooth',
+                      });
+                    }, 400); // 타이밍은 기기에 따라 300~500ms 사이가 적당
 
                     this.classList.add('on');
                     setTimeout(() => {
