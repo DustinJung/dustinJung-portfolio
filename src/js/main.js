@@ -75,49 +75,37 @@ window.onload = function() {
                     const sectionIndex = 2;
                     const isModern = CSS.supports('height', '100lvh');
                     
-                    // 1. 먼저 위로 확 올려버리기 → 주소창 초기화 유도
+                    const theTargetScroll = isModern
+                      ? window.innerHeight * sectionIndex
+                      : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex;
+                    
                     window.scrollTo({
-                      top: 0,
+                      top: theTargetScroll,
                       behavior: 'smooth',
                     });
-                    
-                    // 2. 살짝 기다렸다가 → 진짜 행성 위치로 이동
+
+                    this.classList.add('on');
                     setTimeout(() => {
-                      const theTargetScroll = isModern
-                        ? window.innerHeight * sectionIndex
-                        : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex;
+                        thePlanet.style.touchAction = 'none';
+                        this.style.pointerEvents = 'none';
+                        this.style.touchAction = 'none';
+                        this.style.cursor = 'none';
+                    }, 2200);
                     
-                      window.scrollTo({
-                        top: theTargetScroll,
-                        behavior: 'smooth',
-                      });
-                    }, 550); // 타이밍은 기기에 따라 300~500ms 사이가 적당
-
                     setTimeout(() => {
-                        this.classList.add('on');
+                        this.classList.add('nowGo');
+                        inPlanet.classList.add('on');
                         setTimeout(() => {
-                            thePlanet.style.touchAction = 'none';
-                            this.style.pointerEvents = 'none';
-                            this.style.touchAction = 'none';
-                            this.style.cursor = 'none';
-                        }, 2200);
-                        
-                        setTimeout(() => {
-                            this.classList.add('nowGo');
-                            inPlanet.classList.add('on');
-                            setTimeout(() => {
-                                inPlanet.classList.add('goOn');
-                                let theWrappers = document.querySelectorAll('.skill-gage-wrapper');
-                                theWrappers.forEach((wrapper) => {
-                                    let span = wrapper.querySelector('span');
-                                    span.classList.add('on');
-                                })
-                            }, 50);
-                        },2400);
+                            inPlanet.classList.add('goOn');
+                            let theWrappers = document.querySelectorAll('.skill-gage-wrapper');
+                            theWrappers.forEach((wrapper) => {
+                                let span = wrapper.querySelector('span');
+                                span.classList.add('on');
+                            })
+                        }, 50);
+                    },2400);
 
-                    })
-                    }, 600)
-
+                })
             }
             
             function createParticles() {
