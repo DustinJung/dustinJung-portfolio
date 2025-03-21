@@ -71,7 +71,7 @@ window.onload = function() {
             function getScrollTarget() {
               const isModern = CSS.supports('height', '100lvh');
               return isModern
-                ? theSection.getBoundingClientRect().top + window.scrollY
+                ? inPlanet.getBoundingClientRect().top + window.scrollY
                 : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex;
             }
           
@@ -79,7 +79,7 @@ window.onload = function() {
               thePlanet.addEventListener('click', function () {
                 body.classList.remove('is-ready');
           
-                // 정확한 위치로 스크롤 이동
+                // inPlanet의 위치 기준으로 정확하게 이동
                 window.scrollTo({
                   top: getScrollTarget(),
                   behavior: 'smooth'
@@ -98,7 +98,7 @@ window.onload = function() {
                   this.classList.add('nowGo');
                   inPlanet.classList.add('on');
           
-                  // 💥 현재 뷰포트 기준으로 정확하게 height 고정
+                  // 현재 뷰포트 기준으로 정확하게 height 고정
                   inPlanet.style.height = `${window.innerHeight}px`;
           
                   setTimeout(() => {
@@ -165,18 +165,6 @@ window.onload = function() {
                         });
             
                         container.addEventListener('click', function() {
-                            const sectionIndex = 2;
-                            const isModernBrowser = CSS.supports('height', '100lvh');
-                            
-                            const theTargetScroll = isModernBrowser
-                                ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
-                                : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
-                            
-                            window.scrollTo({
-                                top: theTargetScroll,
-                                behavior: 'smooth',
-                            });
-
                             if (isMoving) return;
                             isMoving = true;
                         
@@ -223,17 +211,6 @@ window.onload = function() {
             
                         // close 버튼 클릭 시 초기화
                         close_btn.addEventListener('click', function() {
-                            const sectionIndex = 2;
-                            const isModernBrowser = CSS.supports('height', '100lvh');
-                            
-                            const theTargetScroll = isModernBrowser
-                                ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
-                                : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
-                            
-                            window.scrollTo({
-                                top: theTargetScroll,
-                                behavior: 'smooth',
-                            });
                             desc.classList.remove('active');
                             desc.style.opacity = '0';
                             desc.style.transform = 'translate(-50%, -50%) scale(.2)';
