@@ -815,9 +815,10 @@ main {
     touch-action: none;
     opacity: 0;
     visibility: hidden;
-    display: none;
     transition: opacity .6s;
     overflow: hidden;
+    pointer-events: none;
+    z-index: -100;
 }
 .ifClickBgGoOff {
     position: absolute;
@@ -858,12 +859,13 @@ main {
     animation: floatTheParticles 4s linear infinite;
 }
 #in-the-planet.on {
-    display: block;
     visibility: visible;
     touch-action: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: auto;
+    z-index: 0;
 }
 #in-the-planet.goOn {
     opacity: 1;
