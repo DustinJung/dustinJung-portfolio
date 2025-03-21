@@ -75,23 +75,21 @@ window.onload = function() {
                     const sectionIndex = 2;
                     const isModern = CSS.supports('height', '100lvh');
                     
-                    // 1. 먼저 주소창 유도용 1px 스크롤
+                // 1. 강제로 좀 더 아래로 이동해서 주소창을 숨기게 유도
+                window.scrollTo({
+                    top: window.innerHeight * (sectionIndex + 1.2), // 실제 위치보다 아래로!
+                    behavior: 'smooth',
+                });
+                
+                // 2. 살짝 기다렸다가 원래 위치로 이동
+                setTimeout(() => {
+                    const theTargetScroll = window.innerHeight * sectionIndex;
                     window.scrollTo({
-                      top: 1,
-                      behavior: 'smooth',
+                    top: theTargetScroll,
+                    behavior: 'smooth',
                     });
-                    
-                    // 2. 주소창 사라질 타이밍 기다렸다가 정확 위치로 이동
-                    setTimeout(() => {
-                      const theTargetScroll = isModern
-                        ? window.innerHeight * sectionIndex
-                        : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex;
-                    
-                      window.scrollTo({
-                        top: theTargetScroll,
-                        behavior: 'smooth',
-                      });
-                    }, 300); // 타이밍은 200~400ms 정도가 무난함
+                }, 400); // 주소창이 숨겨지는 시간
+
                     this.classList.add('on');
                     setTimeout(() => {
                         thePlanet.style.touchAction = 'none';
