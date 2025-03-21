@@ -138,7 +138,9 @@ function initEffects() {
     }
 
     function setVH() {
-        let vh = window.visualViewport ? window.visualViewport.height * 0.01 : window.innerHeight * 0.01;
+        let vh = window.visualViewport 
+            ? window.visualViewport.height * 0.01 
+            : window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
 
@@ -174,10 +176,10 @@ function initEffects() {
                     ScrollTrigger.refresh();
                 } else {
                     resizeTimeoutForMobile = setTimeout(() => {
-                        debounceSetVH(500);
+                        debounceSetVH(300);
                         setSize();
                         ScrollTrigger.refresh();
-                    }, 700);
+                    }, 200);
                 }
             }, 200);
         });
@@ -185,13 +187,13 @@ function initEffects() {
 
         window.addEventListener("orientationchange", () => {
             setTimeout(() => {
-                debounceSetVH(500);
+                debounceSetVH(300);
                 ScrollTrigger.refresh();
             }, 300);
         });
     }
 
-    function debounceSetVH(delay = 500) {
+    function debounceSetVH(delay = 300) {
         clearTimeout(window.__vhTimeout);
         window.__vhTimeout = setTimeout(() => {
             setVH();
@@ -214,7 +216,7 @@ function initEffects() {
     // visualViewport 변화 감지해서 vh 보정 (디바운스 적용)
     if (window.visualViewport) {
         window.visualViewport.addEventListener('resize', () => {
-            debounceSetVH(500);
+            debounceSetVH(300);
         });
     }
 }

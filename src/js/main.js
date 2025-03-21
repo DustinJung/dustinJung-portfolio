@@ -72,14 +72,17 @@ window.onload = function() {
                 thePlanet.addEventListener('click', function() {
 
                     body.classList.remove('is-ready');
-                    const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
-                    const sectionIndex = 2
-                    theTargetScroll = vh * 100 * sectionIndex;
+                    const sectionIndex = 2;
+                    const isModernBrowser = CSS.supports('height', '100lvh');
+                    
+                    const theTargetScroll = isModernBrowser
+                        ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
+                        : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
                     
                     window.scrollTo({
                         top: theTargetScroll,
                         behavior: 'smooth',
-                    })
+                    });
                     this.classList.add('on');
                     setTimeout(() => {
                         thePlanet.style.touchAction = 'none';
@@ -157,14 +160,17 @@ window.onload = function() {
                         });
             
                         container.addEventListener('click', function() {
-                            const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
-                            const sectionIndex = 2
-                            theTargetScroll = vh * 100 * sectionIndex;
+                            const sectionIndex = 2;
+                            const isModernBrowser = CSS.supports('height', '100lvh');
+                            
+                            const theTargetScroll = isModernBrowser
+                                ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
+                                : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
                             
                             window.scrollTo({
                                 top: theTargetScroll,
                                 behavior: 'smooth',
-                            })
+                            });
 
                             if (isMoving) return;
                             isMoving = true;
@@ -212,14 +218,17 @@ window.onload = function() {
             
                         // close 버튼 클릭 시 초기화
                         close_btn.addEventListener('click', function() {
-                            const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
-                            const sectionIndex = 2
-                            theTargetScroll = vh * 100 * sectionIndex;
+                            const sectionIndex = 2;
+                            const isModernBrowser = CSS.supports('height', '100lvh');
+                            
+                            const theTargetScroll = isModernBrowser
+                                ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
+                                : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
                             
                             window.scrollTo({
                                 top: theTargetScroll,
                                 behavior: 'smooth',
-                            })
+                            });
                             desc.classList.remove('active');
                             desc.style.opacity = '0';
                             desc.style.transform = 'translate(-50%, -50%) scale(.2)';
@@ -406,16 +415,17 @@ window.onload = function() {
 
             function theclickBtnClick() {
                 theClickBtn.addEventListener('click', function() {
+                    const sectionIndex = 3;
+                    const isModernBrowser = CSS.supports('height', '100lvh');
                     
-                    /*theTargetScroll = theSection.getBoundingClientRect().top + window.scrollY;*/
-                    const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
-                    const sectionIndex = 3
-                    theTargetScroll = vh * 100 * sectionIndex;
-
+                    const theTargetScroll = isModernBrowser
+                        ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
+                        : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
+                    
                     window.scrollTo({
                         top: theTargetScroll,
                         behavior: 'smooth',
-                    })
+                    });
                     
 
                     this.classList.add('clicked');
@@ -437,14 +447,17 @@ window.onload = function() {
             function theLisClick() {
                 theLis.forEach((li, i) => {
                     li.addEventListener('click', function() {
-                        const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
-                        const sectionIndex = 3
-                        theTargetScroll = vh * 100 * sectionIndex;
-    
+                        const sectionIndex = 3;
+                        const isModernBrowser = CSS.supports('height', '100lvh');
+                        
+                        const theTargetScroll = isModernBrowser
+                            ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
+                            : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
+                        
                         window.scrollTo({
                             top: theTargetScroll,
                             behavior: 'smooth',
-                        })
+                        });
                         if (this.classList.contains('on')) {
                             theUl.classList.add('goOn');
                             theSign.classList.add('on');
@@ -466,14 +479,17 @@ window.onload = function() {
             function exitBtnClick() {
                 exit_btns.forEach((btn, i) => {
                     btn.addEventListener('click', function() {
-                        const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
-                        const sectionIndex = 3
-                        theTargetScroll = vh * 100 * sectionIndex;
-    
+                        const sectionIndex = 3;
+                        const isModernBrowser = CSS.supports('height', '100lvh');
+                        
+                        const theTargetScroll = isModernBrowser
+                            ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
+                            : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
+                        
                         window.scrollTo({
                             top: theTargetScroll,
                             behavior: 'smooth',
-                        })
+                        });
                         chuemBtn.classList.add('on');
                         floatDivWrappers[i].classList.remove('on');
                         setTimeout(() => {
@@ -487,14 +503,17 @@ window.onload = function() {
             function moreInfoBtnClick() {
                 more_info_btns.forEach((info_btn, i) => {
                     info_btn.addEventListener('click', function() {
-                        const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
-                        const sectionIndex = 3
-                        theTargetScroll = vh * 100 * sectionIndex;
-    
+                        const sectionIndex = 3;
+                        const isModernBrowser = CSS.supports('height', '100lvh');
+                        
+                        const theTargetScroll = isModernBrowser
+                            ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
+                            : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
+                        
                         window.scrollTo({
                             top: theTargetScroll,
                             behavior: 'smooth',
-                        })
+                        });
                         floatDivWrappers[i].classList.remove('on');
                         setTimeout(() => {
                             info_div[i].classList.add('on');
@@ -507,14 +526,17 @@ window.onload = function() {
                 
                 info_exit_btns.forEach((btn, i) => {
                     btn.addEventListener('click', function() {
-                        const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
-                        const sectionIndex = 3
-                        theTargetScroll = vh * 100 * sectionIndex;
-    
+                        const sectionIndex = 3;
+                        const isModernBrowser = CSS.supports('height', '100lvh');
+                        
+                        const theTargetScroll = isModernBrowser
+                            ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
+                            : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
+                        
                         window.scrollTo({
                             top: theTargetScroll,
                             behavior: 'smooth',
-                        })
+                        });
                         info_div[i].classList.remove('on');
                         setTimeout(() => {
                             floatDivWrappers[i].classList.add('on');
@@ -620,14 +642,17 @@ window.onload = function() {
         
             buttons.forEach((button, index) => {
                 button.addEventListener("click", () => {
-                    const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
-                    const sectionIndex = 4;
-                    theTargetScroll = vh * 100 * sectionIndex;
+                    const sectionIndex = 2;
+                    const isModernBrowser = CSS.supports('height', '100lvh');
+                    
+                    const theTargetScroll = isModernBrowser
+                        ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
+                        : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
                     
                     window.scrollTo({
                         top: theTargetScroll,
                         behavior: 'smooth',
-                    })
+                    });
                     buttons.forEach((buttonz, i) => {
                         if(buttonz.classList.contains('on')) {
                             buttonz.classList.remove('on');
@@ -727,57 +752,61 @@ window.onload = function() {
                 });
             });
         }
-        function navModal() {
-            let navBtn = document.querySelector('.navigation');
-            let theNav = document.getElementById('nav-menu-modal');
-            let ul = theNav.querySelector('#theNavUl');
-            let lis = ul.querySelectorAll('li');
-            let body = document.querySelector('body');
-            let exitBtn = document.querySelector('.nav_exit_btn');
-        
-            let theSections = [
-                document.getElementById('intro-section'),
-                document.getElementById('introduce-myself'),
-                document.getElementById('my-skills-section'),
-                document.getElementById('my-projects-section'),
-                document.getElementById('to-study-section'),
-                document.getElementById('okay-ill-be-wating-contact-section'),
-                document.getElementById('sticky-footer')
-            ];
-        
-            navBtn.addEventListener('click', function () {
-                theNav.classList.add('on');
+function navModal() {
+    let navBtn = document.querySelector('.navigation');
+    let theNav = document.getElementById('nav-menu-modal');
+    let ul = theNav.querySelector('#theNavUl');
+    let lis = ul.querySelectorAll('li');
+    let body = document.querySelector('body');
+    let exitBtn = document.querySelector('.nav_exit_btn');
+
+    let theSections = [
+        document.getElementById('intro-section'),
+        document.getElementById('introduce-myself'),
+        document.getElementById('my-skills-section'),
+        document.getElementById('my-projects-section'),
+        document.getElementById('to-study-section'),
+        document.getElementById('okay-ill-be-wating-contact-section'),
+        document.getElementById('sticky-footer')
+    ];
+
+    navBtn.addEventListener('click', function () {
+        theNav.classList.add('on');
+    });
+
+    exitBtn.addEventListener('click', function () {
+        theNav.classList.remove('on');
+    });
+
+    lis.forEach((li, i) => {
+        li.addEventListener('click', function () {
+            theNav.classList.remove('on');
+    
+            let targetScroll;
+    
+            if (i === lis.length - 1) {
+                // 마지막 li (푸터로 이동)
+                const pageHeight = document.documentElement.scrollHeight;
+                const stickyFooterHeight = document.getElementById('sticky-footer').offsetHeight;
+                targetScroll = pageHeight - stickyFooterHeight;
+            } else {
+                // 최신 브라우저(100lvh 지원) vs 구형 브라우저(--vh 사용) 구분
+                const isModernBrowser = CSS.supports('height', '100lvh');
+    
+                targetScroll = isModernBrowser
+                    ? window.innerHeight * i // 최신 브라우저 → 100lvh 사용
+                    : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * i; // 구형 브라우저 → --vh 사용
+            }
+    
+            window.scrollTo({
+                top: targetScroll,
+                behavior: "smooth",
             });
-        
-            exitBtn.addEventListener('click', function () {
-                theNav.classList.remove('on');
-            });
-        
-            lis.forEach((li, i) => {
-                li.addEventListener('click', function () {
-                    theNav.classList.remove('on');
-        
-                    let targetScroll;
-        
-                    if (i === lis.length - 1) {
-                        // 마지막 li (푸터로 이동)
-                        const pageHeight = document.documentElement.scrollHeight;
-                        const stickyFooterHeight = document.getElementById('sticky-footer').offsetHeight;
-                        targetScroll = pageHeight - stickyFooterHeight;
-                    } else {
-                        // vh 기준으로 이동
-                        const vh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh'));
-                        targetScroll = vh * 100 * i;
-                    }
-        
-                    window.scrollTo({
-                        top: targetScroll,
-                        behavior: "smooth",
-                    });
-                });
-            });
-        }
-        
+        });
+    });
+    
+}
+
         function disableNavigationTabindex() {
             let rightDivs = document.querySelectorAll('.rightDiv');
             let floatDivs = document.querySelectorAll('.floatDivWrapper');
