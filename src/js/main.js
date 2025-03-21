@@ -73,16 +73,25 @@ window.onload = function() {
 
                     body.classList.remove('is-ready');
                     const sectionIndex = 2;
-                    const isModernBrowser = CSS.supports('height', '100lvh');
+                    const isModern = CSS.supports('height', '100lvh');
                     
-                    const theTargetScroll = isModernBrowser
-                        ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
-                        : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
-                    
+                    // 1. 먼저 주소창 유도용 1px 스크롤
                     window.scrollTo({
+                      top: 1,
+                      behavior: 'smooth',
+                    });
+                    
+                    // 2. 주소창 사라질 타이밍 기다렸다가 정확 위치로 이동
+                    setTimeout(() => {
+                      const theTargetScroll = isModern
+                        ? window.innerHeight * sectionIndex
+                        : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex;
+                    
+                      window.scrollTo({
                         top: theTargetScroll,
                         behavior: 'smooth',
-                    });
+                      });
+                    }, 300); // 타이밍은 200~400ms 정도가 무난함
                     this.classList.add('on');
                     setTimeout(() => {
                         thePlanet.style.touchAction = 'none';
