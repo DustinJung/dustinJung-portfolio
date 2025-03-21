@@ -13,7 +13,9 @@
     #header-section header .navigation {
         font-size: 17px;
         height: 100%;
-        width: 50%;
+        display: flex;
+        align-items: center;
+        padding: 1rem;
     }
     #header-section header .my-name {
         text-align: left;
@@ -259,7 +261,6 @@
         padding: 0;
     }
 
-    /* skill section*/
 
     /*skill section*/
     #my-skills-section {
@@ -293,6 +294,7 @@
     }
     .skill-swiper-wrapper {
         width: 100%;
+        padding: 0;
     }
     #go-outside-btn-wrapper {
         position: absolute;
@@ -303,9 +305,59 @@
         transform: scale(1);
     }
     .betweenBtnSecond {
-        height: min(29.2vw, 22.2vh);
+        height: auto;
         background: linear-gradient(100deg, #6a008ad0 30%, rgba(183, 31, 189, .1) 100%);
         opacity: 1;
+    }
+    .skill-swiper-wrapper .swiper-wrapper {
+        padding: .625rem 0  ;
+    }
+    .skill-swiper-wrapper .container {
+        width: 160px;
+        height: calc(160px * 1.409); /* 대략 225.44px */
+    }
+    .skill-swiper-wrapper .overlay {
+        width: 160px;
+        height: calc(160px * 1.409); /* 대략 225.44px */
+    }
+    .skill-wrapper {
+        width: 100%;
+        height: 100%;
+    }
+    .skill-icon {
+        width: 130px;
+        height: calc(130px * 0.139); /* 대략 18px */
+        padding: 1rem;
+    }
+    .skill-svg-wrapper svg {
+        width: 52px;
+    }
+    .skill-icon::after {
+        font-size: calc(16px * var(--size));
+    }
+
+    /*project*/
+    #the-place-sign {
+        left: 5%;
+        transform: rotateZ(2deg) translate(-5%, 0%);
+    }
+    .letsGoChuem {
+        transform: translate(-50%, 30%);
+    }
+    #mega-x-ui > ul {
+        width: 400px;
+    }
+    #mega-x-ui > ul li {
+        width: 100%;
+    }
+    .leftDiv > h3 {
+        font-size: calc(38px * var(--size));
+    }
+    .leftDiv > div > a {
+        margin-top: 1.25rem;
+    }
+    .leftDiv_exit_btn {
+        right: 10rem;
     }
     /*to study*/
     .to-study-wrapper {

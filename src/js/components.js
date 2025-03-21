@@ -3,7 +3,7 @@
 function initSwiper() {
   var swiper01 = new Swiper(".skill-swiper-1", {
       breakpoints: {
-        1280: {
+        1367: {
             slidesPerView: 5.5,
             centeredSlides: true,
         },
@@ -11,8 +11,12 @@ function initSwiper() {
             slidesPerView: 3.5,
             centeredSlides: true,
         },
-        0: {  // 화면 너비 480px 이상일 때
+        400: {
             slidesPerView: 2.5,
+            centeredSlides: true,
+        },
+        0: {
+            slidesPerView: 1.5,
             centeredSlides: true,
         }
     },
@@ -65,8 +69,12 @@ function initSwiper() {
           slidesPerView: 3.5,
           centeredSlides: true,
       },
-      0: {  // 화면 너비 480px 이상일 때
-          slidesPerView: 2.5,
+      400: {
+        slidesPerView: 2.5,
+        centeredSlides: true,
+      },
+      0: {
+          slidesPerView: 1.5,
           centeredSlides: true,
       }
   },
@@ -107,7 +115,7 @@ function initSwiper() {
         swiper02.update();
       }
     }
-});
+  });
 
 var swiper03 = new Swiper(".projects_swiper", {
   slidesPerView: 1,

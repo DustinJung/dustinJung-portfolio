@@ -1,10 +1,10 @@
-/* responsive-desktop.css => 1280px 이상 */
-@media (min-width: 1280px) {
+/* responsive-desktop.css => 1367px 이상 */
+@media (min-width: 1367px) {
     #intro-section span {
         font-size: 7rem;
     }
     #its-me-wrapper{
-        max-width: 1280px;
+        max-width: 1367px;
     }
     header > a.my-name:hover,
     header > button:hover {
@@ -33,7 +33,7 @@
         left: 0;
     }
     /*main {
-        max-width: 1280px;
+        max-width: 1367px;
     }*/
     #wait-for-the-ufo {
         width: 340px;
