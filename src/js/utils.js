@@ -159,16 +159,27 @@ function initUtils() {
             setVH(); 
     
             let resizeTimeout;
+            let resizeTimeoutForMobile;
+            
             window.addEventListener("resize", () => {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(() => {
-                    if (window.innerWidth > 1366) {
-                        setVH();
-                        ScrollTrigger.refresh();
-                    }
-                    setSize();
-                }, 200);
+              clearTimeout(resizeTimeout);
+              clearTimeout(resizeTimeoutForMobile);
+            
+              resizeTimeout = setTimeout(() => {
+                if (window.innerWidth > 1366) {
+                  ScrollTrigger.refresh();
+                }
+            
+                setSize(); // 공통 처리
+            
+                // 모바일용: 700ms 뒤에 vh 다시 설정
+                resizeTimeoutForMobile = setTimeout(() => {
+                  setVH();
+                  ScrollTrigger.refresh();
+                }, 700);
+              }, 200);
             });
+            
     
             window.addEventListener("orientationchange", () => {
                 setTimeout(() => {
@@ -189,6 +200,13 @@ function initUtils() {
             window.addEventListener("resize", handleResize);
         } else {
             gsapRefresh();
+        }
+
+        // visualViewport 변화 감지해서 vh 보정
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', () => {
+                setVH();
+            });
         }
     }
     
