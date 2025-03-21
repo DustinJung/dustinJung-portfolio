@@ -67,19 +67,19 @@ window.onload = function() {
             const body = document.body;
             const theSection = document.querySelector('#my-skills-section');
             const sectionIndex = 2;
-          
+            
             function getScrollTarget() {
               const isModern = CSS.supports('height', '100lvh');
               return isModern
-                ? inPlanet.getBoundingClientRect().top + window.scrollY
+                ? theSection.getBoundingClientRect().top + window.scrollY
                 : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex;
             }
-          
+            
             function planetClick() {
               thePlanet.addEventListener('click', function () {
                 body.classList.remove('is-ready');
-          
-                // inPlanet의 위치 기준으로 정확하게 이동
+            
+                // 정확하게 my-skills-section 위치로 스크롤 이동
                 window.scrollTo({
                   top: getScrollTarget(),
                   behavior: 'smooth'
