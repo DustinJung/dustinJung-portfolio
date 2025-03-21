@@ -37,6 +37,7 @@
 /*intro*/
 #intro-section {
     width: 100%;
+    height: 100lvh;
     height: calc(var(--vh) * 100);
     min-height: 80vh;
     position: relative;
@@ -273,6 +274,7 @@ main {
 /*introduce-section*/
 #introduce-myself {
     padding-top: 2rem;
+    height: 100lvh;
     height: calc(var(--vh) * 100);
 }
 #wait-for-the-ufo {
@@ -638,6 +640,7 @@ main {
 
 /*my-skills-section*/
 #my-skills-section {
+    height: 100lvh;
     height: calc(var(--vh) * 100);
     display: flex;
     flex-direction: column;
@@ -802,6 +805,7 @@ main {
 #in-the-planet {
     width: 100%;
     max-width: 100%;
+    height: 100lvh;
     height: calc(var(--vh) * 100);
     position: fixed;
     background: radial-gradient(circle at center, #1d2f2f, #02050a 80%);
@@ -838,6 +842,7 @@ main {
     top: 0;
     width: 100%;
     max-width: 100%;
+    height: 100lvh;
     height: calc(var(--vh) * 100);
     z-index: 0;
     touch-action: none;
@@ -1321,6 +1326,7 @@ input.desc-title {
 #my-projects-section {
     width: 100%;
     max-width: 100%;
+    height: 100lvh;
     height: calc(var(--vh) * 100);
     perspective: 100vw;
     background: transparent;
@@ -1709,6 +1715,7 @@ input.desc-title {
 #to-study-section {
     width: 100%;
     max-width: 100%;
+    height: 100lvh;
     height: calc(var(--vh) * 100);
     background-color: #0B0C10;
     background-image: url(../../public/images/intro/night-sky-nuki4k.png);
@@ -1826,6 +1833,7 @@ input.desc-title {
     word-break: break-word;
 }
 #okay-ill-be-wating-contact-section {
+    height: 100lvh;
     height: calc(var(--vh) * 100);
     background-color: #0B0C10;
     background-image: url(../../public/images/intro/night-sky-nuki4k.png);
@@ -1965,6 +1973,7 @@ footer {
 }
 footer > div {
     position: sticky;
+    height: 100lvh;
     height: calc(var(--vh) * 100);
     width: 100%;
     left: 0;
