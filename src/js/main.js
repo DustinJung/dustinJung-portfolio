@@ -1,7 +1,8 @@
 /* main.js => vanila javascript, 함수 모듈 총괄 */
 import { initAnimations } from "./animations.js";
 import { initComponents } from "./components.js";
-import { initUtils } from "./utils.js";
+import { initUtils, letBodyTakeIsReady } from "./utils.js";
+gsap.registerPlugin(ScrollTrigger);
 
 function startWeb() {
     try {
@@ -23,6 +24,92 @@ document.addEventListener("DOMContentLoaded", function () {
     initUtils();
 });
 
+
+window.addEventListener('load', () => {
+    const loadingText = document.querySelector('.loading-percent');
+    const preLoader = document.getElementById('pre-loader');
+    const loadedWrap = document.getElementById('loaded');
+
+    let targetPercent = 0;
+    let currentPercent = 0;
+
+    const smoothInterval = setInterval(() => {
+        if (currentPercent < targetPercent) {
+            currentPercent++;
+            loadingText.textContent = `${currentPercent}%`;
+        }
+    }, 20);
+
+    function waitForElementLoad(el) {
+        return new Promise((resolve) => {
+        if (
+            (el.tagName === 'IMG' && el.complete) ||
+            (el.tagName === 'VIDEO' && el.readyState >= 1) ||
+            (el.tagName === 'IFRAME' && el.complete)
+        ) {
+            resolve();
+        } else {
+            el.addEventListener('load', resolve);
+            el.addEventListener('error', resolve);
+        }
+        });
+    }
+
+    function waitForFonts() {
+        return document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+    }
+
+    async function waitForAllResources(onProgress) {
+        const elements = [
+        ...document.querySelectorAll('img, video, iframe, audio, object, embed')
+    ];
+
+    const total = elements.length + 1;
+    let loaded = 0;
+
+    function updateProgress() {
+        loaded++;
+        targetPercent = Math.floor((loaded / total) * 100);
+        onProgress(targetPercent);
+    }
+
+    const promises = elements.map((el) =>
+        waitForElementLoad(el).then(updateProgress)
+    );
+
+    const fontPromise = waitForFonts().then(updateProgress);
+
+    await Promise.all([...promises, fontPromise]);
+    }
+
+    // 비상용 타임아웃
+    setTimeout(() => {
+    if (targetPercent < 100) {
+        console.warn('⏰ 로딩 타임아웃 - 강제 100% 처리');
+        targetPercent = 100;
+    }
+    }, 15000);
+
+    // 실행
+    waitForAllResources(() => {}).then(() => {
+    targetPercent = 100;
+
+    const waitUntilComplete = setInterval(() => {
+        if (currentPercent >= 100) {
+                clearInterval(smoothInterval);
+                clearInterval(waitUntilComplete);
+
+                preLoader.style.display = 'none';
+                loadedWrap.classList.add('on');
+                letBodyTakeIsReady();
+
+                setTimeout(() => {
+                ScrollTrigger.refresh();
+            }, 100);
+        }
+        }, 50);
+    });
+});
 
 window.onload = function() {
     function vanilaJavascripts() {
@@ -55,11 +142,6 @@ window.onload = function() {
             });
         }
 
-        function letBodyTakeIsReady() {
-            setTimeout(() => {
-                document.querySelector('body').classList.add('is-ready');
-            }, 5200)
-        };
         function hoverThenPlanetGoesOn() {
             const thePlanet = document.querySelector('.the-planet');
             const inPlanet = document.querySelector('#in-the-planet');
@@ -813,7 +895,6 @@ function navModal() {
         
 
 
-        letBodyTakeIsReady();
         hoverThenPlanetGoesOn();
         theProjectsSection();
         okTheToStudyIHaveToDo();

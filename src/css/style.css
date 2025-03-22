@@ -9,10 +9,12 @@
     height: 100px;
     z-index: 100;
     transform: translateY(-100%);
+    pointer-events: none;
+}
+#loaded.on #header-section {
     animation: 
         letHeaderDown .4s 5.5s cubic-bezier(0.21, 1.05, 0.38, 1.15) forwards, 
         letHeadertongtong .625s 5.9s ease-out forwards;
-    pointer-events: none;
 }
 #header-section header {
     padding: 20px;
@@ -54,6 +56,9 @@
     transform: translate(-50%, -50%) scaleX(0);
     transform-origin: left;
     display: inline-block;
+    z-index: 3;
+}
+#loaded.on #intro-section > span.hello-world {
     animation: 
         helloWorld .4s .5s ease forwards, 
         helloWorld2 .8s .95s cubic-bezier(0.21, 1.05, 0.38, 1.15) forwards,
@@ -62,7 +67,6 @@
         helloWorld .4s .5s ease forwards, 
         helloWorld2 .8s .95s cubic-bezier(0.21, 1.05, 0.38, 1.15) forwards,
         hideText 1s 2s ease forwards;
-    z-index: 3;
 }
 
 #intro-section #theCircle {
@@ -82,6 +86,8 @@
     filter: blur(.75px);
     -webkit-filter: blur(.75px);
     opacity: 1;
+}
+#loaded.on #intro-section #theCircle {
     animation: shrinkCircle 1s 1.8s ease-in-out forwards;
     -webkit-animation: shrinkCircle 1s 1.8s ease-in-out forwards;
 }
@@ -104,6 +110,8 @@
     transform-origin: center;
     transform: scaleX(0);
     transition: opacity .1s ease;
+}
+#loaded.on .intro-div-top:before{
     animation: beforeScaleTo1 .3s 3s linear forwards, starBlink .3s 3.5s ease-in-out 2, starBlink .4s 4.4s ease-in-out forwards;
     -webkit-animation: beforeScaleTo1 .3s 3s linear forwards, starBlink .3s 3.5s ease-in-out 2, starBlink .4s 4.4s ease-in-out forwards;
 }
@@ -118,16 +126,22 @@
     transform-origin: center;
     transform: scaleX(0);
     transition: opacity .1s ease;
+}
+#loaded.on .intro-div-bottom:before {
     animation: beforeScaleTo1 .3s 3s linear forwards, starBlink .3s 3.5s ease-in-out 2, starBlink .4s 4.4s ease-in-out forwards;
     -webkit-animation: beforeScaleTo1 .3s 3s linear forwards, starBlink .3s 3.5s ease-in-out 2, starBlink .4s 4.4s ease-in-out forwards;
 }
 .intro-div-top {
     transform: translateY(0%);
+}
+#loaded.on .intro-div-top {
     animation: goTopIntro 1.5s 4.8s cubic-bezier(0.21, 1.05, 0.38, 1.15) forwards;
     -webkit-animation: goTopIntro 1.5s 4.8s cubic-bezier(0.21, 1.05, 0.38, 1.15) forwards;
 }
 .intro-div-bottom {
     transform: translateY(0%);
+}
+#loaded.on .intro-div-bottom {
     animation: goDownIntro 1.5s 4.8s cubic-bezier(0.21, 1.05, 0.38, 1.15) forwards;
     -webkit-animation: goDownIntro 1.5s 4.8s cubic-bezier(0.21, 1.05, 0.38, 1.15) forwards;
 }
@@ -145,11 +159,13 @@
     font-size: 3rem;
     text-shadow: 1px 1px 1px var(--point2-clr);
     text-align: center;
+}
+#loaded.on #its-me-wrapper {
     animation: hiItsMeRotate .4s 4.75s ease-in forwards !important;
     -webkit-animation: hiItsMeRotate .4s 4.75s ease-in forwards !important;
 }
 
-#its-me-wrapper h1 {
+#loaded.on #its-me-wrapper h1 {
     animation: neonGlow 2.5s infinite alternate;
     -webkit-animation: neonGlow 2.5s infinite alternate;
 }
@@ -175,6 +191,8 @@
     color: rgba(0, 255, 255, 0.3);
     text-align: center;
     white-space: nowrap;
+}
+#loaded.on #its-me-wrapper > div::before {
     animation: hackingScroll 8s linear infinite;
     -webkit-animation: hackingScroll 8s linear infinite;
 }
@@ -195,6 +213,8 @@
     color: rgba(0, 255, 255, 0.5);
     white-space: nowrap;
     overflow: hidden;
+}
+#loaded.on .hacking-text {
     animation: hackingScroll 5s linear infinite;
     -webkit-animation: hackingScroll 5s linear infinite;
 }
@@ -208,25 +228,31 @@
     transform: translateX(-50%) translateY(-50%);
     justify-content: center;
     opacity: 0;
-    animation: opacityOn .4s 6.4s ease forwards;
-    -webkit-animation: opacityOn .4s 6.4s ease forwards;
     gap: 10px;
     z-index: 2;
+}
+#loaded.on #take-a-look {
+    animation: opacityOn .4s 6.4s ease forwards;
+    -webkit-animation: opacityOn .4s 6.4s ease forwards;
 }
 #take-a-look span{
     font-size: 20px !important;
     font-weight: bold;
     position: relative;
-    animation: glitch 3s infinite steps(1) alternate, glitch-delay 7s infinite steps(1);
-    -webkit-animation: glitch 3s infinite steps(1) alternate, glitch-delay 7s infinite steps(1);
     word-spacing: -5px;
     filter: blur(.325px);
     -webkit-filter: blur(.325px);
+}
+#loaded.on #take-a-look span {
+    animation: glitch 3s infinite steps(1) alternate, glitch-delay 7s infinite steps(1);
+    -webkit-animation: glitch 3s infinite steps(1) alternate, glitch-delay 7s infinite steps(1);
 }
 #take-a-look svg{
     fill: var(--main-clr);
     filter: drop-shadow(2px 2px 5px var(--point2-clr)) drop-shadow(-2px -2px 5px var(--point-clr));
     position: relative;
+}
+#loaded.on #take-a-look svg {
     animation: take-a-look-svg .8s 6.4s alternate infinite, glitch-svg 3s 6.4s infinite steps(1) alternate;
     -webkit-animation: take-a-look-svg .8s 6.4s alternate infinite, glitch-svg 3s 6.4s infinite steps(1) alternate;
 }
@@ -242,6 +268,8 @@
     background-image: url(../../public/images/intro/night-sky-parallax4k.png);
     z-index: 1;
     opacity: 0;
+}
+#loaded.on .parallax_layer {
     animation: mountain-on .4s 6.0s ease-out forwards;
 }
 .intro-parallax-stars{

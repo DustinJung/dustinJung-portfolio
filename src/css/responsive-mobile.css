@@ -11,11 +11,15 @@
 
     #header-section header .my-name,
     #header-section header .navigation {
-        font-size: 17px;
+        font-size: calc(16px * var(--size));
         height: 100%;
         display: flex;
-        align-items: center;
-        padding: 1rem;
+        flex-direction: column;
+        justify-content: center;
+        padding: .325rem;
+        text-wrap: balance;
+        word-wrap: break-word;
+        max-width: 40%;
     }
     #header-section header .my-name {
         text-align: left;

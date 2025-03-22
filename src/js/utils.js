@@ -230,6 +230,7 @@ function initEffects() {
 }
 
 
+
     
     
     
@@ -251,4 +252,10 @@ function initEffects() {
     betweenBtnHover();
 }
 
-export { initUtils };
+function letBodyTakeIsReady() {
+    setTimeout(() => {
+        document.querySelector('body').classList.add('is-ready');
+    }, 5200)
+};
+
+export { initUtils, letBodyTakeIsReady };

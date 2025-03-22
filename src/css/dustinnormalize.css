@@ -36,6 +36,11 @@ a {
     color: inherit;
 }
 
+/*picture 태그 display block*/
+picture {
+    display: block;
+}
+
 /* 이미지 스타일 초기화 */
 img {
     vertical-align: top;

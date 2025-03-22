@@ -103,6 +103,61 @@ body.is-ready{
 
 
 /*keyframes모음*/
+@keyframes preloading-text {
+    0% {
+        transform: translateZ(0);
+    }
+    25% {
+        transform: translate3d(0, 31.2px, 0);
+    }
+    50% {
+        transform: translate3d(0, 62.4px, 0);
+    }
+    75% {
+        transform: translate3d(0, 93.6px, 0);
+    }
+    100% {
+        transform: translate3d(0, 124.8px, 0);
+    }
+}
+
+@keyframes pre-loader-animation-1 {
+    0% {
+        transform: rotate(0);
+    }
+    
+    25% {
+        transform: rotate(90deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    75% {
+        transform: rotate(270deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pre-loader-animation-2 {
+    0% {
+        transform: rotate(45deg);
+    }
+    25% {
+        transform: rotate(-45deg);
+    }
+    50% {
+        transform: rotate(-135deg);
+    }
+    75% {
+        transform: rotate(-225deg);
+    }
+    100% {
+        transform: rotate(-315deg);
+    }
+}
+
 /* 첫 번째 텍스트 애니메이션 */
 @keyframes helloWorld {
     0% {

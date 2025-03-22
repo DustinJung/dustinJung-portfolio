@@ -1,0 +1,25 @@
+{
+  "name": "dustinjung-portfolio",
+  "version": "1.0.0",
+  "description": "안녕하세요 웹 퍼블리셔 정명기의 포트폴리오입니다.",
+  "main": "index.js",
+  "scripts": {
+    "minify": "minify src/css/animations.css > dist/css/animations.min.css && minify src/css/components.css > dist/css/components.min.css && minify src/css/global.css > dist/css/global.min.css && minify src/css/responsive-desktop.css > dist/css/responsive-desktop.min.css && minify src/css/responsive-mobile.css > dist/css/responsive-mobile.min.css && minify src/css/responsive-tablet.css > dist/css/responsive-tablet.min.css && minify src/css/style.css > dist/css/style.min.css && minify src/js/animations.js > dist/js/animations.min.js && minify src/js/components.js > dist/js/components.min.js && minify src/js/main.js > dist/js/main.min.js && minify src/js/utils.js > dist/js/utils.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DustinJung/dustinJung-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DustinJung/dustinJung-portfolio/issues"
+  },
+  "homepage": "https://github.com/DustinJung/dustinJung-portfolio#readme",
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "minify": "^13.0.0"
+  }
+}
+

@@ -1,4 +1,90 @@
 /* animations.css => 애니메이션 관련 */
+
+/*pre-loader 관련*/
+#loaded {
+    visibility: hidden;
+    opacity: 0;
+    position: relative;
+    touch-action: none;
+    pointer-events: none;
+    z-index: -100000;
+}
+#loaded.on {
+    visibility: visible;
+    opacity: 1;
+    position: relative;
+    touch-action: auto;
+    pointer-events: auto;
+    z-index: 0;
+}
+#intro-words {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    height: 31.2px;
+    font-size: 21px;
+    position: relative;
+    overflow: hidden;
+}
+#intro-words > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: 7.5s infinite cubic-bezier(.1,0,.1,1) preloading-text;
+    position: absolute;
+    top: -124.8px;
+}
+#pre-loader {
+    background: linear-gradient(to bottom, #0B0C10, #111826, #19273A, #0B0C10);
+    width: 100%;
+    height: 100lvh !important;
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+#spin-box {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+.spin-el {
+    width: 115px;
+    height: 115px;
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#spin-el-1 {
+    background: #fb5b53;
+    animation: pre-loader-animation-1 3s ease-in-out 0s infinite alternate;
+    position: absolute;
+}
+#spin-el-2 {
+    transform: rotate(45deg);
+    animation: pre-loader-animation-2 3s ease-in-out 0s infinite alternate;
+    background: rgb(63, 249, 220);
+}
+.spin-el-el {
+    background: var(--color-primary-invert);
+    width: 100%;
+    height: 100%;
+}
+.loading-percent {
+    letter-spacing: 3px;
+}
+
+
 /*스크롤 반응*/
 .scroll_wrap{
     overflow: hidden;
