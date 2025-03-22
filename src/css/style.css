@@ -1558,32 +1558,76 @@ input.desc-title {
     transform: rotateZ(2deg) translate3D(-50%, -15%, -150px) scale(1);
 }
 
-#rightDiv0 .swiper-slide:first-child .projects-slide{
-    background: url(../../public/images/projects-section/clayn/1.png)no-repeat 50% 50%;
+#rightDiv0 .swiper-slide[data-bg="1"] .projects-slide{
+    background: url(../../public/images/projects-section/clayn/1.avif)no-repeat 50% 50%;
     background-size: cover;
 }
-#rightDiv0 .swiper-slide:nth-child(2) .projects-slide {
-    background: url(../../public/images/projects-section/clayn/2.png)no-repeat 50% 50%;
+#rightDiv0 .swiper-slide[data-bg="2"] .projects-slide {
+    background: url(../../public/images/projects-section/clayn/2.avif)no-repeat 50% 50%;
     background-size: cover;
 }
-#rightDiv0 .swiper-slide:nth-child(3) .projects-slide {
-    background: url(../../public/images/projects-section/clayn/3.png)no-repeat 50% 50%;
+#rightDiv0 .swiper-slide[data-bg="3"] .projects-slide {
+    background: url(../../public/images/projects-section/clayn/3.avif)no-repeat 50% 50%;
+    background-size: cover;
+}
+#rightDiv0 .swiper-slide[data-bg="4"] .projects-slide {
+    background: url(../../public/images/projects-section/clayn/4.avif)no-repeat 50% 50%;
+    background-size: cover;
+}
+#rightDiv0 .swiper-slide[data-bg="5"] .projects-slide {
+    background: url(../../public/images/projects-section/clayn/5.avif)no-repeat 50% 50%;
     background-size: cover;
 }
 
 
-#rightDiv2 .swiper-slide:first-child .projects-slide {
-    background: url(../../public/images/projects-section/ohrunwan/1.png)no-repeat 50% 50%;
+#rightDiv1 .swiper-slide[data-bg="1"] .projects-slide{
+    background: url(../../public/images/projects-section/selectMore/1.avif)no-repeat 50% 50%;
     background-size: cover;
 }
-#rightDiv2 .swiper-slide:nth-child(2) .projects-slide {
-    background: url(../../public/images/projects-section/ohrunwan/2.png)no-repeat 50% 50%;
+#rightDiv1 .swiper-slide[data-bg="2"] .projects-slide{
+    background: url(../../public/images/projects-section/selectMore/2.avif)no-repeat 50% 50%;
     background-size: cover;
 }
-#rightDiv2 .swiper-slide:nth-child(3) .projects-slide {
-    background: url(../../public/images/projects-section/ohrunwan/3.png)no-repeat 50% 50%;
+#rightDiv1 .swiper-slide[data-bg="3"] .projects-slide{
+    background: url(../../public/images/projects-section/selectMore/3.avif)no-repeat 50% 50%;
     background-size: cover;
 }
+#rightDiv1 .swiper-slide[data-bg="4"] .projects-slide{
+    background: url(../../public/images/projects-section/selectMore/4.avif)no-repeat 50% 50%;
+    background-size: cover;
+}
+#rightDiv1 .swiper-slide[data-bg="5"] .projects-slide{
+    background: url(../../public/images/projects-section/selectMore/5.avif)no-repeat 50% 50%;
+    background-size: cover;
+}
+#rightDiv1 .swiper-slide[data-bg="6"] .projects-slide{
+    background: url(../../public/images/projects-section/selectMore/6.avif)no-repeat 50% 50%;
+    background-size: cover;
+}
+
+
+#rightDiv2 .swiper-slide[data-bg="1"] .projects-slide {
+    background: url(../../public/images/projects-section/ohrunwan/1.avif)no-repeat 50% 50%;
+    background-size: cover;
+}
+#rightDiv2 .swiper-slide[data-bg="2"] .projects-slide {
+    background: url(../../public/images/projects-section/ohrunwan/2.avif)no-repeat 50% 50%;
+    background-size: cover;
+}
+#rightDiv2 .swiper-slide[data-bg="3"] .projects-slide {
+    background: url(../../public/images/projects-section/ohrunwan/3.avif)no-repeat 50% 50%;
+    background-size: cover;
+}
+#rightDiv2 .swiper-slide[data-bg="4"] .projects-slide {
+    background: url(../../public/images/projects-section/ohrunwan/4.avif)no-repeat 50% 50%;
+    background-size: cover;
+}
+#rightDiv2 .swiper-slide[data-bg="5"] .projects-slide {
+    background: url(../../public/images/projects-section/ohrunwan/5.avif)no-repeat 50% 50%;
+    background-size: cover;
+}
+
+
 .leftDiv > h3 {
     font-size: calc(52px * var(--size));
     color: var(--point4-clr);

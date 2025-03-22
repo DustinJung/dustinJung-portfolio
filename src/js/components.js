@@ -121,6 +121,8 @@ var swiper03 = new Swiper(".projects_swiper", {
   slidesPerView: 1,
   centeredSlides: true,
   spaceBetween: 30,
+  loop:true,
+  loopedSlides: 1,
   observer: true,  
   observeParents: true, 
   allowTouchMove: true, 
