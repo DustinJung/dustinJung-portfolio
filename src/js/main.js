@@ -185,7 +185,6 @@ window.onload = function() {
                             top: finalY,
                             behavior: 'smooth'
                         });
-                        setVH()
                         }, 50);
                     }, 2400);
                 });
