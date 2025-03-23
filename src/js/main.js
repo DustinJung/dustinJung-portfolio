@@ -144,54 +144,49 @@ window.onload = function() {
 
         function hoverThenPlanetGoesOn() {
             const thePlanet = document.querySelector('.the-planet');
-            const inPlanet = document.querySelector('#in-the-planet');
             const warp_btn = document.getElementById('go-oustide-btn');
             const body = document.body;
             const theSection = document.querySelector('#my-skills-section');
-            const sectionIndex = 2;
-            
-            function getScrollTarget() {
-              const isModern = CSS.supports('height', '100lvh');
-              return isModern
-                ? theSection.getBoundingClientRect().top + window.scrollY
-                : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex;
-            }
+            const inPlanet = document.querySelector('#in-the-planet');
             
             function planetClick() {
-              thePlanet.addEventListener('click', function () {
-                body.classList.remove('is-ready');
-            
-                // 정확하게 my-skills-section 위치로 스크롤 이동
-                window.scrollTo({
-                  top: getScrollTarget(),
-                  behavior: 'smooth'
-                });
-          
-                this.classList.add('on');
-          
-                setTimeout(() => {
-                  thePlanet.style.touchAction = 'none';
-                  this.style.pointerEvents = 'none';
-                  this.style.touchAction = 'none';
-                  this.style.cursor = 'none';
-                }, 2200);
-          
-                setTimeout(() => {
-                  this.classList.add('nowGo');
-                  inPlanet.classList.add('on');
-          
-                  // 현재 뷰포트 기준으로 정확하게 height 고정
-                  inPlanet.style.height = `${window.innerHeight}px`;
-          
-                  setTimeout(() => {
-                    inPlanet.classList.add('goOn');
-                    document.querySelectorAll('.skill-gage-wrapper').forEach(wrapper => {
-                      const span = wrapper.querySelector('span');
-                      span.classList.add('on');
+                thePlanet.addEventListener('click', function () {
+                    body.classList.remove('is-ready');
+
+                    const targetY = inPlanet.getBoundingClientRect().top + window.scrollY;
+                    
+                    window.scrollTo({
+                        top: targetY,
+                        behavior: 'smooth'
                     });
-                  }, 50);
-                }, 2400);
-              });
+
+                    this.classList.add('on');
+                
+                    setTimeout(() => {
+                        thePlanet.style.touchAction = 'none';
+                        this.style.pointerEvents = 'none';
+                        this.style.touchAction = 'none';
+                        this.style.cursor = 'none';
+                    }, 2200);
+                
+                    setTimeout(() => {
+                        this.classList.add('nowGo');
+                        inPlanet.classList.add('on');
+                    
+                    setTimeout(() => {
+                        inPlanet.classList.add('goOn');
+                        document.querySelectorAll('.skill-gage-wrapper').forEach(wrapper => {
+                                const span = wrapper.querySelector('span');
+                                span.classList.add('on');
+                            });
+                        const finalY = inPlanet.getBoundingClientRect().top + window.scrollY;
+                        window.scrollTo({
+                            top: finalY,
+                            behavior: 'smooth'
+                        });
+                        }, 50);
+                    }, 2400);
+                });
             }
             
             function createParticles() {
@@ -317,7 +312,7 @@ window.onload = function() {
                 });
             }
             theCardEffect();
-                   
+
             function go_warp_outside() {
                 let el1 = document.querySelector('#in-the-planet.goBig .the-particles');
                 let el2 = document.querySelector('#in-the-planet.goBig .skill-swiper-wrapper');
@@ -475,19 +470,13 @@ window.onload = function() {
             let info_div = document.querySelectorAll('.moreinfo_wrapper');
             let info_exit_btns = document.querySelectorAll('.info_exit_btn');
             let theSection = document.getElementById('my-projects-section');
-            let theTargetScroll;
 
             function theclickBtnClick() {
                 theClickBtn.addEventListener('click', function() {
-                    const sectionIndex = 3;
-                    const isModernBrowser = CSS.supports('height', '100lvh');
-                    
-                    const theTargetScroll = isModernBrowser
-                        ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
-                        : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
-                    
+                    const scrollY = window.scrollY + theSection.getBoundingClientRect().top;
+
                     window.scrollTo({
-                        top: theTargetScroll,
+                        top: scrollY,
                         behavior: 'smooth',
                     });
                     
@@ -511,15 +500,10 @@ window.onload = function() {
             function theLisClick() {
                 theLis.forEach((li, i) => {
                     li.addEventListener('click', function() {
-                        const sectionIndex = 3;
-                        const isModernBrowser = CSS.supports('height', '100lvh');
-                        
-                        const theTargetScroll = isModernBrowser
-                            ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
-                            : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
-                        
+                        const scrollY = window.scrollY + theSection.getBoundingClientRect().top;
+
                         window.scrollTo({
-                            top: theTargetScroll,
+                            top: scrollY,
                             behavior: 'smooth',
                         });
                         if (this.classList.contains('on')) {
@@ -543,15 +527,10 @@ window.onload = function() {
             function exitBtnClick() {
                 exit_btns.forEach((btn, i) => {
                     btn.addEventListener('click', function() {
-                        const sectionIndex = 3;
-                        const isModernBrowser = CSS.supports('height', '100lvh');
-                        
-                        const theTargetScroll = isModernBrowser
-                            ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
-                            : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
-                        
+                        const scrollY = window.scrollY + theSection.getBoundingClientRect().top;
+
                         window.scrollTo({
-                            top: theTargetScroll,
+                            top: scrollY,
                             behavior: 'smooth',
                         });
                         chuemBtn.classList.add('on');
@@ -567,15 +546,10 @@ window.onload = function() {
             function moreInfoBtnClick() {
                 more_info_btns.forEach((info_btn, i) => {
                     info_btn.addEventListener('click', function() {
-                        const sectionIndex = 3;
-                        const isModernBrowser = CSS.supports('height', '100lvh');
-                        
-                        const theTargetScroll = isModernBrowser
-                            ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
-                            : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
-                        
+                        const scrollY = window.scrollY + theSection.getBoundingClientRect().top;
+
                         window.scrollTo({
-                            top: theTargetScroll,
+                            top: scrollY,
                             behavior: 'smooth',
                         });
                         floatDivWrappers[i].classList.remove('on');
@@ -590,15 +564,10 @@ window.onload = function() {
                 
                 info_exit_btns.forEach((btn, i) => {
                     btn.addEventListener('click', function() {
-                        const sectionIndex = 3;
-                        const isModernBrowser = CSS.supports('height', '100lvh');
-                        
-                        const theTargetScroll = isModernBrowser
-                            ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
-                            : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
-                        
+                        const scrollY = window.scrollY + theSection.getBoundingClientRect().top;
+
                         window.scrollTo({
-                            top: theTargetScroll,
+                            top: scrollY,
                             behavior: 'smooth',
                         });
                         info_div[i].classList.remove('on');
@@ -702,21 +671,10 @@ window.onload = function() {
             const buttons = document.querySelectorAll(".why-li");
             const contentWrapper = document.querySelector(".thats-the-reason-wrapper");
             const contents = document.querySelectorAll(".thats-the-reason-div");
-            let theTargetScroll;
+            let theSection = document.getElementById('to-study-section');
         
             buttons.forEach((button, index) => {
                 button.addEventListener("click", () => {
-                    const sectionIndex = 2;
-                    const isModernBrowser = CSS.supports('height', '100lvh');
-                    
-                    const theTargetScroll = isModernBrowser
-                        ? window.innerHeight * sectionIndex // 최신 브라우저 → 100lvh 사용
-                        : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vh')) * 100 * sectionIndex; // 구형 브라우저 → --vh 사용
-                    
-                    window.scrollTo({
-                        top: theTargetScroll,
-                        behavior: 'smooth',
-                    });
                     buttons.forEach((buttonz, i) => {
                         if(buttonz.classList.contains('on')) {
                             buttonz.classList.remove('on');
@@ -724,6 +682,15 @@ window.onload = function() {
                     })
                     button.classList.add('on');
                     // 부모 요소 내에서의 상대적 위치를 계산
+                    const rect = theSection.getBoundingClientRect();
+                    const scrollY = window.scrollY + rect.top;
+                    
+                    window.scrollTo({
+                        top: scrollY,
+                        behavior: 'smooth',
+                    });
+
+
                     const targetScroll = contents[index].offsetLeft - contentWrapper.offsetLeft;
                     
                     contentWrapper.scrollTo({

@@ -1,6 +1,33 @@
 /* responsive-mobile.css => 767px 이하 */
 @media (max-width: 767px) {
-    /*dvh 포팅*/
+    /*preloaded*/
+    #intro-words {
+        font-size: calc(16px * var(--size));
+        height: 20px;
+    }
+    #intro-words > div {
+        top: -80px;
+    }
+    #intro-words span{
+        height: 20px;
+    } 
+    @keyframes preloading-text {
+        0% {
+            transform: translateZ(0);
+        }
+        25% {
+            transform: translate3d(0, 20px, 0);
+        }
+        50% {
+            transform: translate3d(0, 40px, 0);
+        }
+        75% {
+            transform: translate3d(0, 60px, 0);
+        }
+        100% {
+            transform: translate3d(0, 80px, 0);
+        }
+    }
     /*header section*/
     #header-section header {
         padding: 10px;
@@ -145,6 +172,9 @@
     .leftDiv_exit_btn span {
         background: var(--point3-clr);
     }
+    .moreinfo_wrapper  {
+        height: 70%;
+    }
     #my-projects-section .leftDiv {
         width: 100%;
         height: 50%;
@@ -169,8 +199,8 @@
         gap: 1rem;
     }
     .leftDiv_exit_btn {
-        right: 1rem;
-        top: 1rem;
+        right: 4rem;
+        top: 5rem;
         width: 3rem;
         height: 3rem;
     }
@@ -362,6 +392,7 @@
     }
     .leftDiv_exit_btn {
         right: 10rem;
+        top: 1rem;
     }
     /*to study*/
     .to-study-wrapper {
