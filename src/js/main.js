@@ -173,18 +173,26 @@ window.onload = function() {
                         this.classList.add('nowGo');
                         inPlanet.classList.add('on');
                     
-                    setTimeout(() => {
-                        inPlanet.classList.add('goOn');
-                        document.querySelectorAll('.skill-gage-wrapper').forEach(wrapper => {
+                        setTimeout(() => {
+                            inPlanet.classList.add('goOn');
+                        
+                            document.querySelectorAll('.skill-gage-wrapper').forEach(wrapper => {
                                 const span = wrapper.querySelector('span');
                                 span.classList.add('on');
                             });
-                        inPlanet.style.height = `${window.innerHeight}px`;
-                        const finalY = inPlanet.getBoundingClientRect().top + window.scrollY;
-                        window.scrollTo({
-                            top: finalY,
-                            behavior: 'smooth'
-                        });
+                            
+                            setTimeout(() => {
+                                requestAnimationFrame(() => {
+                                    setVH();
+                                    inPlanet.style.height = `${window.innerHeight}px`;
+                                    const finalY = inPlanet.getBoundingClientRect().top + window.scrollY;
+                                    window.scrollTo({
+                                        top: finalY,
+                                        behavior: 'smooth'
+                                    });
+                                });
+                            }, 500)
+                            // requestAnimationFrame으로 정확한 타이밍에 보정
                         }, 50);
                     }, 2400);
                 });
