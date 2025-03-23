@@ -179,6 +179,7 @@ window.onload = function() {
                                 const span = wrapper.querySelector('span');
                                 span.classList.add('on');
                             });
+                        inPlanet.style.height = `${window.innerHeight}px`;
                         const finalY = inPlanet.getBoundingClientRect().top + window.scrollY;
                         window.scrollTo({
                             top: finalY,
