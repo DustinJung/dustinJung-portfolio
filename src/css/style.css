@@ -298,6 +298,7 @@ main {
     width: 100%;
     position: relative;
     overflow: hidden;
+    will-change: transform;
 }
 
 /*introduce-section*/
