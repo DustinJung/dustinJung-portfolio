@@ -137,20 +137,6 @@ function initEffects() {
         window.addEventListener("scroll", handleScroll);
     }
 
-    function setVH() {
-        let vh = window.visualViewport 
-            ? window.visualViewport.height * 0.01 
-            : window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
-
-    function setIP() {
-        let ip = window.visualViewport 
-            ? window.visualViewport.height * 0.01 
-            : window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--ip', `${ip}px`);
-    }
-
     function setSize() {
         requestAnimationFrame(() => {
             const scale = Math.min(window.innerWidth, window.innerHeight) / 1200;
@@ -184,7 +170,6 @@ function initEffects() {
                     ScrollTrigger.refresh();
                 } else {
                     resizeTimeoutForMobile = setTimeout(() => {
-                        debounceSetVH(300);
                         setSize();
                         ScrollTrigger.refresh();
                     }, 200);
@@ -223,8 +208,7 @@ function initEffects() {
     // visualViewport 변화 감지해서 vh 보정 (디바운스 적용)
     if (window.visualViewport) {
         window.visualViewport.addEventListener('resize', () => {
-            debounceSetVH(300); // vh는 디바운스 적용
-            setIP(); // ip는 즉각 적용
+            setIP();
         });
     }
 }
@@ -252,10 +236,23 @@ function initEffects() {
     betweenBtnHover();
 }
 
+function setVH() {
+    let vh = window.visualViewport 
+        ? window.visualViewport.height * 0.01 
+        : window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+function setIP() {
+    let ip = window.visualViewport 
+        ? window.visualViewport.height * 0.01 
+        : window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--ip', `${ip}px`);
+}
+
 function letBodyTakeIsReady() {
     setTimeout(() => {
         document.querySelector('body').classList.add('is-ready');
     }, 5200)
 };
 
-export { initUtils, letBodyTakeIsReady };
+export { initUtils, letBodyTakeIsReady, setVH };

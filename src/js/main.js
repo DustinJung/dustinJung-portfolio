@@ -1,7 +1,7 @@
 /* main.js => vanila javascript, 함수 모듈 총괄 */
 import { initAnimations } from "./animations.js";
 import { initComponents } from "./components.js";
-import { initUtils, letBodyTakeIsReady } from "./utils.js";
+import { initUtils, letBodyTakeIsReady, setVH } from "./utils.js";
 gsap.registerPlugin(ScrollTrigger);
 
 function startWeb() {
@@ -184,6 +184,7 @@ window.onload = function() {
                             top: finalY,
                             behavior: 'smooth'
                         });
+                        setVH()
                         }, 50);
                     }, 2400);
                 });

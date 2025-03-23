@@ -35,6 +35,9 @@ body.is-ready{
     overflow-y: auto !important;
     overflow-x: hidden;
 }
+:root {
+    --vh: 1vh; /* fallback */
+}
 :root{
     --body-bg-clr: #0B0C10; /*Deep Space Black*/
     --main-clr: #F8F9FA; /*Neon White*/
