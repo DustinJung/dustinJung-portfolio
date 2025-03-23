@@ -18,6 +18,8 @@ function waitForTheUfo() {
                 id: "wait",
             },
             onStart: () => {
+                bubble.classList.remove('on');
+                void bubble.offsetWidth; // 강제로 reflow 일으켜서 리셋
                 bubble.classList.add('on');
             }
         })
@@ -45,20 +47,24 @@ function letUfoHaveOn() {
                 markers: false,
             },
             onStart: () => {
-                if(bubble.classList.contains('on')){
-                    bubble.classList.remove('on');
-                }
+                // bubble이 애초에 떠 있는 걸 방지하려면 무조건 hidden 처리
+                bubble.classList.remove('on');
+                bubble.style.opacity = '0';
+                bubble.style.visibility = 'hidden';
+                bubble.style.pointerEvents = 'none';
+            
                 elements.forEach((el) => {
                     el.classList.add('on');
-                })
-                if(ufo.classList.contains('on')){
-                        setTimeout(() => {
-                            ufo.classList.add("light-on");
-                        }, 1600); // UFO가 다 내려온 후 불빛 ON!    
-                    
-                        setTimeout(() => {
-                            ufo.classList.remove('light-on');
-                        }, 2000);
+                });
+            
+                if (ufo.classList.contains('on')) {
+                    setTimeout(() => {
+                        ufo.classList.add("light-on");
+                    }, 1600);
+            
+                    setTimeout(() => {
+                        ufo.classList.remove('light-on');
+                    }, 2000);
                 }
             }
         });
