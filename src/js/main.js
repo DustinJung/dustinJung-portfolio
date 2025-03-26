@@ -154,9 +154,6 @@ window.onload = function() {
                     body.classList.remove('is-ready');
 
                     requestAnimationFrame(() => {
-                        setVH();
-                        inPlanet.style.height = `${window.innerHeight}px`;
-                    
                         const initialY = inPlanet.getBoundingClientRect().top + window.scrollY;
                         window.scrollTo({
                           top: initialY,
