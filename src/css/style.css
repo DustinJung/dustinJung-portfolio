@@ -58,6 +58,8 @@
     transform-origin: left;
     display: inline-block;
     z-index: 3;
+    width: 100%;
+    text-align: center;
 }
 #loaded.on #intro-section > span.hello-world {
     animation: 
