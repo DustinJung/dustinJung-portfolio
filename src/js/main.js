@@ -85,7 +85,7 @@ window.addEventListener('load', () => {
     // 비상용 타임아웃
     setTimeout(() => {
     if (targetPercent < 100) {
-        console.warn('⏰ 로딩 타임아웃 - 강제 100% 처리');
+        console.warn('로딩 타임아웃 - 강제 100% 처리');
         targetPercent = 100;
     }
     }, 15000);
