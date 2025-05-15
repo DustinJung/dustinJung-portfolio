@@ -58,6 +58,8 @@
     transform-origin: left;
     display: inline-block;
     z-index: 3;
+    width: 100%;
+    text-align: center;
 }
 #loaded.on #intro-section > span.hello-world {
     animation: 
@@ -309,7 +311,7 @@ main {
     height: calc(var(--vh) * 100);
 }
 #wait-for-the-ufo {
-    top: 10%;
+    top: 15%;
     left: 46%;
     width: 180px;
     height: 50px;

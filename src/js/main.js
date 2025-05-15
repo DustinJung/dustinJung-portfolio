@@ -153,13 +153,12 @@ window.onload = function() {
                 thePlanet.addEventListener('click', function () {
                     body.classList.remove('is-ready');
 
-                    setVH();
-                    inPlanet.style.height = `${window.innerHeight}px`;
-                    const targetY = inPlanet.getBoundingClientRect().top + window.scrollY;
-                
-                    window.scrollTo({
-                        top: targetY,
-                        behavior: 'smooth'
+                    requestAnimationFrame(() => {
+                        const initialY = inPlanet.getBoundingClientRect().top + window.scrollY;
+                        window.scrollTo({
+                          top: initialY,
+                          behavior: 'smooth'
+                        });
                     });
 
                     this.classList.add('on');
